@@ -6,3 +6,7 @@
 .header__image {
   margin: 45px 0px 41px 0px; /* top right bottom left */
 }
+
+.header__line {
+  margin: 0px 0px 40px 0px; /* top right bottom left */
+}
