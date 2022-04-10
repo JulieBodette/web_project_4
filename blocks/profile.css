@@ -1,16 +1,16 @@
 .profile {
   display: grid;
-  grid-template-areas: "avatar info blank add-button";
+  grid-template-areas: "avatar info add-button";
   /*set these values on the objects with grid-area:name */
   margin: 0px auto 46.25px auto; /* top right bottom left */
   max-width: 902.5px;
-  grid-column-gap: 30px; /*165px;*/
+  grid-column-gap: 0px; /*165px;*/
   grid-template-columns:
     minmax(auto, 120px)
-    minmax(auto, 415px)
-    minmax(auto, 105px)
+    minmax(auto, 580px) /*415 for the content */
     minmax(auto, 150px);
   width: fit-content; /*gets rid of extra grid space and allows it to be centered */
+  align-items: center;
 }
 
 .profile__avatar {
@@ -20,6 +20,7 @@
   width: 120px;
   height: 120px;
   object-fit: cover; /*so that image is not stretched */
+  margin: 0px 30px 0px 0px; /* top right bottom left */
 }
 
 .profile__info {
@@ -54,14 +55,14 @@
   outline: none;
   border: 1px solid #ffffff;
   box-sizing: border-box; /*border-box means border and padding is accounted for in size*/
-  margin-left: 10px; /* should be 18px but it wont fit*/
+  margin-left: 18px;
   width: 24px;
   height: 24px;
 }
 
 .profile__add-button {
   grid-area: add-button; /*NO QUOTES */
-  max-height: 50px;
+  min-height: 50px;
   background-color: black;
   outline: none;
   border: 2px solid #ffffff;
