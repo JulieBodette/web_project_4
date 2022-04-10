@@ -1,0 +1,19 @@
+.page {
+  background-color: #000000;
+  color: white;
+  /*default font is colored white */
+  display: flex; /*margin: auto works inside flex. margin:auto does not always work inside display:block */
+}
+
+.page__content {
+  max-width: 1289px; /*Figma desktop view is 1280px*/
+  width: 100%; /*needed to make the photo grid fill the max space */
+  margin: auto;
+}
+
+/*styles for 320px screen*/
+@media screen and (max-width: 500px) {
+  .page__content {
+    max-width: 320px;
+  }
+}
