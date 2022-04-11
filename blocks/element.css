@@ -1,9 +1,17 @@
 .element {
+  /* object-fit: cover;
+  width: 100%; stay inside grid box 
+  max-height: 361px; */
+}
+
+.element__image {
+  max-height: 282px; /*image is correct size and stays in grid box */
 }
 
 .element__rectangle {
   background: #ffffff;
   border-radius: 10px;
+  min-height: 79px;
 }
 
 .element__text {
@@ -13,7 +21,12 @@
   font-size: 24px;
   line-height: 29px;
   color: #000000;
+  margin: 25px 0px 0px 21px; /* top right bottom left */
+  padding: 0px;
+  display: inline-block; /*so that like appears next to it */
 }
 
 .element__like {
+  float: right; /*align itself on the right side */
+  margin: 30px 18px 0px 0px; /* top right bottom left */
 }
