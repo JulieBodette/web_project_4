@@ -68,4 +68,5 @@
   border: 2px solid #ffffff;
   box-sizing: border-box; /*border-box means border and padding is accounted for in size*/
   border-radius: 2px;
+  cursor: pointer; /*mouse changes on hover */
 }
