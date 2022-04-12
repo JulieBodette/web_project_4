@@ -6,3 +6,12 @@
   width: fit-content; /*gets rid of extra grid space and allows it to be centered */
   margin: 0 auto;
 }
+
+/*styles for 320px screen*/
+@media screen and (max-width: 500px) {
+  /*only 1 column*/
+  .grid {
+    grid-template-columns: minmax(282px, 1fr);
+    grid-row-gap: 20px;
+  }
+}
