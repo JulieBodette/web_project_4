@@ -70,3 +70,32 @@
   border-radius: 2px;
   cursor: pointer; /*mouse changes on hover */
 }
+
+/*styles for 320px screen*/
+@media screen and (max-width: 500px) {
+  .profile {
+    grid-template-areas:
+      "avatar"
+      "info"
+      "add-button";
+    /*grid-row-gap: 30px;*/
+    grid-template-columns: minmax(auto, 282px); /*only one column now */
+  }
+
+  .profile__avatar {
+    margin: 0px auto 0px auto; /* top right bottom left */
+  }
+
+  .profile__info-name {
+    font-size: 22px;
+    line-height: 27px;
+    text-align: center;
+  }
+
+  .profile__info-title {
+    margin: 14px 0px 0px 0px; /* top right bottom left */
+    font-size: 14px;
+    line-height: 17px;
+    text-align: center;
+  }
+}
