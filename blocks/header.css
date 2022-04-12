@@ -9,4 +9,6 @@
 
 .header__line {
   margin: 0px 0px 40px 0px; /* top right bottom left */
+  opacity: 0.7;
+  border: 1px solid #545454;
 }
