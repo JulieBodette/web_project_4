@@ -1,17 +1,23 @@
 .element {
-  /* object-fit: cover;
-  width: 100%; stay inside grid box 
-  max-height: 361px; */
+  /*object-fit: cover;
+  width: 100%;
+  max-height: 361px;*/
+  display: grid; /*removes the space between the 2 objects (picture and white rectangle) */
 }
 
 .element__image {
   max-height: 282px; /*image is correct size and stays in grid box */
+  border-radius: 10px 10px 0px 0px; /* top rounded corners */
+  margin: 0px;
+  padding: 0px;
 }
 
 .element__rectangle {
   background: #ffffff;
-  border-radius: 10px;
   min-height: 79px;
+  margin: 0px;
+  padding: 0px;
+  border-radius: 0px 0px 10px 10px; /* bottom rounded corners */
 }
 
 .element__text {
