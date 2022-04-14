@@ -9,4 +9,14 @@
 
 .header__line {
   margin: 0px 0px 40px 0px; /* top right bottom left */
+  opacity: 0.7;
+  border: 1px solid #545454;
+}
+
+/*styles for 320px screen*/
+@media screen and (max-width: 660px) {
+  .header__image {
+    height: 24px;
+    margin-left: 27px;
+  }
 }
