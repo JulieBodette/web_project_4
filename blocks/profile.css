@@ -58,6 +58,7 @@
   margin-left: 18px;
   width: 24px;
   height: 24px;
+  padding: 0px;
 }
 
 .profile__add-button {
@@ -69,4 +70,49 @@
   box-sizing: border-box; /*border-box means border and padding is accounted for in size*/
   border-radius: 2px;
   cursor: pointer; /*mouse changes on hover */
+}
+
+/*styles for 320px screen*/
+@media screen and (max-width: 660px) {
+  .profile {
+    grid-template-areas:
+      "avatar"
+      "info"
+      "add-button";
+    /*grid-row-gap: 30px;*/
+    grid-template-columns: minmax(auto, 282px); /*only one column now */
+    grid-row-gap: 26.25px;
+  }
+
+  .profile__avatar {
+    margin: 0px auto 0px auto; /* top right bottom left */
+  }
+
+  .profile__info {
+    display: grid;
+    justify-content: center; /*center the name and edit box and title */
+  }
+
+  .profile__info-name {
+    font-size: 22px;
+    line-height: 27px;
+    text-align: center;
+  }
+
+  .profile__info-title {
+    margin: 14px 0px 0px 0px; /* top right bottom left */
+    font-size: 14px;
+    line-height: 17px;
+    text-align: center;
+  }
+
+  .profile__info-edit-button {
+    width: 18px;
+    height: 18px;
+    margin-left: 10px;
+  }
+
+  .profile__add-button {
+    margin-top: 9.75px;
+  }
 }
