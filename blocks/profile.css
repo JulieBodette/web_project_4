@@ -58,6 +58,7 @@
   margin-left: 18px;
   width: 24px;
   height: 24px;
+  padding: 0px;
 }
 
 .profile__add-button {
@@ -72,7 +73,7 @@
 }
 
 /*styles for 320px screen*/
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 660px) {
   .profile {
     grid-template-areas:
       "avatar"
@@ -80,10 +81,16 @@
       "add-button";
     /*grid-row-gap: 30px;*/
     grid-template-columns: minmax(auto, 282px); /*only one column now */
+    grid-row-gap: 26.25px;
   }
 
   .profile__avatar {
     margin: 0px auto 0px auto; /* top right bottom left */
+  }
+
+  .profile__info {
+    display: grid;
+    justify-content: center; /*center the name and edit box and title */
   }
 
   .profile__info-name {
@@ -97,5 +104,15 @@
     font-size: 14px;
     line-height: 17px;
     text-align: center;
+  }
+
+  .profile__info-edit-button {
+    width: 18px;
+    height: 18px;
+    margin-left: 10px;
+  }
+
+  .profile__add-button {
+    margin-top: 9.75px;
   }
 }

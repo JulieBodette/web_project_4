@@ -7,8 +7,15 @@
   margin: 0 auto;
 }
 
+/*2 columns at mid size screen */
+@media screen and (max-width: 980px) {
+  .grid {
+    grid-template-columns: repeat(2, minmax(282px, 1fr));
+  }
+}
+
 /*styles for 320px screen*/
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 660px) {
   /*only 1 column*/
   .grid {
     grid-template-columns: minmax(282px, 1fr);

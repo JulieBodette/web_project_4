@@ -15,7 +15,7 @@
 }
 
 /*styles for 320px screen*/
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 660px) {
   .footer {
     margin: 50px auto 36px auto; /* top right bottom left */
     max-width: 282px; /*max width must be less than width of page or margin:auto does not center it */
