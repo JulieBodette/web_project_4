@@ -1,0 +1,70 @@
+.modal {
+  /*make the background look faded by putting opacity over it*/
+  background-color: rgba(0, 0, 0, 0.5);
+  /*^^Do NOT do this as a seperate opacity command or it applies to the modal__content as well */
+  /*cover entire screen */
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  /*end cover entire screen commands */
+  display: flex; /*needed so that margin:auto works to center the box */
+  /*you could also use justify-content + align-items center to align it */
+}
+
+.modal__content {
+  height: 330px;
+  width: 430px;
+  margin: auto auto;
+  background-color: blue;
+  border-radius: 10px;
+  position: relative; /*so that X close button is placed relative to this box */
+}
+
+.modal__title {
+  font-family: "Inter", "Arial", sans-serif; /*fallback fonts */
+  font-style: normal;
+  font-weight: 900;
+  font-size: 24px;
+  line-height: 29px;
+
+  color: #000000; /*make text black (override default of white)*/
+}
+
+.modal__button {
+  background: #000000;
+  border-radius: 2px;
+  min-height: 50.15px;
+  min-width: 358px;
+  margin: 0px auto 0px auto; /* top right bottom left */ /*might need to change */
+}
+
+.modal__button-text {
+  font-family: "Inter", "Arial", sans-serif; /*fallback fonts */
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 22px;
+  text-align: center;
+  color: #ffffff;
+}
+
+.modal__close-button {
+  display: block;
+  border: none;
+  width: 32px;
+  height: 32px;
+  background-color: transparent;
+  position: absolute;
+  /*place in upper right corner, negative indicates outside box */
+  top: -35px;
+  right: -35px;
+  background-image: url("./images/CloseIcon.svg");
+}
+
+.modal__form {
+  /*make the input fields go as column instead of rows */
+  display: flex;
+  flex-direction: column;
+}
