@@ -60,7 +60,6 @@
   /*place in upper right corner, negative indicates outside box */
   top: -35px;
   right: -35px;
-  background-image: url("./images/CloseIcon.svg");
 }
 
 .modal__form {
