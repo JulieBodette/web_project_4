@@ -24,7 +24,7 @@
           </span>
           <h2 class="profile__info-title">Explorer</h2>
         </div>
-        <button class="profile__add-button">
+        <button class="profile__add-button" id="profile__add-button">
           <img src="./images/Plus.svg" />
         </button>
       </section>
@@ -79,8 +79,8 @@
       </footer>
     </div>
     <!--End page content-->
-    <script src="index.js"></script>
-    <div class="modal">
+
+    <div class="modal" id="edit-profile-modal">
       <div class="modal__content">
         <button class="modal__close-button">
           <img src="./images/CloseIcon.svg" />
@@ -88,14 +88,26 @@
         <!--<img src="./images/CloseIcon.svg" /> -->
         <h1 class="modal__title">Edit profile</h1>
         <form class="modal__form">
-          <input type="text" name="name" placeholder="Jacques Cousteau" />
-          <input type="text" name="title" placeholder="Explorer" />
+          <input
+            class="modal__input-text"
+            type="text"
+            name="name"
+            placeholder="Jacques Cousteau"
+          />
+          <input
+            class="modal__input-text"
+            type="text"
+            name="title"
+            placeholder="Explorer"
+          />
 
-          <button type="submit" class="modal__button">
+          <button type="submit" class="modal__submit-button">
             <p class="modal__button-text">Save</p>
           </button>
         </form>
       </div>
     </div>
+    <script src="index.js"></script>
+    <!--goes at end so it can get to all the html elements-->
   </body>
 </html>

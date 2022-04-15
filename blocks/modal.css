@@ -9,6 +9,11 @@
   top: 0;
   bottom: 0;
   /*end cover entire screen commands */
+  display: none; /*hidden by default */
+}
+
+.modal_open {
+  /*make it visible */
   display: flex; /*needed so that margin:auto works to center the box */
   /*you could also use justify-content + align-items center to align it */
 }
@@ -32,7 +37,7 @@
   color: #000000; /*make text black (override default of white)*/
 }
 
-.modal__button {
+.modal__submit-button {
   background: #000000;
   border-radius: 2px;
   min-height: 50.15px;
@@ -66,4 +71,9 @@
   /*make the input fields go as column instead of rows */
   display: flex;
   flex-direction: column;
+}
+
+.modal__input-text {
+  margin: 0 auto;
+  max-width: 358px;
 }
