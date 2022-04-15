@@ -30,6 +30,11 @@
   margin: 25px 0px 0px 21px; /* top right bottom left */
   padding: 0px;
   display: inline-block; /*so that like appears next to it */
+  /*add ... if text is too long */
+  max-width: 220px; /*not an exact calculated value, but tested it and it looks good should be less than 246*/
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 .element__like {
