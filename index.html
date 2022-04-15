@@ -18,13 +18,13 @@
         <div class="profile__info">
           <span>
             <h1 class="profile__info-name">Jacques Cousteau</h1>
-            <button class="profile__info-edit-button">
+            <button class="profile__info-edit-button" id="openModal">
               <img src="./images/Edit.svg" />
             </button>
           </span>
           <h2 class="profile__info-title">Explorer</h2>
         </div>
-        <button class="profile__add-button" id="profile__add-button">
+        <button class="profile__add-button">
           <img src="./images/Plus.svg" />
         </button>
       </section>
@@ -92,14 +92,15 @@
             class="modal__input-text"
             type="text"
             name="name"
-            placeholder="Jacques Cousteau"
+            value="Jacques Cousteau"
           />
           <input
             class="modal__input-text"
             type="text"
             name="title"
-            placeholder="Explorer"
+            value="Explorer"
           />
+          <!--set input values to the same text as the default values on the page-->
 
           <button type="submit" class="modal__submit-button">
             <p class="modal__button-text">Save</p>
