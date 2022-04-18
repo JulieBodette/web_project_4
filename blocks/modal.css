@@ -71,6 +71,9 @@
   top: -35px;
   right: -35px;
 }
+.modal__close-button :hover {
+  opacity: 0.6;
+}
 
 .modal__form {
   /*make the input fields go as column instead of rows */

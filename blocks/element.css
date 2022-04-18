@@ -43,6 +43,10 @@
   content: url("../images/Heart_disabled.svg"); /*note: you gotta use content if its <img> tag. NOT background-image */
 }
 
+.element__like:hover {
+  opacity: 0.5;
+}
+
 .element__like_active {
   content: url("../images/Heart_active.svg");
 }
