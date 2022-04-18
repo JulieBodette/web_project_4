@@ -32,8 +32,8 @@ const formElement = document.querySelector(".modal__form"); //find the form. for
 function handleProfileFormSubmit(evt) {
     evt.preventDefault();     // stops the browser from submitting the form in the default way.
     // find the form fields in the DOM
-    let nameInput = formElement.querySelector('[name="name"]');
-    let titleInput = formElement.querySelector('[name="title"]');
+    const nameInput = formElement.querySelector('[name="name"]');
+    const titleInput = formElement.querySelector('[name="title"]');
 
     // Insert new values using the textContent 
     // property of the querySelector() method
@@ -46,6 +46,14 @@ function handleProfileFormSubmit(evt) {
 // it will watch the submit event
 formElement.addEventListener('submit', handleProfileFormSubmit); 
 //we did not explicitly find the submit button...just listening to the event
+
+
+//detect if user pressed enter key and then close the window and save the text
+formElement.addEventListener("keydown", function(event) {
+    if(event.key == "Enter") {
+        handleProfileFormSubmit(event);
+    }
+}); //need to have close parentheses here and ; because it is end of function definition
 
 
 

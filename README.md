@@ -2,15 +2,18 @@
 
 ### Overview
 
-* Figma
-* Images
+This is a basic social media site. In its current iteration, users can change their name and title. It has responsive design (works on desktop and mobile)
 
-**Figma**
+### Technologies and Techniques
 
-* [Link to the project in Figma](https://www.figma.com/file/SurN1jaeEQIhuZEDMhmWWf/Sprint-4-Around-The-U.S.-desktop-mobile?node-id=0%3A1)
+- [Link to the project in Figma](https://www.figma.com/file/SurN1jaeEQIhuZEDMhmWWf/Sprint-4-Around-The-U.S.-desktop-mobile?node-id=0%3A1)
 
 **Images**
 
-The way you'll do this at work is by exporting images directly from Figma — we recommend doing that to practice more. Don't forget to optimize them [here](https://tinypng.com/), so your project loads faster. 
+Images were exported from Figma and optimized [here](https://tinypng.com/)
 
-Have fun with JavaScript!
+Javascript was used to get user input for name and title, and update the screen with the values they entered.
+
+### GitHub Pages
+
+https://github.com/JulieBodette/web_project_4

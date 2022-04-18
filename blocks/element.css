@@ -40,4 +40,9 @@
 .element__like {
   float: right; /*align itself on the right side */
   margin: 30px 18px 0px 0px; /* top right bottom left */
+  content: url("../images/Heart_disabled.svg"); /*note: you gotta use content if its <img> tag. NOT background-image */
+}
+
+.element__like_active {
+  content: url("../images/Heart_active.svg");
 }

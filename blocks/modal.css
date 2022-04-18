@@ -10,6 +10,7 @@
   bottom: 0;
   /*end cover entire screen commands */
   display: none; /*hidden by default */
+  position: fixed; /*does not move when you scroll */
 }
 
 .modal_open {
@@ -40,15 +41,14 @@
 }
 
 .modal__submit-button {
+  /*contains all the styles for the button AND the button text */
+  /*w3c validator gives an error if you make the text a seperate <p> tag */
   background: #000000;
   border: none; /*remove default border styles */
   border-radius: 2px;
   min-height: 50.15px;
   min-width: 358px;
   margin: 48px auto 0px auto; /* top right bottom left */
-}
-
-.modal__button-text {
   font-family: "Inter", "Arial", sans-serif; /*fallback fonts */
   font-style: normal;
   font-weight: 400;
@@ -56,8 +56,6 @@
   line-height: 22px;
   text-align: center;
   color: #ffffff;
-  padding: 0px; /*rest so that text is centered properly */
-  margin: 0px; /*rest so that text is centered properly */
 }
 
 .modal__close-button {
