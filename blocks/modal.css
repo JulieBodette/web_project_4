@@ -70,6 +70,7 @@
   /*place in upper right corner, negative indicates outside box */
   top: -35px;
   right: -35px;
+  cursor: pointer;
 }
 .modal__close-button :hover {
   opacity: 0.6;
