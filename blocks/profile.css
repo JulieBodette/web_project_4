@@ -43,7 +43,6 @@
   font-weight: 500;
   font-size: 42px;
   line-height: 48px;
-  display: inline-block; /*so that button appears next to it */
   /*add "..." if text is too long */
   max-width: 415px;
   text-overflow: ellipsis;
