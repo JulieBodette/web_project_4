@@ -20,16 +20,19 @@
         <!--profile is a grid-->
         <img class="profile__avatar" src="./images/Avatar.jpg" alt="Avatar" />
         <div class="profile__info">
-          <div>
-            <!--cannot be span (w3c error from having <p> tag)-->
-            <p class="profile__info-name">Jacques Cousteau</p>
-            <button class="profile__info-edit-button" id="openModal">
-              <img src="./images/Edit.svg" alt="Edit" />
-            </button>
-          </div>
+          <!--cannot be span (w3c error from having <p> tag)-->
+          <p class="profile__info-name">Jacques Cousteau</p>
+          <button
+            type="button"
+            class="profile__info-edit-button"
+            id="openModal"
+          >
+            <img src="./images/Edit.svg" alt="Edit" />
+          </button>
+
           <h2 class="profile__info-title">Explorer</h2>
         </div>
-        <button class="profile__add-button">
+        <button type="button" class="profile__add-button">
           <img src="./images/Plus.svg" alt="Add" />
         </button>
       </section>
@@ -135,7 +138,7 @@
 
     <div class="modal" id="edit-profile-modal">
       <div class="modal__content">
-        <button class="modal__close-button">
+        <button type="button" class="modal__close-button">
           <img src="./images/CloseIcon.svg" alt="X" />
         </button>
         <!--<img src="./images/CloseIcon.svg" /> -->

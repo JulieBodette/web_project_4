@@ -27,6 +27,12 @@
   grid-area: info; /*NO QUOTES */
   margin: 0px;
   padding: 0px;
+  display: grid; /*its a grid inside a grid */
+  grid-template-areas:
+    "name edit-button"
+    "title title";
+  grid-column-gap: 18px;
+  width: fit-content; /*gets rid of extra grid space and allows it to be centered */
 }
 
 .profile__info-name {
@@ -43,10 +49,11 @@
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
+  grid-area: name;
 }
 
 .profile__info-title {
-  margin: 16px auto 0px auto; /* top right bottom left */
+  margin: 16px 0px 0px 0px; /* top right bottom left */
   padding: 0px;
   font-family: "Inter", "Arial", sans-serif; /*fallback fonts */
   font-style: normal;
@@ -58,6 +65,9 @@
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
+  grid-area: title;
+  text-align: left;
+  align-self: start;
 }
 
 .profile__info-edit-button {
@@ -65,11 +75,13 @@
   outline: none;
   border: 1px solid #ffffff;
   box-sizing: border-box; /*border-box means border and padding is accounted for in size*/
-  margin-left: 18px;
   width: 24px;
   height: 24px;
-  padding: 0px;
+  margin: 0px; /*reset*/
+  padding: 0px; /*reset*/
   cursor: pointer;
+  grid-area: edit-button;
+  align-self: end;
 }
 
 .profile__info-edit-button:hover {
@@ -108,7 +120,7 @@
   }
 
   .profile__info {
-    display: grid;
+    grid-column-gap: 10px;
     justify-content: center; /*center the name and edit box and title */
   }
 

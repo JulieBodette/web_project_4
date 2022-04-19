@@ -37,7 +37,7 @@
   line-height: 29px;
   color: #000000; /*make text black (override default of white)*/
   padding: 0px;
-  margin: 34px auto 54px auto; /* top right bottom left */
+  margin: 34px 0px 54px 36px; /* top right bottom left not centered-aligned to left*/
 }
 
 .modal__submit-button {
