@@ -3,7 +3,6 @@
   background-color: rgba(0, 0, 0, 0.5);
   /*^^Do NOT do this as a seperate opacity command or it applies to the modal__content as well */
   /*cover entire screen */
-  position: absolute;
   left: 0;
   right: 0;
   top: 0;
@@ -20,8 +19,7 @@
 }
 
 .modal__content {
-  height: 330px;
-  width: 430px;
+  /*width and height are determined by the margins of the objects inside */
   margin: auto auto;
   background-color: #ffffff;
   border-radius: 10px;
@@ -58,6 +56,10 @@
   color: #ffffff;
 }
 
+.modal__submit-button:hover {
+  opacity: 0.6;
+}
+
 .modal__close-button {
   padding: 0px; /*reset margin and padding so the image is correct size */
   margin: 0px;
@@ -80,6 +82,7 @@
   /*make the input fields go as column instead of rows */
   display: flex;
   flex-direction: column;
+  margin: 0px 36px 36.51px 36px; /* top right bottom left */
 }
 
 .modal__input-text {
@@ -87,7 +90,7 @@
   /*also the border styles */
   margin: 0 auto;
   min-width: 358px;
-  font-family: "Inter";
+  font-family: "Inter", "Arial", sans-serif; /*fallback fonts */
   font-style: normal;
   font-weight: 400;
   font-size: 14px;
@@ -103,16 +106,16 @@
 
 /*styles for 320px screen*/
 @media screen and (max-width: 660px) {
-  .modal__content {
-    height: 322px;
-    width: 282px;
-  }
-
   .modal__title {
     max-width: 238px; /*needs to be set to smaller than box size so that margin auto works*/
     font-size: 18px;
     line-height: 22px;
     margin: 25px auto 76px auto; /* top right bottom left */
+  }
+
+  .modal__form {
+    /*make the input fields go as column instead of rows */
+    margin: 0px 22px 25px 22px; /* top right bottom left */
   }
 
   .modal__input-text {
@@ -125,6 +128,8 @@
     min-height: 46px;
     min-width: 238px;
     margin: 46px auto 0px auto; /* top right bottom left */
+    font-size: 14px;
+    line-height: 17px;
   }
 
   .modal__button-text {

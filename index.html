@@ -14,122 +14,110 @@
           src="./images/Header.svg"
           alt="Around the US"
         />
-        <hr class="header__line" />
       </header>
-      <section class="profile">
-        <!--profile is a grid-->
-        <img class="profile__avatar" src="./images/Avatar.jpg" alt="Avatar" />
-        <div class="profile__info">
-          <!--cannot be span (w3c error from having <p> tag)-->
-          <p class="profile__info-name">Jacques Cousteau</p>
-          <button
-            type="button"
-            class="profile__info-edit-button"
-            id="openModal"
-          >
-            <img src="./images/Edit.svg" alt="Edit" />
+      <main>
+        <section class="profile">
+          <!--profile is a grid-->
+          <img class="profile__avatar" src="./images/Avatar.jpg" alt="Avatar" />
+          <div class="profile__info">
+            <!--cannot be span (w3c error from having <p> tag)-->
+            <p class="profile__info-name">Jacques Cousteau</p>
+            <button
+              type="button"
+              class="profile__info-edit-button"
+              id="openModal"
+            >
+              <img src="./images/Edit.svg" alt="Edit" />
+            </button>
+
+            <p class="profile__info-title">Explorer</p>
+          </div>
+          <button type="button" class="profile__add-button">
+            <img src="./images/Plus.svg" alt="Add" />
           </button>
-
-          <h2 class="profile__info-title">Explorer</h2>
-        </div>
-        <button type="button" class="profile__add-button">
-          <img src="./images/Plus.svg" alt="Add" />
-        </button>
-      </section>
-      <section class="grid">
-        <!--Elements section. This is a grid of pictures-->
-        <div class="element">
-          <img
-            class="element__image"
-            src="./images/YosemiteValley.jpg"
-            alt="Yosemite Valley"
-          />
-          <div class="element__rectangle">
-            <h2 class="element__text">Yosemite Valley</h2>
+        </section>
+        <section class="grid">
+          <!--Elements section. This is a grid of pictures-->
+          <div class="element">
             <img
-              class="element__like"
-              src="./images/Heart_disabled.svg"
-              alt="like"
+              class="element__image"
+              src="./images/YosemiteValley.jpg"
+              alt="Yosemite Valley"
             />
+            <div class="element__rectangle">
+              <h2 class="element__text">Yosemite Valley</h2>
+              <button type="button" class="element__like">
+                <img src="./images/Heart_disabled.svg" alt="like" />
+              </button>
+            </div>
           </div>
-        </div>
-        <div class="element">
-          <img
-            class="element__image"
-            src="./images/LakeLouise.jpg"
-            alt="Lake Louise"
-          />
-          <div class="element__rectangle">
-            <h2 class="element__text">Lake Louise</h2>
+          <div class="element">
             <img
-              class="element__like"
-              src="./images/Heart_disabled.svg"
-              alt="like"
+              class="element__image"
+              src="./images/LakeLouise.jpg"
+              alt="Lake Louise"
             />
+            <div class="element__rectangle">
+              <h2 class="element__text">Lake Louise</h2>
+              <button type="button" class="element__like">
+                <img src="./images/Heart_disabled.svg" alt="like" />
+              </button>
+            </div>
           </div>
-        </div>
-        <div class="element">
-          <img
-            class="element__image"
-            src="./images/BaldMountains.jpg"
-            alt="Bald Mountains"
-          />
-          <div class="element__rectangle">
-            <h2 class="element__text">Bald Mountains</h2>
+          <div class="element">
             <img
-              class="element__like"
-              src="./images/Heart_disabled.svg"
-              alt="like"
+              class="element__image"
+              src="./images/BaldMountains.jpg"
+              alt="Bald Mountains"
             />
+            <div class="element__rectangle">
+              <h2 class="element__text">Bald Mountains</h2>
+              <button type="button" class="element__like">
+                <img src="./images/Heart_disabled.svg" alt="like" />
+              </button>
+            </div>
           </div>
-        </div>
-        <div class="element">
-          <img
-            class="element__image"
-            src="./images/Latemar.jpg"
-            alt="Latemar"
-          />
-          <div class="element__rectangle">
-            <h2 class="element__text">Latemar</h2>
+          <div class="element">
             <img
-              class="element__like"
-              src="./images/Heart_disabled.svg"
-              alt="like"
+              class="element__image"
+              src="./images/Latemar.jpg"
+              alt="Latemar"
             />
+            <div class="element__rectangle">
+              <h2 class="element__text">Latemar</h2>
+              <button type="button" class="element__like">
+                <img src="./images/Heart_disabled.svg" alt="like" />
+              </button>
+            </div>
           </div>
-        </div>
-        <div class="element">
-          <img
-            class="element__image"
-            src="./images/Vanoise.jpg"
-            alt="Vanoise National Park"
-          />
-          <div class="element__rectangle">
-            <h2 class="element__text">Vanoise National Park</h2>
+          <div class="element">
             <img
-              class="element__like"
-              src="./images/Heart_disabled.svg"
-              alt="like"
+              class="element__image"
+              src="./images/Vanoise.jpg"
+              alt="Vanoise National Park"
             />
+            <div class="element__rectangle">
+              <h2 class="element__text">Vanoise National Park</h2>
+              <button type="button" class="element__like">
+                <img src="./images/Heart_disabled.svg" alt="like" />
+              </button>
+            </div>
           </div>
-        </div>
-        <div class="element">
-          <img
-            class="element__image"
-            src="./images/LagodiBraies.jpg"
-            alt="Lago di Braies"
-          />
-          <div class="element__rectangle">
-            <h2 class="element__text">Lago di Braies</h2>
+          <div class="element">
             <img
-              class="element__like"
-              src="./images/Heart_disabled.svg"
-              alt="like"
+              class="element__image"
+              src="./images/LagodiBraies.jpg"
+              alt="Lago di Braies"
             />
+            <div class="element__rectangle">
+              <h2 class="element__text">Lago di Braies</h2>
+              <button type="button" class="element__like">
+                <img src="./images/Heart_disabled.svg" alt="like" />
+              </button>
+            </div>
           </div>
-        </div>
-      </section>
-
+        </section>
+      </main>
       <footer class="footer">
         <p class="footer__text">© 2021 Around The U.S.</p>
       </footer>
@@ -142,8 +130,8 @@
           <img src="./images/CloseIcon.svg" alt="X" />
         </button>
         <!--<img src="./images/CloseIcon.svg" /> -->
-        <h1 class="modal__title">Edit profile</h1>
-        <form class="modal__form">
+        <h2 class="modal__title">Edit profile</h2>
+        <form name="nameandtitle" class="modal__form">
           <input
             class="modal__input-text"
             type="text"
@@ -162,7 +150,7 @@
         </form>
       </div>
     </div>
-    <script src="index.js"></script>
+    <script src="./scripts/index.js"></script>
     <!--goes at end so it can get to all the html elements-->
   </body>
 </html>

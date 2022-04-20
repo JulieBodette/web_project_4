@@ -13,11 +13,13 @@
 }
 
 .element__rectangle {
+  /*no min height because the height is set by the margins of the text inside. min height would be needed if rectangle was empty */
   background: #ffffff;
-  min-height: 79px;
   margin: 0px;
   padding: 0px;
   border-radius: 0px 0px 10px 10px; /* bottom rounded corners */
+  display: flex; /*use to align the text and heart next to each other */
+  justify-content: space-between;
 }
 
 .element__text {
@@ -27,9 +29,8 @@
   font-size: 24px;
   line-height: 29px;
   color: #000000;
-  margin: 25px 0px 0px 21px; /* top right bottom left */
+  margin: 25px 0px 31px 21px; /* top right bottom left */ /*these margins expand the white rectangle */
   padding: 0px;
-  display: inline-block; /*so that like appears next to it */
   /*add ... if text is too long */
   max-width: 220px; /*not an exact calculated value, but tested it and it looks good should be less than 246*/
   text-overflow: ellipsis;
@@ -38,9 +39,11 @@
 }
 
 .element__like {
-  float: right; /*align itself on the right side */
-  margin: 30px 18px 0px 0px; /* top right bottom left */
+  margin: auto 18px auto 0px; /* top right bottom left */
   content: url("../images/Heart_disabled.svg"); /*note: you gotta use content if its <img> tag. NOT background-image */
+  /*reset button styles*/
+  border: none;
+  background: transparent;
 }
 
 .element__like:hover {

@@ -70,7 +70,7 @@
 }
 
 .profile__info-edit-button {
-  background-color: black;
+  background-color: transparent;
   outline: none;
   border: 1px solid #ffffff;
   box-sizing: border-box; /*border-box means border and padding is accounted for in size*/
@@ -90,7 +90,7 @@
 .profile__add-button {
   grid-area: add-button; /*NO QUOTES */
   min-height: 50px;
-  background-color: black;
+  background-color: transparent;
   outline: none;
   border: 2px solid #ffffff;
   box-sizing: border-box; /*border-box means border and padding is accounted for in size*/

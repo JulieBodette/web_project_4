@@ -16,4 +16,4 @@ Javascript was used to get user input for name and title, and update the screen 
 
 ### GitHub Pages
 
-https://github.com/JulieBodette/web_project_4
+https://juliebodette.github.io/web_project_4/
