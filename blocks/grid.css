@@ -5,6 +5,7 @@
   grid-row-gap: 21px;
   width: fit-content; /*gets rid of extra grid space and allows it to be centered */
   margin: 0 auto;
+  max-width: 880px; /*set re:reviewer feedback */
 }
 
 /*2 columns at mid size screen */

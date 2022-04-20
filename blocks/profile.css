@@ -80,7 +80,8 @@
   padding: 0px; /*reset*/
   cursor: pointer;
   grid-area: edit-button;
-  align-self: end;
+  align-self: center;
+  margin-top: 6px; /*shift down slightly to align with text. we want the q to stick out beneath */
 }
 
 .profile__info-edit-button:hover {
@@ -121,6 +122,7 @@
   .profile__info {
     grid-column-gap: 10px;
     justify-content: center; /*center the name and edit box and title */
+    margin: 0 auto; /*somehow this works to center it but align-self:center does not */
   }
 
   .profile__info-name {

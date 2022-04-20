@@ -40,6 +40,7 @@
 
 .element__like {
   margin: auto 18px auto 0px; /* top right bottom left */
+  padding: 0px; /*reset*/
   content: url("../images/Heart_disabled.svg"); /*note: you gotta use content if its <img> tag. NOT background-image */
   /*reset button styles*/
   border: none;
