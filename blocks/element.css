@@ -6,7 +6,9 @@
 }
 
 .element__image {
-  max-height: 282px; /*image is correct size and stays in grid box */
+  /*I know max-height and max-width is "better", but I really need it to be this exact height and width or it does not look right */
+  height: 282px; /*image is correct size and stays in grid box */
+  width: 282px; /*initilly had set max height only, but need max width if getting images of varying sizes from internet */
   border-radius: 10px 10px 0px 0px; /* top rounded corners */
   margin: 0px;
   padding: 0px;

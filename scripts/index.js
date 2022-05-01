@@ -47,14 +47,33 @@ const cardsGrid = document.querySelector(".grid");
 
 
 //////////////////////////////create a card and add it to the cardsGrid
-function getCardElement(name, link) {
-    //get a cardTemplate and set up the name and link
-    //add the template to the grid
-    console.log("added card element");
-    cardsGrid.append(cardTemplate); 
+const addCardElement = data => {
+    //data = name and link
+    //get the name and the link out of data (data is an object)
+    let cardname = data.name;
+    let cardlink = data.link;
+
+    //make a copy of the template using cloneNode
+    let newCard = cardTemplate.cloneNode(true); //true clones everything inside
+
+    //look within the card template for the spots where the name and link go, set them up
+    newCard.querySelector(".element__image").src = cardlink;
+    newCard.querySelector(".element__text").textContent = cardname;
+
+    //add the new card to the grid 
+    cardsGrid.append(newCard); 
 }
 
-getCardElement("Lago di Braies","https://code.s3.yandex.net/web-code/lago.jpg");
+//loop thru the initialCards array and send each one into the getCardElement function
+initialCards.forEach(
+    function (item){
+        console.log(item);
+        addCardElement(item);         //get the card element and append it to the grid
+    }
+);
+
+
+
 /////////////open and close the modal
 function OpenModal() {
 editProfileModal.classList.add("modal_open"); /*activate a class that makes it visible*/

@@ -39,6 +39,19 @@
         <section class="grid">
           <!--Elements section. This is a grid of pictures-->
           <!--inserted via javascript-->
+          <div class="element">
+            <img
+              class="element__image"
+              src="https://code.s3.yandex.net/web-code/vanoise.jpg"
+              alt="Bald Mountains"
+            />
+            <div class="element__rectangle">
+              <h2 class="element__text">Bald Mountains</h2>
+              <button type="button" class="element__like">
+                <img src="./images/Heart_disabled.svg" alt="like" />
+              </button>
+            </div>
+          </div>
         </section>
       </main>
       <footer class="footer">
@@ -81,7 +94,9 @@
         <img class="element__image" />
         <div class="element__rectangle">
           <h2 class="element__text"></h2>
-          <button type="button" class="element__like"></button>
+          <button type="button" class="element__like">
+            <img src="./images/Heart_disabled.svg" alt="like" />
+          </button>
         </div>
       </div>
     </template>
