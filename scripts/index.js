@@ -13,6 +13,48 @@ const titleText = document.querySelector(".profile__info-title");
 const nameInput = formElement.querySelector('[name="name"]');
 const titleInput = formElement.querySelector('[name="title"]');
 
+//making the initial cards via Javascript
+const initialCards = [
+    {
+      name: "Yosemite Valley",
+      link: "https://code.s3.yandex.net/web-code/yosemite.jpg"
+    },
+    {
+      name: "Lake Louise",
+      link: "https://code.s3.yandex.net/web-code/lake-louise.jpg"
+    },
+    {
+      name: "Bald Mountains",
+      link: "https://code.s3.yandex.net/web-code/bald-mountains.jpg"
+    },
+    {
+      name: "Latemar",
+      link: "https://code.s3.yandex.net/web-code/latemar.jpg"
+    },
+    {
+      name: "Vanoise National Park",
+      link: "https://code.s3.yandex.net/web-code/vanoise.jpg"
+    },
+    {
+      name: "Lago di Braies",
+      link: "https://code.s3.yandex.net/web-code/lago.jpg"
+    }
+  ];
+//select the template, use .content to get the content inside the template, then query selector again to get the element class
+const cardTemplate = document.querySelector("#card-template").content.querySelector(".element");
+//get a reference to the grid/container that we will put the cards in
+const cardsGrid = document.querySelector(".grid");
+
+
+//////////////////////////////create a card and add it to the cardsGrid
+function getCardElement(name, link) {
+    //get a cardTemplate and set up the name and link
+    //add the template to the grid
+    console.log("added card element");
+    cardsGrid.append(cardTemplate); 
+}
+
+getCardElement("Lago di Braies","https://code.s3.yandex.net/web-code/lago.jpg");
 /////////////open and close the modal
 function OpenModal() {
 editProfileModal.classList.add("modal_open"); /*activate a class that makes it visible*/

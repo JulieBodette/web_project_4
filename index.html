@@ -38,84 +38,7 @@
         </section>
         <section class="grid">
           <!--Elements section. This is a grid of pictures-->
-          <div class="element">
-            <img
-              class="element__image"
-              src="./images/YosemiteValley.jpg"
-              alt="Yosemite Valley"
-            />
-            <div class="element__rectangle">
-              <h2 class="element__text">Yosemite Valley</h2>
-              <button type="button" class="element__like">
-                <img src="./images/Heart_disabled.svg" alt="like" />
-              </button>
-            </div>
-          </div>
-          <div class="element">
-            <img
-              class="element__image"
-              src="./images/LakeLouise.jpg"
-              alt="Lake Louise"
-            />
-            <div class="element__rectangle">
-              <h2 class="element__text">Lake Louise</h2>
-              <button type="button" class="element__like">
-                <img src="./images/Heart_disabled.svg" alt="like" />
-              </button>
-            </div>
-          </div>
-          <div class="element">
-            <img
-              class="element__image"
-              src="./images/BaldMountains.jpg"
-              alt="Bald Mountains"
-            />
-            <div class="element__rectangle">
-              <h2 class="element__text">Bald Mountains</h2>
-              <button type="button" class="element__like">
-                <img src="./images/Heart_disabled.svg" alt="like" />
-              </button>
-            </div>
-          </div>
-          <div class="element">
-            <img
-              class="element__image"
-              src="./images/Latemar.jpg"
-              alt="Latemar"
-            />
-            <div class="element__rectangle">
-              <h2 class="element__text">Latemar</h2>
-              <button type="button" class="element__like">
-                <img src="./images/Heart_disabled.svg" alt="like" />
-              </button>
-            </div>
-          </div>
-          <div class="element">
-            <img
-              class="element__image"
-              src="./images/Vanoise.jpg"
-              alt="Vanoise National Park"
-            />
-            <div class="element__rectangle">
-              <h2 class="element__text">Vanoise National Park</h2>
-              <button type="button" class="element__like">
-                <img src="./images/Heart_disabled.svg" alt="like" />
-              </button>
-            </div>
-          </div>
-          <div class="element">
-            <img
-              class="element__image"
-              src="./images/LagodiBraies.jpg"
-              alt="Lago di Braies"
-            />
-            <div class="element__rectangle">
-              <h2 class="element__text">Lago di Braies</h2>
-              <button type="button" class="element__like">
-                <img src="./images/Heart_disabled.svg" alt="like" />
-              </button>
-            </div>
-          </div>
+          <!--inserted via javascript-->
         </section>
       </main>
       <footer class="footer">
@@ -150,6 +73,19 @@
         </form>
       </div>
     </div>
+
+    <!--template MUST be before the <script>, or the script cannot acess the template-->
+    <template id="card-template">
+      <!--javascript finds this template via the id using queryselector-->
+      <div class="element">
+        <img class="element__image" />
+        <div class="element__rectangle">
+          <h2 class="element__text"></h2>
+          <button type="button" class="element__like"></button>
+        </div>
+      </div>
+    </template>
+
     <script src="./scripts/index.js"></script>
     <!--goes at end so it can get to all the html elements-->
   </body>

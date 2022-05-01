@@ -5,7 +5,7 @@
   grid-row-gap: 21px;
   width: fit-content; /*gets rid of extra grid space and allows it to be centered */
   margin: 0 auto;
-  max-width: 880px; /*set re:reviewer feedback */
+  max-width: 880px; /*set re:reviewer feedback. grid was already sized right based on objects inside. */
 }
 
 /*2 columns at mid size screen */
