@@ -1,16 +1,25 @@
+////////////////////////////////////////////////Set up edit profile text button and modal for it
 //use const so that the value does not change
-const editProfileModal = document.querySelector("#edit-profile-modal"); //using ID to find it. ID is unique, makes it a little better than a class
-const editProfileCloseButton = editProfileModal.querySelector('.modal__close-button');//use the modal panel to find the stuff inside it. finding by class.
 const profileEditButton = document.querySelector("#profile-info-edit-button"); ///find the edit button from profile-this opens the modal panel
-const formElement = editProfileModal.querySelector(".modal__form"); //find the form. form has 2 text boxes and a submit button
+const editProfileModal = document.querySelector("#edit-profile-modal"); //using ID to find the modal (pop up). ID is unique, makes it a little better than a class. needed because there are multiple modals (pop ups) with same class
+const editProfileCloseButton = editProfileModal.querySelector('.modal__close-button');//use the modal panel to find the stuff inside it. finding by class.
+const editProfileForm = editProfileModal.querySelector(".modal__form"); //find the form. form has 2 text boxes and a submit button. Search within editProfileModal instead of document so that we find the correct form
 
 //find the text on the page that shows name and title
 const nameText = document.querySelector(".profile__info-name");
 const titleText = document.querySelector(".profile__info-title");
 
 // find the form fields in the DOM
-const nameInput = formElement.querySelector('[name="name"]');
-const titleInput = formElement.querySelector('[name="title"]');
+const nameInput = editProfileForm.querySelector('[name="name"]');
+const titleInput = editProfileForm.querySelector('[name="title"]');
+//////////////////////////////////////////////////////////
+
+/////////////////////////////////////////////////////Set up add card button and modal for it
+const addCardButton = document.querySelector("#profile-add-button"); ///find the + button (add card)-this opens the modal panel
+const addCardModal = document.querySelector("#add-card-modal"); //using ID to find the modal (pop up).
+const addCardCloseButton = addCardModal.querySelector('.modal__close-button');//use the modal panel to find the stuff inside it.
+const addCardForm = addCardModal.querySelector(".modal__form"); //find the form.
+/////////////////////////////////////////////
 
 //making the initial cards via Javascript
 const initialCards = [
@@ -108,7 +117,7 @@ function handleProfileFormSubmit(evt) {
 }
 
 // Connect the handler to the form: it will watch the submit event
-formElement.addEventListener('submit', handleProfileFormSubmit); 
+editProfileForm.addEventListener('submit', handleProfileFormSubmit); 
 //we did not explicitly find the submit button...just listening to the event
 //pressing enter also submits
 
