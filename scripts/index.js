@@ -86,9 +86,9 @@ initialCards.forEach(
 );
 
 
-
+////////////////////////////////////////////////Set up edit profile modal
 /////////////open and close the modal
-function OpenModal() {
+function OpenEditProfileModal() {
 editProfileModal.classList.add("modal_open"); /*activate a class that makes it visible*/
 /* The visible class overrides the previous class because its farther down the page. see modal.css.*/
 //Fill in the text boxes on the modal panel with the values from the page
@@ -98,11 +98,11 @@ editProfileModal.classList.add("modal_open"); /*activate a class that makes it v
 nameInput.value = nameText.textContent;
 titleInput.value = titleText.textContent;
 }
-function CloseModal() {
+function CloseEditProfileModal() {
 editProfileModal.classList.remove("modal_open"); /*deactivate a class that makes it visible*/
 }
-editProfileCloseButton.addEventListener("click", CloseModal);
-profileEditButton.addEventListener("click", OpenModal);
+editProfileCloseButton.addEventListener("click", CloseEditProfileModal);
+profileEditButton.addEventListener("click", OpenEditProfileModal);
 /////////////////////
 
 //Pressing the submit button updates the name and title on the page to be the newly entered values
@@ -113,15 +113,25 @@ function handleProfileFormSubmit(evt) {
     // property of the querySelector() method
     nameText.textContent = nameInput.value;
     titleText.textContent = titleInput.value;
-    CloseModal() //close the modal panel when submitted
+    CloseEditProfileModal() //close the modal panel when submitted
 }
 
 // Connect the handler to the form: it will watch the submit event
 editProfileForm.addEventListener('submit', handleProfileFormSubmit); 
 //we did not explicitly find the submit button...just listening to the event
 //pressing enter also submits
+////////////////////////////////////////////////
 
-
+////////////////////////////////////////////////Set up add card modal
+function OpenAddCardModal() {
+  addCardModal.classList.add("modal_open"); /*activate a class that makes it visible*/
+  }
+function CloseAddCardModal() {
+  addCardModal.classList.remove("modal_open"); /*deactivate a class that makes it visible*/
+  }
+  addCardCloseButton.addEventListener("click", CloseAddCardModal);
+  addCardButton.addEventListener("click", OpenAddCardModal);
+////////////////////////////////////////////////
 
 
 
