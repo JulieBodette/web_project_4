@@ -100,6 +100,10 @@
   border-bottom: 1px solid rgba(0, 0, 0, 0.2); /*only way to set border opacity is via rgba-there's no "border opacity" property */
 }
 
+.modal__input-text::placeholder {
+  /*Add card modal uses placeholders but edit profile does not */
+  color: #c4c4c4;
+}
 .modal__input-text:first-of-type {
   margin: 0px auto 29.74px auto; /* top right bottom left */
 }

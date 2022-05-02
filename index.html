@@ -43,19 +43,6 @@
         <section class="grid">
           <!--Elements section. This is a grid of pictures-->
           <!--inserted via javascript-->
-          <div class="element">
-            <img
-              class="element__image"
-              src="https://code.s3.yandex.net/web-code/vanoise.jpg"
-              alt="Bald Mountains"
-            />
-            <div class="element__rectangle">
-              <h2 class="element__text">Bald Mountains</h2>
-              <button type="button" class="element__like">
-                <img src="./images/Heart_disabled.svg" alt="like" />
-              </button>
-            </div>
-          </div>
         </section>
       </main>
       <footer class="footer">
@@ -94,22 +81,23 @@
         <button type="button" class="modal__close-button">
           <img src="./images/CloseIcon.svg" alt="X" />
         </button>
-        <h2 class="modal__title">New Place plz fix form</h2>
+        <h2 class="modal__title">New Place</h2>
         <form name="nameandtitle" class="modal__form">
           <input
             class="modal__input-text"
             type="text"
             name="name"
-            value="Jacques Cousteau"
+            placeholder="Title"
           />
+          <!--This modal uses placeholder , but the other one uses value-->
           <input
             class="modal__input-text"
             type="text"
             name="title"
-            value="Explorer"
+            placeholder="Image link"
           />
           <!--set input values to the same text as the default values on the page-->
-          <button type="submit" class="modal__submit-button">Save</button>
+          <button type="submit" class="modal__submit-button">Create</button>
         </form>
       </div>
     </div>
