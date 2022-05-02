@@ -58,7 +58,8 @@ const cardTemplate = document.querySelector("#card-template").content.querySelec
 const cardsGrid = document.querySelector(".grid");
 
 
-//////////////////////////////create a card and add it to the cardsGrid
+//create a card and add it to the cardsGrid
+//this function must be created before it is called
 const addCardElement = data => {
     //data = name and link
     //get the name and the link out of data (data is an object)
@@ -76,6 +77,11 @@ const addCardElement = data => {
     let likebutton = newCard.querySelector(".element__like");
     //need to get delete button
     //add event listeners for like and delete
+    likebutton.addEventListener("click", function(evt){
+      console.log("liked");
+      let Heart = evt.target;//the event target is the heart button that the user clicked on
+      Heart.classList.toggle("element__like_active");
+    });
 
     //add the new card to the grid 
     cardsGrid.append(newCard); 
@@ -140,7 +146,6 @@ function CloseAddCardModal() {
     evt.preventDefault();     // stops the browser from submitting the form in the default way.
 
     //make a new object to store the image url and image label
-    console.log("added new card yay"+imageNameInput.value+imageLinkInput.value);
     let newCardInfo = {
       name: imageNameInput.value,
       link: imageLinkInput.value
