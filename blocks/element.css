@@ -56,3 +56,13 @@
 .element__like_active {
   content: url("../images/Heart_active.svg");
 }
+
+.element__trash {
+  position: absolute; /*so it can go on top of picture*/
+  margin: 18px 0px 0px 249px; /* top right bottom left */
+  padding: 0px; /*reset*/
+  z-index: 1; /*on top of picture*/
+  /*reset button styles*/
+  border: none;
+  background: transparent;
+}
