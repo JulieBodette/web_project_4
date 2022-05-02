@@ -1,9 +1,8 @@
 //use const so that the value does not change
 const editProfileModal = document.querySelector("#edit-profile-modal"); //using ID to find it. ID is unique, makes it a little better than a class
-const editProfileCloseButton = editProfileModal.querySelector('.modal__close-button');
-//use the modal panel to find the stuff inside it. finding by class.
-const profileEditButton = document.querySelector("#openModal"); ///find the add button from profile-this opens the modal panel
-const formElement = document.querySelector(".modal__form"); //find the form. form has 2 text boxes and a submit button
+const editProfileCloseButton = editProfileModal.querySelector('.modal__close-button');//use the modal panel to find the stuff inside it. finding by class.
+const profileEditButton = document.querySelector("#profile-info-edit-button"); ///find the edit button from profile-this opens the modal panel
+const formElement = editProfileModal.querySelector(".modal__form"); //find the form. form has 2 text boxes and a submit button
 
 //find the text on the page that shows name and title
 const nameText = document.querySelector(".profile__info-name");
@@ -59,6 +58,11 @@ const addCardElement = data => {
     //look within the card template for the spots where the name and link go, set them up
     newCard.querySelector(".element__image").src = cardlink;
     newCard.querySelector(".element__text").textContent = cardname;
+
+    //query selector the like and delete button
+    let likebutton = newCard.querySelector(".element__like");
+    //need to get delete button
+    //add event listeners for like and delete
 
     //add the new card to the grid 
     cardsGrid.append(newCard); 
