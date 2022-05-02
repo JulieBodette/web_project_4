@@ -75,12 +75,18 @@ const addCardElement = data => {
 
     //query selector the like and delete button
     let likebutton = newCard.querySelector(".element__like");
-    //need to get delete button
+    let deletebutton = newCard.querySelector(".element__trash");
+  
     //add event listeners for like and delete
     likebutton.addEventListener("click", function(evt){
-      console.log("liked");
       let Heart = evt.target;//the event target is the heart button that the user clicked on
       Heart.classList.toggle("element__like_active");
+    });
+    deletebutton.addEventListener("click", function(evt){
+      console.log("deleted");
+      let trash = evt.target;//the event target is the trash button that the user clicked on
+      let card = trash.parentElement.parentElement;//get the parent of trash. first parent is button, second is element div
+      card.remove();
     });
 
     //add the new card to the grid 
