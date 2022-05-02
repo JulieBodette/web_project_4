@@ -19,6 +19,10 @@ const addCardButton = document.querySelector("#profile-add-button"); ///find the
 const addCardModal = document.querySelector("#add-card-modal"); //using ID to find the modal (pop up).
 const addCardCloseButton = addCardModal.querySelector('.modal__close-button');//use the modal panel to find the stuff inside it.
 const addCardForm = addCardModal.querySelector(".modal__form"); //find the form.
+
+// find the form fields in the DOM
+const imageNameInput = addCardForm.querySelector('[name="imagename"]');
+const imageLinkInput = addCardForm.querySelector('[name="imagelink"]');
 /////////////////////////////////////////////
 
 //making the initial cards via Javascript
@@ -80,7 +84,6 @@ const addCardElement = data => {
 //loop thru the initialCards array and send each one into the getCardElement function
 initialCards.forEach(
     function (item){
-        console.log(item);
         addCardElement(item);         //get the card element and append it to the grid
     }
 );
@@ -131,6 +134,22 @@ function CloseAddCardModal() {
   }
   addCardCloseButton.addEventListener("click", CloseAddCardModal);
   addCardButton.addEventListener("click", OpenAddCardModal);
+
+  //pressing submit button adds a new card with picture and title from user
+  function handleAddCardSubmit(evt) {
+    evt.preventDefault();     // stops the browser from submitting the form in the default way.
+
+    //make a new object to store the image url and image label
+    console.log("added new card yay"+imageNameInput.value+imageLinkInput.value);
+    let newCardInfo = {
+      name: imageNameInput.value,
+      link: imageLinkInput.value
+    }
+    addCardElement(newCardInfo) //create a new card and add to screen
+
+    CloseEditProfileModal() //close the modal panel when submitted
+}
+addCardForm.addEventListener('submit', handleAddCardSubmit);
 ////////////////////////////////////////////////
 
 
