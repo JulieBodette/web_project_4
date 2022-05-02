@@ -6,12 +6,18 @@
 }
 
 .element__image {
-  /*I know max-height and max-width is "better", but I really need it to be this exact height and width or it does not look right */
-  height: 282px; /*image is correct size and stays in grid box */
-  width: 282px; /*initilly had set max height only, but need max width if getting images of varying sizes from internet */
+  /*With this as a buttom with backgroung-image instead of an <img> tag, was able to get min-height to work. <img> needed exact height and width set. */
+  min-height: 282px; /*image is correct size and stays in grid box */
+  min-width: 282px; /*initilly had set max height only, but need max width if getting images of varying sizes from internet */
+  /*tested with small image- min-height + width is OK*/
   border-radius: 10px 10px 0px 0px; /* top rounded corners */
   margin: 0px;
   padding: 0px;
+  /*make background image cover the entire space */
+  background-size: cover;
+  background-repeat: no-repeat;
+  /*reset button styles*/
+  border: none;
 }
 
 .element__rectangle {

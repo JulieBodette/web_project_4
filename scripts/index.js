@@ -70,7 +70,8 @@ const addCardElement = data => {
     let newCard = cardTemplate.cloneNode(true); //true clones everything inside
 
     //look within the card template for the spots where the name and link go, set them up
-    newCard.querySelector(".element__image").src = cardlink;
+    newCard.querySelector(".element__image").style = "background-image:url('"+cardlink+"'); background-color:red";
+    //use .src here if image tag, I am using style and background image because it is button
     newCard.querySelector(".element__text").textContent = cardname;
 
     //query selector the like and delete button
@@ -100,6 +101,7 @@ initialCards.forEach(
     }
 );
 
+/////////////////////////////////////////////////
 
 ////////////////////////////////////////////////Set up edit profile modal
 /////////////open and close the modal
