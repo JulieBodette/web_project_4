@@ -11,6 +11,7 @@
   /*end cover entire screen commands */
   display: none; /*hidden by default */
   position: fixed; /*does not move when you scroll */
+  margin-top: 90px;
 }
 
 .modal_open {
