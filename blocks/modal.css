@@ -1,3 +1,4 @@
+/*Used for the modal for entering profile info and image info*/
 .modal {
   /*make the background look faded by putting opacity over it*/
   background-color: rgba(0, 0, 0, 0.5);

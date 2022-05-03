@@ -1,0 +1,61 @@
+/*Used for the image popup when you click on an image (shows the full image+title)*/
+/*popup__open and popup__close-button adapted from modal*/
+.popup {
+  /*make the background look faded by putting opacity over it*/
+  background-color: rgba(0, 0, 0, 0.5);
+  /*^^Do NOT do this as a seperate opacity command or it applies to the modal__content as well */
+  /*cover entire screen */
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  /*end cover entire screen commands */
+  display: none; /*hidden by default */
+  position: fixed; /*does not move when you scroll */
+}
+
+.popup_open {
+  /*make it visible */
+  display: flex; /*needed so that margin:auto works to center the box */
+  /*you could also use justify-content + align-items center to align it */
+}
+
+.popup__close-button {
+  padding: 0px; /*reset margin and padding so the image is correct size */
+  margin: 0px;
+  display: block;
+  border: none;
+  width: 32px;
+  height: 32px;
+  background-color: transparent;
+  position: absolute;
+  /*place in upper right corner, negative indicates outside box */
+  top: -35px;
+  right: -35px;
+  cursor: pointer;
+}
+.popup__close-button:hover {
+  opacity: 0.6;
+}
+
+.popup__content {
+  /*width and height are determined by the margins of the objects inside */
+  margin: auto auto;
+  position: relative; /*so that X close button is placed relative to this box */
+}
+
+.popup__title {
+  max-width: 330px; /*needs to be set to smaller than box size so that margin auto works*/
+  font-family: "Inter", "Arial", sans-serif; /*fallback fonts */
+  font-style: normal;
+  font-weight: 900;
+  font-size: 24px;
+  line-height: 29px;
+  padding: 0px;
+  margin: 34px 0px 54px 36px; /* top right bottom left not centered-aligned to left*/
+}
+
+.popup__image {
+  max-width: 75vw;
+  max-height: 75vh;
+}

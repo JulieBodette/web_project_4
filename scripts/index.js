@@ -57,9 +57,15 @@ const cardTemplate = document.querySelector("#card-template").content.querySelec
 //get a reference to the grid/container that we will put the cards in
 const cardsGrid = document.querySelector(".grid");
 
+//select the image popup and its picture and text and X (close button)
+const imagePopup = document.querySelector("#image-popup");
+const imagePopupPic = imagePopup.querySelector(".popup__image");
+const imagePopupText = imagePopup.querySelector(".popup__title");
+const imagePopupCloseButton = imagePopup.querySelector(".popup__close-button");
+
 
 //create a card and add it to the cardsGrid
-//this function must be created before it is called
+//this function must be created before it is called because its stored in a variable
 const addCardElement = data => {
     //data = name and link
     //get the name and the link out of data (data is an object)
@@ -70,7 +76,8 @@ const addCardElement = data => {
     let newCard = cardTemplate.cloneNode(true); //true clones everything inside
 
     //look within the card template for the spots where the name and link go, set them up
-    newCard.querySelector(".element__image").style = "background-image:url('"+cardlink+"'); background-color:red";
+    let Cardimage = newCard.querySelector(".element__image"); //used later to set up click event for image modal
+    Cardimage.style = "background-image:url('"+cardlink+"');";
     //use .src here if image tag, I am using style and background image because it is button
     newCard.querySelector(".element__text").textContent = cardname;
 
@@ -78,13 +85,19 @@ const addCardElement = data => {
     let likebutton = newCard.querySelector(".element__like");
     let deletebutton = newCard.querySelector(".element__trash");
   
+    //add event listener for Cardimage- so that image modal pops up when clicked
+    Cardimage.addEventListener("click", function(evt){
+      console.log("wow and image");
+      createImagePopup(data);
+    });
+
+
     //add event listeners for like and delete
     likebutton.addEventListener("click", function(evt){
       let Heart = evt.target;//the event target is the heart button that the user clicked on
       Heart.classList.toggle("element__like_active");
     });
     deletebutton.addEventListener("click", function(evt){
-      console.log("deleted");
       let trash = evt.target;//the event target is the trash button that the user clicked on
       let card = trash.parentElement.parentElement;//get the parent of trash. first parent is button, second is element div
       card.remove();
@@ -94,6 +107,7 @@ const addCardElement = data => {
     cardsGrid.append(newCard); 
 }
 
+
 //loop thru the initialCards array and send each one into the getCardElement function
 initialCards.forEach(
     function (item){
@@ -101,7 +115,26 @@ initialCards.forEach(
     }
 );
 
-/////////////////////////////////////////////////
+////////////////////////////////////////////////////////////Set up image popup
+function createImagePopup(data) { //called in AddCardElement
+  //data = name and link
+  //get the name and the link out of data (data is an object)
+  //data.name data.link;
+
+  imagePopup.classList.add("popup_open");
+  imagePopupPic.src = data.link;
+  imagePopupText.textContent = data.name;
+  console.log("wow look an image popped up");
+  console.log(data);
+  //add event listener for closing the image popup
+}
+function CloseImagePopup() {
+  imagePopup.classList.remove("popup_open"); /*deactivate a class that makes it visible*/
+  }
+imagePopup.addEventListener("click", CloseImagePopup);
+
+
+/////////////////////////////////////////
 
 ////////////////////////////////////////////////Set up edit profile modal
 /////////////open and close the modal
