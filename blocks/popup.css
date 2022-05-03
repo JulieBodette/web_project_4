@@ -1,5 +1,18 @@
 /*Used for the image popup when you click on an image (shows the full image+title)*/
 /*popup__open and popup__close-button adapted from modal*/
+
+@keyframes fade_in_show {
+  0% {
+    opacity: 0;
+    /*transform: scale(0) looks cool but not what the brief is asking*/
+  }
+
+  100% {
+    opacity: 1;
+    /*transform: scale(0) looks cool but not what the brief is asking*/
+  }
+}
+
 .popup {
   /*make the background look faded by putting opacity over it*/
   background-color: rgba(0, 0, 0, 0.5);
@@ -19,6 +32,7 @@
   /*make it visible */
   display: flex; /*needed so that margin:auto works to center the box */
   /*you could also use justify-content + align-items center to align it */
+  animation: fade_in_show 0.5s;
 }
 
 .popup__close-button {
