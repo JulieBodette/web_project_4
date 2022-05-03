@@ -13,7 +13,6 @@
   display: none; /*hidden by default */
   position: fixed; /*does not move when you scroll */
   z-index: 2; /*go on top of trashcan icons */
-  margin-top: 90px;
 }
 
 .popup_open {
@@ -42,7 +41,7 @@
 
 .popup__content {
   /*width and height are determined by the margins of the objects inside */
-  margin: auto auto;
+  margin: 90px auto auto auto; /* top right bottom left */
   position: relative; /*so that X close button is placed relative to this box */
 }
 
