@@ -60,3 +60,11 @@
   max-width: 75vw;
   max-height: 75vh;
 }
+
+/*styles for 320px screen*/
+@media screen and (max-width: 660px) {
+  .popup__close-button {
+    width: 26px;
+    height: 26px;
+  }
+}
