@@ -150,6 +150,37 @@
         </form>
       </div>
     </div>
+<<<<<<< Updated upstream
+=======
+
+    <div class="modal popup" id="image-popup">
+      <div class="popup__content">
+        <img class="popup__image" />
+        <button type="button" class="modal__close-button">
+          <img src="./images/CloseIcon.svg" alt="X" />
+        </button>
+        <h2 class="popup__caption">New Place</h2>
+      </div>
+    </div>
+
+    <!--template MUST be before the <script>, or the script cannot acess the template-->
+    <template id="card-template">
+      <!--javascript finds this template via the id using queryselector-->
+      <div class="element">
+        <button type="button" class="element__trash">
+          <img src="./images/Trash.svg" alt="trash" />
+        </button>
+        <div class="element__image" style=""></div>
+        <div class="element__rectangle">
+          <h2 class="element__text"></h2>
+          <button type="button" class="element__like">
+            <img src="./images/Heart_disabled.svg" alt="like" />
+          </button>
+        </div>
+      </div>
+    </template>
+
+>>>>>>> Stashed changes
     <script src="./scripts/index.js"></script>
     <!--goes at end so it can get to all the html elements-->
   </body>
