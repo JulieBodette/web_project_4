@@ -99,7 +99,7 @@ const addCardElement = data => {
     });
     deleteButton.addEventListener("click", function(evt){
       const trash = evt.target;//the event target is the trash button that the user clicked on
-      const card = trash.parentElement.parentElement;//get the parent of trash. first parent is button, second is element div
+      const card = evt.target.closest('.element'); //gets the closest parent with class element. First parent is button, second is element div
       card.remove();
     });
     
@@ -141,7 +141,7 @@ function closeImagePopup() {
 
 ////////////////////////////////////////////////Set up edit profile modal
 /////////////open and close the modal
-function OpenEditProfileModal() {
+function openEditProfileModal() {
 editProfileModal.classList.add("modal_open"); /*activate a class that makes it visible*/
 /* The visible class overrides the previous class because its farther down the page. see modal.css.*/
 //Fill in the text boxes on the modal panel with the values from the page
@@ -151,11 +151,11 @@ editProfileModal.classList.add("modal_open"); /*activate a class that makes it v
 nameInput.value = nameText.textContent;
 titleInput.value = titleText.textContent;
 }
-function CloseEditProfileModal() {
+function closeEditProfileModal() {
 editProfileModal.classList.remove("modal_open"); /*deactivate a class that makes it visible*/
 }
-editProfileCloseButton.addEventListener("click", CloseEditProfileModal);
-profileEditButton.addEventListener("click", OpenEditProfileModal);
+editProfileCloseButton.addEventListener("click", closeEditProfileModal);
+profileEditButton.addEventListener("click", openEditProfileModal);
 /////////////////////
 
 //Pressing the submit button updates the name and title on the page to be the newly entered values
@@ -166,7 +166,7 @@ function handleProfileFormSubmit(evt) {
     // property of the querySelector() method
     nameText.textContent = nameInput.value;
     titleText.textContent = titleInput.value;
-    CloseEditProfileModal() //close the modal panel when submitted
+    closeEditProfileModal() //close the modal panel when submitted
 }
 
 // Connect the handler to the form: it will watch the submit event
@@ -176,14 +176,14 @@ editProfileForm.addEventListener('submit', handleProfileFormSubmit);
 ////////////////////////////////////////////////
 
 ////////////////////////////////////////////////Set up add card modal
-function OpenAddCardModal() {
+function openAddCardModal() {
   addCardModal.classList.add("modal_open"); /*activate a class that makes it visible*/
   }
 function closeAddCardModal() {
   addCardModal.classList.remove("modal_open"); /*deactivate a class that makes it visible*/
   }
   addCardCloseButton.addEventListener("click", closeAddCardModal);
-  addCardButton.addEventListener("click", OpenAddCardModal);
+  addCardButton.addEventListener("click", openAddCardModal);
 
   //pressing submit button adds a new card with picture and title from user
   function handleAddCardSubmit(evt) {
