@@ -60,7 +60,7 @@ const cardsGrid = document.querySelector(".grid");
 //select the image popup and its picture and text and X (close button)
 const imagePopup = document.querySelector("#image-popup");
 const imagePopupPic = imagePopup.querySelector(".popup__image");
-const imagePopupText = imagePopup.querySelector(".popup__title");
+const imagePopupText = imagePopup.querySelector(".popup__caption");
 const imagePopupCloseButton = imagePopup.querySelector(".modal__close-button");
 
 

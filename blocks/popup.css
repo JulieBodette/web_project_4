@@ -10,7 +10,7 @@
   position: relative; /*so that X close button is placed relative to this box */
 }
 
-.popup__title {
+.popup__caption {
   max-width: 330px; /*needs to be set to smaller than box size so that margin auto works*/
   font-family: "Inter", "Arial", sans-serif; /*fallback fonts */
   font-style: normal;
