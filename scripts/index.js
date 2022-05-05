@@ -130,11 +130,11 @@ function createImagePopup(data) { //called in AddCardElement
   console.log(data);
   //add event listener for closing the image popup
 }
-function CloseImagePopup() {
+function closeImagePopup() {
   console.log("closing image popup")
   imagePopup.classList.remove("modal_open"); /*deactivate a class that makes it visible*/
   }
-  imagePopupCloseButton.addEventListener("click", CloseImagePopup);
+  imagePopupCloseButton.addEventListener("click", closeImagePopup);
 
 
 /////////////////////////////////////////
@@ -179,10 +179,10 @@ editProfileForm.addEventListener('submit', handleProfileFormSubmit);
 function OpenAddCardModal() {
   addCardModal.classList.add("modal_open"); /*activate a class that makes it visible*/
   }
-function CloseAddCardModal() {
+function closeAddCardModal() {
   addCardModal.classList.remove("modal_open"); /*deactivate a class that makes it visible*/
   }
-  addCardCloseButton.addEventListener("click", CloseAddCardModal);
+  addCardCloseButton.addEventListener("click", closeAddCardModal);
   addCardButton.addEventListener("click", OpenAddCardModal);
 
   //pressing submit button adds a new card with picture and title from user
@@ -197,7 +197,7 @@ function CloseAddCardModal() {
     newCard = addCardElement(newCardInfo) //create a new card and add to screen
     cardsGrid.prepend(newCard); //prepend it to the grid (add to beginning)
 
-    CloseEditProfileModal() //close the modal panel when submitted
+    closeAddCardModal() //close the modal panel when submitted
 }
 addCardForm.addEventListener('submit', handleAddCardSubmit);
 ////////////////////////////////////////////////
