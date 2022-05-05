@@ -57,6 +57,7 @@
 
 .element__like:hover {
   opacity: 0.5;
+  cursor: pointer;
 }
 
 .element__like_active {
@@ -75,4 +76,5 @@
 
 .element__trash:hover {
   opacity: 0.6;
+  cursor: pointer;
 }
