@@ -87,10 +87,9 @@ const addCardElement = data => {
   
     //add event listener for cardImage- so that image modal pops up when clicked
     cardImage.addEventListener("click", function(evt){
-      console.log("wow and image");
-      createImagePopup(data);
+      setDataImagePopup(data);  
+      openModal(imagePopup);
     });
-
 
     //add event listeners for like and delete
     likeButton.addEventListener("click", function(evt){
@@ -118,29 +117,20 @@ initialCards.forEach(
 );
 
 ////////////////////////////////////////////////////////////Set up image popup
-function createImagePopup(data) { //called in AddCardElement
+function setDataImagePopup(data) { //called in AddCardElement
   //data = name and link
   //get the name and the link out of data (data is an object)
   //data.name data.link;
-
-  imagePopup.classList.add("modal_open");
   imagePopupPic.src = data.link;
   imagePopupText.textContent = data.name;
-  console.log("wow look an image popped up");
-  console.log(data);
-  //add event listener for closing the image popup
 }
-function closeImagePopup() {
-  console.log("closing image popup")
-  imagePopup.classList.remove("modal_open"); /*deactivate a class that makes it visible*/
-  }
-  imagePopupCloseButton.addEventListener("click", closeImagePopup);
 
-
+  imagePopupCloseButton.addEventListener("click", () => {
+    closeModal(imagePopup);
+  });
 /////////////////////////////////////////
 
 ////////////////////////////////////////////////Set up edit profile modal
-
 editProfileCloseButton.addEventListener("click", () => {closeModal(editProfileModal)});
 profileEditButton.addEventListener("click", () => {
   openModal(editProfileModal);
@@ -168,7 +158,6 @@ editProfileForm.addEventListener('submit', handleProfileFormSubmit);
 ////////////////////////////////////////////////
 
 ////////////////////////////////////////////////Set up add card modal
-
   addCardCloseButton.addEventListener("click", () => {closeModal(addCardModal)});
   addCardButton.addEventListener("click", () => { openModal(addCardModal)});
 
@@ -191,7 +180,6 @@ addCardForm.addEventListener('submit', handleAddCardSubmit);
 
 
 ///////////////////////////////////////////////////////////////////Universal Open/Close Modal Functions
-
 function openModal(modal)
 {
   /* The visible class overrides the previous class because its farther down the page. see modal.css.*/
@@ -201,7 +189,6 @@ function openModal(modal)
 function closeModal(modal){
   modal.classList.remove("modal_open"); /*deactivate a class that makes it visible*/
 }
-
 ////////////////////////////////////////////////////////////////////////////
 
 
