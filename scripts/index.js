@@ -61,7 +61,7 @@ const cardsGrid = document.querySelector(".grid");
 const imagePopup = document.querySelector("#image-popup");
 const imagePopupPic = imagePopup.querySelector(".popup__image");
 const imagePopupText = imagePopup.querySelector(".popup__title");
-const imagePopupCloseButton = imagePopup.querySelector(".popup__close-button");
+const imagePopupCloseButton = imagePopup.querySelector(".modal__close-button");
 
 
 //create a card and add it to the cardsGrid
@@ -121,7 +121,7 @@ function createImagePopup(data) { //called in AddCardElement
   //get the name and the link out of data (data is an object)
   //data.name data.link;
 
-  imagePopup.classList.add("popup_open");
+  imagePopup.classList.add("modal_open");
   imagePopupPic.src = data.link;
   imagePopupText.textContent = data.name;
   console.log("wow look an image popped up");
@@ -129,7 +129,7 @@ function createImagePopup(data) { //called in AddCardElement
   //add event listener for closing the image popup
 }
 function CloseImagePopup() {
-  imagePopup.classList.remove("popup_open"); /*deactivate a class that makes it visible*/
+  imagePopup.classList.remove("modal_open"); /*deactivate a class that makes it visible*/
   }
 imagePopup.addEventListener("click", CloseImagePopup);
 
