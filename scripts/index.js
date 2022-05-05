@@ -78,6 +78,7 @@ const addCardElement = data => {
     //look within the card template for the spots where the name and link go, set them up
     const cardImage = newCard.querySelector(".element__image"); //used later to set up click event for image modal
     cardImage.style = "background-image:url('"+cardLink+"');";
+    //cardImage.aria-label = data.name;
     //use .src here if image tag, I am using style and background image because it is button
     newCard.querySelector(".element__text").textContent = cardName;
 
@@ -123,6 +124,7 @@ function setDataImagePopup(data) { //called in AddCardElement
   //data.name data.link;
   imagePopupPic.src = data.link;
   imagePopupText.textContent = data.name;
+  imagePopupPic.alt = data.name;
 }
 
   imagePopupCloseButton.addEventListener("click", () => {
