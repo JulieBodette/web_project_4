@@ -69,37 +69,37 @@ const imagePopupCloseButton = imagePopup.querySelector(".modal__close-button");
 const addCardElement = data => {
     //data = name and link
     //get the name and the link out of data (data is an object)
-    let cardname = data.name;
-    let cardlink = data.link;
+    const cardName = data.name;
+    const cardLink = data.link;
 
     //make a copy of the template using cloneNode
-    let newCard = cardTemplate.cloneNode(true); //true clones everything inside
+    const newCard = cardTemplate.cloneNode(true); //true clones everything inside
 
     //look within the card template for the spots where the name and link go, set them up
-    let Cardimage = newCard.querySelector(".element__image"); //used later to set up click event for image modal
-    Cardimage.style = "background-image:url('"+cardlink+"');";
+    const cardImage = newCard.querySelector(".element__image"); //used later to set up click event for image modal
+    cardImage.style = "background-image:url('"+cardLink+"');";
     //use .src here if image tag, I am using style and background image because it is button
-    newCard.querySelector(".element__text").textContent = cardname;
+    newCard.querySelector(".element__text").textContent = cardName;
 
     //query selector the like and delete button
-    let likebutton = newCard.querySelector(".element__like");
-    let deletebutton = newCard.querySelector(".element__trash");
+    const likeButton = newCard.querySelector(".element__like");
+    const deleteButton = newCard.querySelector(".element__trash");
   
-    //add event listener for Cardimage- so that image modal pops up when clicked
-    Cardimage.addEventListener("click", function(evt){
+    //add event listener for cardImage- so that image modal pops up when clicked
+    cardImage.addEventListener("click", function(evt){
       console.log("wow and image");
       createImagePopup(data);
     });
 
 
     //add event listeners for like and delete
-    likebutton.addEventListener("click", function(evt){
-      let Heart = evt.target;//the event target is the heart button that the user clicked on
+    likeButton.addEventListener("click", function(evt){
+      const Heart = evt.target;//the event target is the heart button that the user clicked on
       Heart.classList.toggle("element__like_active");
     });
-    deletebutton.addEventListener("click", function(evt){
-      let trash = evt.target;//the event target is the trash button that the user clicked on
-      let card = trash.parentElement.parentElement;//get the parent of trash. first parent is button, second is element div
+    deleteButton.addEventListener("click", function(evt){
+      const trash = evt.target;//the event target is the trash button that the user clicked on
+      const card = trash.parentElement.parentElement;//get the parent of trash. first parent is button, second is element div
       card.remove();
     });
     
@@ -190,7 +190,7 @@ function CloseAddCardModal() {
     evt.preventDefault();     // stops the browser from submitting the form in the default way.
 
     //make a new object to store the image url and image label
-    let newCardInfo = {
+    const newCardInfo = {
       name: imageNameInput.value,
       link: imageLinkInput.value
     }
