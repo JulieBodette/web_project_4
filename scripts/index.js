@@ -129,9 +129,10 @@ function createImagePopup(data) { //called in AddCardElement
   //add event listener for closing the image popup
 }
 function CloseImagePopup() {
+  console.log("closing image popup")
   imagePopup.classList.remove("modal_open"); /*deactivate a class that makes it visible*/
   }
-imagePopup.addEventListener("click", CloseImagePopup);
+  imagePopupCloseButton.addEventListener("click", CloseImagePopup);
 
 
 /////////////////////////////////////////

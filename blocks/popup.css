@@ -5,6 +5,7 @@
 }
 
 .popup__content {
+  /*similar to modal__content but no white background and different margins*/
   /*width and height are determined by the margins of the objects inside */
   margin: 90px auto auto auto; /* top right bottom left */
   position: relative; /*so that X close button is placed relative to this box */
