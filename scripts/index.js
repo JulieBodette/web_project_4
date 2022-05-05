@@ -140,23 +140,15 @@ function closeImagePopup() {
 /////////////////////////////////////////
 
 ////////////////////////////////////////////////Set up edit profile modal
-/////////////open and close the modal
-function openEditProfileModal() {
-editProfileModal.classList.add("modal_open"); /*activate a class that makes it visible*/
-/* The visible class overrides the previous class because its farther down the page. see modal.css.*/
-//Fill in the text boxes on the modal panel with the values from the page
 
-//this makes sure data in the form field is correct if you close without saving
+editProfileCloseButton.addEventListener("click", () => {closeModal(editProfileModal)});
+profileEditButton.addEventListener("click", () => {
+  openModal(editProfileModal);
+  //this makes sure data in the form field is correct if you close without saving
 //if you close without saving it should be set to the previous values from the page, NOT whatever u typed and didnt save
 nameInput.value = nameText.textContent;
 titleInput.value = titleText.textContent;
-}
-function closeEditProfileModal() {
-editProfileModal.classList.remove("modal_open"); /*deactivate a class that makes it visible*/
-}
-editProfileCloseButton.addEventListener("click", closeEditProfileModal);
-profileEditButton.addEventListener("click", openEditProfileModal);
-/////////////////////
+});
 
 //Pressing the submit button updates the name and title on the page to be the newly entered values
 function handleProfileFormSubmit(evt) {
@@ -166,7 +158,7 @@ function handleProfileFormSubmit(evt) {
     // property of the querySelector() method
     nameText.textContent = nameInput.value;
     titleText.textContent = titleInput.value;
-    closeEditProfileModal() //close the modal panel when submitted
+    closeModal(editProfileModal)//close the modal panel when submitted
 }
 
 // Connect the handler to the form: it will watch the submit event
@@ -202,6 +194,7 @@ addCardForm.addEventListener('submit', handleAddCardSubmit);
 
 function openModal(modal)
 {
+  /* The visible class overrides the previous class because its farther down the page. see modal.css.*/
   modal.classList.add("modal_open"); /*activate a class that makes it visible*/
 }
 
