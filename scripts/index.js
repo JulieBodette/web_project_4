@@ -176,14 +176,9 @@ editProfileForm.addEventListener('submit', handleProfileFormSubmit);
 ////////////////////////////////////////////////
 
 ////////////////////////////////////////////////Set up add card modal
-function openAddCardModal() {
-  addCardModal.classList.add("modal_open"); /*activate a class that makes it visible*/
-  }
-function closeAddCardModal() {
-  addCardModal.classList.remove("modal_open"); /*deactivate a class that makes it visible*/
-  }
-  addCardCloseButton.addEventListener("click", closeAddCardModal);
-  addCardButton.addEventListener("click", openAddCardModal);
+
+  addCardCloseButton.addEventListener("click", () => {closeModal(addCardModal)});
+  addCardButton.addEventListener("click", () => { openModal(addCardModal)});
 
   //pressing submit button adds a new card with picture and title from user
   function handleAddCardSubmit(evt) {
@@ -197,15 +192,24 @@ function closeAddCardModal() {
     newCard = addCardElement(newCardInfo) //create a new card and add to screen
     cardsGrid.prepend(newCard); //prepend it to the grid (add to beginning)
 
-    closeAddCardModal() //close the modal panel when submitted
+    closeModal(addCardModal) //close the modal panel when submitted
 }
 addCardForm.addEventListener('submit', handleAddCardSubmit);
 ////////////////////////////////////////////////
 
 
+///////////////////////////////////////////////////////////////////Universal Open/Close Modal Functions
 
+function openModal(modal)
+{
+  modal.classList.add("modal_open"); /*activate a class that makes it visible*/
+}
 
+function closeModal(modal){
+  modal.classList.remove("modal_open"); /*deactivate a class that makes it visible*/
+}
 
+////////////////////////////////////////////////////////////////////////////
 
 
 
