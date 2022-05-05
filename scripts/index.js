@@ -102,16 +102,18 @@ const addCardElement = data => {
       let card = trash.parentElement.parentElement;//get the parent of trash. first parent is button, second is element div
       card.remove();
     });
+    
+    //return new card so that it can be added to the grid when this function is called
+    return newCard;
 
-    //add the new card to the grid 
-    cardsGrid.append(newCard); 
 }
 
 
 //loop thru the initialCards array and send each one into the getCardElement function
 initialCards.forEach(
     function (item){
-        addCardElement(item);         //get the card element and append it to the grid
+        newCard = addCardElement(item);         //get the card element 
+        cardsGrid.append(newCard); //append it to the grid
     }
 );
 
@@ -192,7 +194,8 @@ function CloseAddCardModal() {
       name: imageNameInput.value,
       link: imageLinkInput.value
     }
-    addCardElement(newCardInfo) //create a new card and add to screen
+    newCard = addCardElement(newCardInfo) //create a new card and add to screen
+    cardsGrid.prepend(newCard); //prepend it to the grid (add to beginning)
 
     CloseEditProfileModal() //close the modal panel when submitted
 }
