@@ -94,8 +94,8 @@ const addCardElement = data => {
 
     //add event listeners for like and delete
     likeButton.addEventListener("click", function(evt){
-      const Heart = evt.target;//the event target is the heart button that the user clicked on
-      Heart.classList.toggle("element__like_active");
+      const heart = evt.target;//the event target is the heart button that the user clicked on
+      heart.classList.toggle("element__like_active");
     });
     deleteButton.addEventListener("click", function(evt){
       const trash = evt.target;//the event target is the trash button that the user clicked on
@@ -112,7 +112,7 @@ const addCardElement = data => {
 //loop thru the initialCards array and send each one into the getCardElement function
 initialCards.forEach(
     function (item){
-        newCard = addCardElement(item);         //get the card element 
+        const newCard = addCardElement(item);         //get the card element 
         cardsGrid.append(newCard); //append it to the grid
     }
 );
@@ -172,9 +172,11 @@ editProfileForm.addEventListener('submit', handleProfileFormSubmit);
       name: imageNameInput.value,
       link: imageLinkInput.value
     }
-    newCard = addCardElement(newCardInfo) //create a new card and add to screen
+    const newCard = addCardElement(newCardInfo) //create a new card and add to screen
     cardsGrid.prepend(newCard); //prepend it to the grid (add to beginning)
-
+    //clear out the input fields
+    imageNameInput.value = "";
+    imageLinkInput.value = "";
     closeModal(addCardModal) //close the modal panel when submitted
 }
 addCardForm.addEventListener('submit', handleAddCardSubmit);
