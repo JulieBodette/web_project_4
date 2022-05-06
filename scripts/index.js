@@ -2,9 +2,7 @@
 //use const so that the value does not change
 const profileEditButton = document.querySelector("#profile-info-edit-button"); ///find the edit button from profile-this opens the modal panel
 const editProfileModal = document.querySelector("#edit-profile-modal"); //using ID to find the modal (pop up). ID is unique, makes it a little better than a class. needed because there are multiple modals (pop ups) with same class
-const editProfileCloseButton = editProfileModal.querySelector('.modal__close-button');//use the modal panel to find the stuff inside it. finding by class.
 const editProfileForm = editProfileModal.querySelector(".modal__form"); //find the form. form has 2 text boxes and a submit button. Search within editProfileModal instead of document so that we find the correct form
-
 //find the text on the page that shows name and title
 const nameText = document.querySelector(".profile__info-name");
 const titleText = document.querySelector(".profile__info-title");
@@ -17,7 +15,6 @@ const titleInput = editProfileForm.querySelector('[name="title"]');
 /////////////////////////////////////////////////////Set up add card button and modal for it
 const addCardButton = document.querySelector("#profile-add-button"); ///find the + button (add card)-this opens the modal panel
 const addCardModal = document.querySelector("#add-card-modal"); //using ID to find the modal (pop up).
-const addCardCloseButton = addCardModal.querySelector('.modal__close-button');//use the modal panel to find the stuff inside it.
 const addCardForm = addCardModal.querySelector(".modal__form"); //find the form.
 
 // find the form fields in the DOM
@@ -61,8 +58,6 @@ const cardsGrid = document.querySelector(".grid");
 const imagePopup = document.querySelector("#image-popup");
 const imagePopupPic = imagePopup.querySelector(".popup__image");
 const imagePopupText = imagePopup.querySelector(".popup__caption");
-const imagePopupCloseButton = imagePopup.querySelector(".modal__close-button");
-
 
 //create a card and add it to the cardsGrid
 //this function must be created before it is called because its stored in a variable
@@ -126,14 +121,9 @@ function setDataImagePopup(data) { //called in AddCardElement
   imagePopupText.textContent = data.name;
   imagePopupPic.alt = data.name;
 }
-
-  imagePopupCloseButton.addEventListener("click", () => {
-    closeModal(imagePopup);
-  });
 /////////////////////////////////////////
 
 ////////////////////////////////////////////////Set up edit profile modal
-editProfileCloseButton.addEventListener("click", () => {closeModal(editProfileModal)});
 profileEditButton.addEventListener("click", () => {
   openModal(editProfileModal);
   //this makes sure data in the form field is correct if you close without saving
@@ -160,7 +150,6 @@ editProfileForm.addEventListener('submit', handleProfileFormSubmit);
 ////////////////////////////////////////////////
 
 ////////////////////////////////////////////////Set up add card modal
-  addCardCloseButton.addEventListener("click", () => {closeModal(addCardModal)});
   addCardButton.addEventListener("click", () => { openModal(addCardModal)});
 
   //pressing submit button adds a new card with picture and title from user
@@ -182,6 +171,17 @@ editProfileForm.addEventListener('submit', handleProfileFormSubmit);
 addCardForm.addEventListener('submit', handleAddCardSubmit);
 ////////////////////////////////////////////////
 
+///////////////////////////////Universal Handler for ALL modal close buttons (X)
+// find all close buttons
+const closeButtons = document.querySelectorAll('.modal__close-button');
+
+closeButtons.forEach((button) => {
+  // find the closest modal 
+  const modal = button.closest('.modal');
+  // set the listener
+  button.addEventListener('click', () => closeModal(modal));
+});
+
 
 ///////////////////////////////////////////////////////////////////Universal Open/Close Modal Functions
 function openModal(modal)
@@ -193,7 +193,7 @@ function openModal(modal)
 function closeModal(modal){
   modal.classList.remove("modal_open"); /*deactivate a class that makes it visible*/
 }
-////////////////////////////////////////////////////////////////////////////
+
 
 
 
