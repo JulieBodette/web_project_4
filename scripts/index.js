@@ -180,7 +180,18 @@ closeButtons.forEach((button) => {
   const modal = button.closest('.modal');
   // set the listener
   button.addEventListener('click', () => closeModal(modal));
+
+  //add listener to document- close the modal on esc
+  modal.addEventListener("keydown", (evt) =>{
+    if(evt.key === "Escape")
+    {
+      closeModal(modal);
+    }
+  });
+
+  
 });
+
 
 
 ///////////////////////////////////////////////////////////////////Universal Open/Close Modal Functions
