@@ -173,14 +173,25 @@ addCardForm.addEventListener('submit', handleAddCardSubmit);
 
 ///////////////////////////////Universal Handler for ALL modal close buttons (X)
 // find all close buttons
-const closeButtons = document.querySelectorAll('.modal__close-button');
+const closeButtons = Array.from(document.querySelectorAll('.modal__close-button')); //use Array.from to convert to array
 
 closeButtons.forEach((button) => {
   // find the closest modal 
   const modal = button.closest('.modal');
   // set the listener
   button.addEventListener('click', () => closeModal(modal));
-
+});
+/////////////////////////////////////////////Add event listeners to Close all modals by clicking outside them
+const modals = Array.from(document.querySelectorAll('.modal'));
+modals.forEach((modal) => {
+  modal.addEventListener("mousedown", (evt) => { //use mousedown so that if user clicks on box and drags outside, this event does not trigger
+    //only triggers if they click outside modal box
+    
+    if(evt.target.classList.contains("modal") || evt.target.classList.contains("modal__close-button"))
+    {
+      closeModal(modal);
+    }
+  });
   //add listener to document- close the modal on esc
   document.addEventListener("keydown", (evt) =>{ //add it to document and not modal so it detects if you hit esc even if you are not focused on modal.
     if(evt.key === "Escape")
@@ -188,11 +199,8 @@ closeButtons.forEach((button) => {
       closeModal(modal);
     }
   });
-
   
-});
-
-
+}); //end forEach
 
 ///////////////////////////////////////////////////////////////////Universal Open/Close Modal Functions
 function openModal(modal)
