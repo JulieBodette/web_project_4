@@ -63,6 +63,9 @@
             type="text"
             name="name"
             value="Jacques Cousteau"
+            minlength="2"
+            maxlength="4"
+            required
           />
           <span class="modal__error">error here</span>
           <input
@@ -70,6 +73,7 @@
             type="text"
             name="title"
             value="Explorer"
+            required
           />
           <span class="modal__error">error here</span>
           <!--set input values to the same text as the default values on the page-->
@@ -90,14 +94,16 @@
             type="text"
             name="imagename"
             placeholder="Title"
+            required
           />
           <span class="modal__error">error here</span>
           <!--This modal uses placeholder , but the other one uses value-->
           <input
             class="modal__input-text"
-            type="text"
+            type="url"
             name="imagelink"
             placeholder="Image link"
+            required
           />
           <span class="modal__error">error here</span>
           <!--set input values to the same text as the default values on the page-->

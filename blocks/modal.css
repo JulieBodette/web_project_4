@@ -112,13 +112,17 @@
 }
 
 .modal__error {
+  visibility: hidden;
   font-family: "Inter", "Arial", sans-serif; /*fallback fonts */
   font-style: normal;
   font-weight: 400;
   font-size: 12px;
   line-height: 15px;
-
   color: #ff0000;
+}
+
+.modal__error_visible {
+  visibility: visible;
 }
 
 .modal__input-text {
