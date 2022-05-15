@@ -182,7 +182,7 @@ closeButtons.forEach((button) => {
   button.addEventListener('click', () => closeModal(modal));
 
   //add listener to document- close the modal on esc
-  modal.addEventListener("keydown", (evt) =>{
+  document.addEventListener("keydown", (evt) =>{ //add it to document and not modal so it detects if you hit esc even if you are not focused on modal.
     if(evt.key === "Escape")
     {
       closeModal(modal);

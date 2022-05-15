@@ -100,6 +100,16 @@
   margin: 0px 36px 36.51px 36px; /* top right bottom left */
 }
 
+.modal__error {
+  font-family: "Inter", "Arial", sans-serif; /*fallback fonts */
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 15px;
+
+  color: #ff0000;
+}
+
 .modal__input-text {
   /* this is the entire input box, you can put the text styles (font and font color) in here */
   /*also the border styles */
@@ -119,8 +129,8 @@
   /*Add card modal uses placeholders but edit profile does not */
   color: #c4c4c4;
 }
-.modal__input-text:first-of-type {
-  margin: 0px auto 29.74px auto; /* top right bottom left */
+.modal__input-text:last-of-type {
+  margin: 30px auto 0px auto; /* top right bottom left */
 }
 
 /*styles for 320px screen*/
