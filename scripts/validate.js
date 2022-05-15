@@ -1,28 +1,15 @@
 const showInputError = (formElement, inputElement, errorMessage, settings) => {
-    console.log("show input error");
-    const errorElement = inputElement.closest(`.${settings.inputErrorClass}`);
-    console.log(errorElement);
-    errorElement.textContent = errorMessage;
-    errorElement.classList.add(`.${settings.errorClass}`);
-    /*
     const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
-    inputElement.classList.add("form__input_type_error");
     errorElement.textContent = errorMessage;
-    errorElement.classList.add("form__input-error_active");
-    */
+    errorElement.classList.remove(`${settings.inputErrorClass}`); //the class that makes it invisible
+    errorElement.classList.add(`${settings.errorClass}`); //the class that makes it visible
   };
   
   const hideInputError = (formElement, inputElement, settings) => {
-    console.log("hide input error");
-    const errorElement = formElement.querySelector(`.${settings.inputErrorClass}`);
-    errorElement.classList.remove(`.${settings.errorClass}`);
-    errorElement.textContent = "";
-    /*
     const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
-    inputElement.classList.remove("form__input_type_error");
-    errorElement.classList.remove("form__input-error_active");
+    errorElement.classList.add(`${settings.inputErrorClass}`); //the class that makes it invisible
+    errorElement.classList.remove(`${settings.errorClass}`); //the class that makes it visible
     errorElement.textContent = "";
-    */
   };
   
   const checkInputValidity = (formElement, inputElement, settings) => {
@@ -61,41 +48,14 @@ const showInputError = (formElement, inputElement, errorMessage, settings) => {
           });
 
       });
-      /*
-    const inputList = Array.from(formElement.querySelectorAll(".form__input"));
-    const buttonElement = formElement.querySelector(".form__submit");
-    toggleButtonState(inputList, buttonElement);
-    inputList.forEach((inputElement) => {
-      inputElement.addEventListener("input", function () {
-        checkInputValidity(formElement, inputElement);
-        toggleButtonState(inputList, buttonElement); 
-      });
-    });
-    */
   };
   
   const enableValidation = (settings) => {
-    console.log(settings);
-    console.log(settings.inputSelector);
     const formList = Array.from(document.querySelectorAll(`${settings.formSelector}`));
     //use Array.from to make it into an array, so that we can use forEach() to loop thru it
-    console.log(formList);
     formList.forEach((form) => {
-        console.log("setting up form");
         setEventListeners(form, settings);
     } );
-    /*
-    formList.forEach((formElement) => {
-      formElement.addEventListener("submit", function (evt) {
-        evt.preventDefault();
-      });
-  
-      const fieldsetList = Array.from(formElement.querySelectorAll(".form__set"));
-  
-      fieldsetList.forEach((fieldset) => {
-        setEventListeners(fieldset);
-      });
-    });*/
   };
   
  // enabling validation by calling enableValidation()

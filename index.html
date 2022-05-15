@@ -58,18 +58,17 @@
         </button>
         <h2 class="modal__title">Edit profile</h2>
         <form name="nameandtitle" class="modal__form">
-          <div class="modal__input">
-            <input
-              class="modal__input-text"
-              type="text"
-              name="name"
-              value="Jacques Cousteau"
-              minlength="2"
-              maxlength="40"
-              required
-            />
-            <span class="modal__error">error here</span>
-          </div>
+          <input
+            class="modal__input-text"
+            type="text"
+            name="name"
+            value="Jacques Cousteau"
+            minlength="2"
+            maxlength="40"
+            id="name-input"
+            required
+          />
+          <span class="modal__error name-input-error">error here</span>
           <input
             class="modal__input-text"
             type="text"
@@ -77,9 +76,10 @@
             value="Explorer"
             minlength="2"
             maxlength="200"
+            id="title-input"
             required
           />
-          <span class="modal__error">error here</span>
+          <span class="modal__error title-input-error">error here</span>
           <!--set input values to the same text as the default values on the page-->
           <button type="submit" class="modal__submit-button">Save</button>
         </form>
@@ -100,19 +100,21 @@
             placeholder="Title"
             minlength="1"
             maxlength="30"
+            id="imagename-input"
             required
           />
-          <span class="modal__error">error here</span>
+          <span class="modal__error imagename-input-error">error here</span>
           <!--This modal uses placeholder , but the other one uses value-->
           <input
             class="modal__input-text"
             type="url"
             name="imagelink"
             placeholder="Image link"
+            id="imagelink-input"
             required
           />
           <!--type=url is needed for validation- it checks to make sure user entered a url-->
-          <span class="modal__error">error here</span>
+          <span class="modal__error imagelink-input-error">error here</span>
           <!--set input values to the same text as the default values on the page-->
           <button type="submit" class="modal__submit-button">Create</button>
         </form>
