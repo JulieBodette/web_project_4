@@ -58,21 +58,25 @@
         </button>
         <h2 class="modal__title">Edit profile</h2>
         <form name="nameandtitle" class="modal__form">
-          <input
-            class="modal__input-text"
-            type="text"
-            name="name"
-            value="Jacques Cousteau"
-            minlength="2"
-            maxlength="4"
-            required
-          />
-          <span class="modal__error">error here</span>
+          <div class="modal__input">
+            <input
+              class="modal__input-text"
+              type="text"
+              name="name"
+              value="Jacques Cousteau"
+              minlength="2"
+              maxlength="40"
+              required
+            />
+            <span class="modal__error">error here</span>
+          </div>
           <input
             class="modal__input-text"
             type="text"
             name="title"
             value="Explorer"
+            minlength="2"
+            maxlength="200"
             required
           />
           <span class="modal__error">error here</span>
@@ -94,6 +98,8 @@
             type="text"
             name="imagename"
             placeholder="Title"
+            minlength="1"
+            maxlength="30"
             required
           />
           <span class="modal__error">error here</span>
@@ -105,6 +111,7 @@
             placeholder="Image link"
             required
           />
+          <!--type=url is needed for validation- it checks to make sure user entered a url-->
           <span class="modal__error">error here</span>
           <!--set input values to the same text as the default values on the page-->
           <button type="submit" class="modal__submit-button">Create</button>

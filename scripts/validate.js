@@ -1,5 +1,9 @@
-const showInputError = (formElement, inputElement, errorMessage) => {
+const showInputError = (formElement, inputElement, errorMessage, settings) => {
     console.log("show input error");
+    const errorElement = inputElement.closest(`.${settings.inputErrorClass}`);
+    console.log(errorElement);
+    errorElement.textContent = errorMessage;
+    errorElement.classList.add(`.${settings.errorClass}`);
     /*
     const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
     inputElement.classList.add("form__input_type_error");
@@ -8,8 +12,11 @@ const showInputError = (formElement, inputElement, errorMessage) => {
     */
   };
   
-  const hideInputError = (formElement, inputElement) => {
+  const hideInputError = (formElement, inputElement, settings) => {
     console.log("hide input error");
+    const errorElement = formElement.querySelector(`.${settings.inputErrorClass}`);
+    errorElement.classList.remove(`.${settings.errorClass}`);
+    errorElement.textContent = "";
     /*
     const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
     inputElement.classList.remove("form__input_type_error");
@@ -18,28 +25,23 @@ const showInputError = (formElement, inputElement, errorMessage) => {
     */
   };
   
-  const checkInputValidity = (formElement, inputElement) => {
-    console.log("check input validity");
-    /*
+  const checkInputValidity = (formElement, inputElement, settings) => {
+    //this function does not use settings but the function that it calls does
+    //therefore we must send it settings so it can pass them on
     if (!inputElement.validity.valid) {
-      showInputError(formElement, inputElement, inputElement.validationMessage);
+      showInputError(formElement, inputElement, inputElement.validationMessage, settings);
     } else {
-      hideInputError(formElement, inputElement);
+      hideInputError(formElement, inputElement, settings);
     }
-    */
   };
   
   const hasInvalidInput = (inputList) => {
-      console.log("hasInvalidInput function called")
     return inputList.some((inputElement) => {
-        console.log(inputElement.validity.valid);
       return !inputElement.validity.valid;
     });
   };
   
   const toggleButtonState = (inputList, buttonElement, settings) => {
-      console.log("toggle button");
-    console.log("is the input invalid?"+hasInvalidInput(inputList));
     if (hasInvalidInput(inputList)) {
       buttonElement.classList.add(`${settings.inactiveButtonClass}`);
     } else {
@@ -48,16 +50,13 @@ const showInputError = (formElement, inputElement, errorMessage) => {
   };
   
   const setEventListeners = (formElement, settings) => {
-      console.log("set event listeners");
       const inputList = Array.from(formElement.querySelectorAll(`${settings.inputSelector}`));
-      console.log(inputList);
       const buttonElement = formElement.querySelector(`${settings.submitButtonSelector}`);
-      console.log(buttonElement);
       toggleButtonState(inputList, buttonElement, settings); //initial toggle of the button on page load 
       inputList.forEach((inputElement) => {
         inputElement.addEventListener("input", function () {
             //event listener triggers when text is input: 
-            checkInputValidity(formElement, inputElement); //check if the input is valid (see if error should be displayed)
+            checkInputValidity(formElement, inputElement,settings); //check if the input is valid (see if error should be displayed)
             toggleButtonState(inputList, buttonElement, settings); //check if input is valid (see if submit button should be active)
           });
 
