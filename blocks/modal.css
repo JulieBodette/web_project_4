@@ -71,6 +71,17 @@
   color: #ffffff;
 }
 
+.modal__submit-button_disabled {
+  background: #ffffff;
+  color: #000000;
+  border: 1px solid #000000;
+  border-radius: 2px;
+  opacity: 0.2;
+  /*attempt to disable button via css */
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
 .modal__submit-button:hover {
   opacity: 0.6;
 }
