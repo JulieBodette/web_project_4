@@ -1,3 +1,5 @@
+import {showInputError, hideInputError, checkInputValidity, customSettings} from "./validate.js";
+
 ////////////////////////////////////////////////Set up edit profile text button and modal for it
 //use const so that the value does not change
 const editProfileButton = document.querySelector("#profile-info-edit-button"); ///find the edit button from profile-this opens the modal panel
@@ -74,11 +76,8 @@ const createCardElement = (data) => {
 
   //look within the card template for the spots where the name and link go, set them up
   const cardImage = newCard.querySelector(".element__image"); //used later to set up click event for image modal
-  cardImage.style = `background-image:url(${cardLink});`
-  //${cardLink}
-  //"background-image:url('https://code.s3.yandex.net/web-code/lago.jpg');"
-  //"background-image:url('`${cardLink}`')";
-  //cardImage.aria-label = data.name;
+  cardImage.style = `background-image:url(${cardLink});` //template literal has ` at the begginign and end instead of ""
+  //also template literal has ${cardLink} (no quotes) even though cardLInk is a string
   //use .src here if image tag, I am using style and background image because it is button
   newCard.querySelector(".element__text").textContent = cardName;
 
@@ -131,6 +130,16 @@ editProfileButton.addEventListener("click", () => {
   //if you close without saving it should be set to the previous values from the page, NOT whatever u typed and didnt save
   nameInput.value = nameText.textContent;
   titleInput.value = titleText.textContent;
+  //get the parameters to send to checkInputValidity
+  const form = editProfileModal.querySelector(customSettings.formSelector);
+  const inputList = Array.from(
+    form.querySelectorAll(customSettings.inputSelector)
+  );
+  //loop through all fields in the form and call checkInputValidity to determine if they are valid (and if error should be displayed)
+  inputList.forEach((inputElement) => {
+    checkInputValidity(form, inputElement, customSettings);
+  });
+  
 });
 
 //Pressing the submit button updates the name and title on the page to be the newly entered values

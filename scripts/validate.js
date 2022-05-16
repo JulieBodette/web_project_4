@@ -68,12 +68,16 @@ const enableValidation = (settings) => {
 
 // enabling validation by calling enableValidation()
 // pass all the settings on call
-
-enableValidation({
+const customSettings = {
   formSelector: ".modal__form",
   inputSelector: ".modal__input-text",
   submitButtonSelector: ".modal__submit-button",
   inactiveButtonClass: "modal__submit-button_disabled",
   inputErrorClass: "modal__error",
   errorClass: "modal__error_visible",
-});
+}
+
+enableValidation(customSettings);
+
+//export functions to index.js
+export {showInputError, hideInputError, checkInputValidity, customSettings};
