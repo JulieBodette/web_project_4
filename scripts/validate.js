@@ -1,14 +1,14 @@
 const showInputError = (formElement, inputElement, errorMessage, settings) => {
     const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
     errorElement.textContent = errorMessage;
-    errorElement.classList.remove(`${settings.inputErrorClass}`); //the class that makes it invisible
-    errorElement.classList.add(`${settings.errorClass}`); //the class that makes it visible
+    errorElement.classList.remove(settings.inputErrorClass); //the class that makes it invisible
+    errorElement.classList.add(settings.errorClass); //the class that makes it visible
   };
   
   const hideInputError = (formElement, inputElement, settings) => {
     const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
-    errorElement.classList.add(`${settings.inputErrorClass}`); //the class that makes it invisible
-    errorElement.classList.remove(`${settings.errorClass}`); //the class that makes it visible
+    errorElement.classList.add(settings.inputErrorClass); //the class that makes it invisible
+    errorElement.classList.remove(settings.errorClass); //the class that makes it visible
     errorElement.textContent = "";
   };
   
@@ -30,15 +30,15 @@ const showInputError = (formElement, inputElement, errorMessage, settings) => {
   
   const toggleButtonState = (inputList, buttonElement, settings) => {
     if (hasInvalidInput(inputList)) {
-      buttonElement.classList.add(`${settings.inactiveButtonClass}`);
+      buttonElement.classList.add(settings.inactiveButtonClass);
     } else {
-      buttonElement.classList.remove(`${settings.inactiveButtonClass}`);
+      buttonElement.classList.remove(settings.inactiveButtonClass);
     }
   };
   
   const setEventListeners = (formElement, settings) => {
-      const inputList = Array.from(formElement.querySelectorAll(`${settings.inputSelector}`));
-      const buttonElement = formElement.querySelector(`${settings.submitButtonSelector}`);
+      const inputList = Array.from(formElement.querySelectorAll(settings.inputSelector));
+      const buttonElement = formElement.querySelector(settings.submitButtonSelector);
       toggleButtonState(inputList, buttonElement, settings); //initial toggle of the button on page load 
       inputList.forEach((inputElement) => {
         inputElement.addEventListener("input", function () {
@@ -51,7 +51,7 @@ const showInputError = (formElement, inputElement, errorMessage, settings) => {
   };
   
   const enableValidation = (settings) => {
-    const formList = Array.from(document.querySelectorAll(`${settings.formSelector}`));
+    const formList = Array.from(document.querySelectorAll(settings.formSelector));
     //use Array.from to make it into an array, so that we can use forEach() to loop thru it
     formList.forEach((form) => {
         setEventListeners(form, settings);
