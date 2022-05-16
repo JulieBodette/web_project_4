@@ -24,33 +24,35 @@ const imageLinkInput = addCardForm.querySelector('[name="imagelink"]');
 
 //making the initial cards via Javascript
 const initialCards = [
-    {
-      name: "Yosemite Valley",
-      link: "https://code.s3.yandex.net/web-code/yosemite.jpg"
-    },
-    {
-      name: "Lake Louise",
-      link: "https://code.s3.yandex.net/web-code/lake-louise.jpg"
-    },
-    {
-      name: "Bald Mountains",
-      link: "https://code.s3.yandex.net/web-code/bald-mountains.jpg"
-    },
-    {
-      name: "Latemar",
-      link: "https://code.s3.yandex.net/web-code/latemar.jpg"
-    },
-    {
-      name: "Vanoise National Park",
-      link: "https://code.s3.yandex.net/web-code/vanoise.jpg"
-    },
-    {
-      name: "Lago di Braies",
-      link: "https://code.s3.yandex.net/web-code/lago.jpg"
-    }
-  ];
+  {
+    name: "Yosemite Valley",
+    link: "https://code.s3.yandex.net/web-code/yosemite.jpg",
+  },
+  {
+    name: "Lake Louise",
+    link: "https://code.s3.yandex.net/web-code/lake-louise.jpg",
+  },
+  {
+    name: "Bald Mountains",
+    link: "https://code.s3.yandex.net/web-code/bald-mountains.jpg",
+  },
+  {
+    name: "Latemar",
+    link: "https://code.s3.yandex.net/web-code/latemar.jpg",
+  },
+  {
+    name: "Vanoise National Park",
+    link: "https://code.s3.yandex.net/web-code/vanoise.jpg",
+  },
+  {
+    name: "Lago di Braies",
+    link: "https://code.s3.yandex.net/web-code/lago.jpg",
+  },
+];
 //select the template, use .content to get the content inside the template, then query selector again to get the element class
-const cardTemplate = document.querySelector("#card-template").content.querySelector(".element");
+const cardTemplate = document
+  .querySelector("#card-template")
+  .content.querySelector(".element");
 //get a reference to the grid/container that we will put the cards in
 const cardsGrid = document.querySelector(".grid");
 
@@ -61,59 +63,56 @@ const imagePopupText = imagePopup.querySelector(".popup__caption");
 
 //create a card and add it to the cardsGrid
 //this function must be created before it is called because its stored in a variable
-const addCardElement = data => {
-    //data = name and link
-    //get the name and the link out of data (data is an object)
-    const cardName = data.name;
-    const cardLink = data.link;
+const addCardElement = (data) => {
+  //data = name and link
+  //get the name and the link out of data (data is an object)
+  const cardName = data.name;
+  const cardLink = data.link;
 
-    //make a copy of the template using cloneNode
-    const newCard = cardTemplate.cloneNode(true); //true clones everything inside
+  //make a copy of the template using cloneNode
+  const newCard = cardTemplate.cloneNode(true); //true clones everything inside
 
-    //look within the card template for the spots where the name and link go, set them up
-    const cardImage = newCard.querySelector(".element__image"); //used later to set up click event for image modal
-    cardImage.style = "background-image:url('"+cardLink+"');";
-    //cardImage.aria-label = data.name;
-    //use .src here if image tag, I am using style and background image because it is button
-    newCard.querySelector(".element__text").textContent = cardName;
+  //look within the card template for the spots where the name and link go, set them up
+  const cardImage = newCard.querySelector(".element__image"); //used later to set up click event for image modal
+  cardImage.style = "background-image:url('" + cardLink + "');";
+  //cardImage.aria-label = data.name;
+  //use .src here if image tag, I am using style and background image because it is button
+  newCard.querySelector(".element__text").textContent = cardName;
 
-    //query selector the like and delete button
-    const likeButton = newCard.querySelector(".element__like");
-    const deleteButton = newCard.querySelector(".element__trash");
-  
-    //add event listener for cardImage- so that image modal pops up when clicked
-    cardImage.addEventListener("click", function(evt){
-      setDataImagePopup(data);  
-      openModal(imagePopup);
-    });
+  //query selector the like and delete button
+  const likeButton = newCard.querySelector(".element__like");
+  const deleteButton = newCard.querySelector(".element__trash");
 
-    //add event listeners for like and delete
-    likeButton.addEventListener("click", function(evt){
-      const heart = evt.target;//the event target is the heart button that the user clicked on
-      heart.classList.toggle("element__like_active");
-    });
-    deleteButton.addEventListener("click", function(evt){
-      const trash = evt.target;//the event target is the trash button that the user clicked on
-      const card = evt.target.closest('.element'); //gets the closest parent with class element. First parent is button, second is element div
-      card.remove();
-    });
-    
-    //return new card so that it can be added to the grid when this function is called
-    return newCard;
+  //add event listener for cardImage- so that image modal pops up when clicked
+  cardImage.addEventListener("click", function (evt) {
+    setDataImagePopup(data);
+    openModal(imagePopup);
+  });
 
-}
+  //add event listeners for like and delete
+  likeButton.addEventListener("click", function (evt) {
+    const heart = evt.target; //the event target is the heart button that the user clicked on
+    heart.classList.toggle("element__like_active");
+  });
+  deleteButton.addEventListener("click", function (evt) {
+    const trash = evt.target; //the event target is the trash button that the user clicked on
+    const card = evt.target.closest(".element"); //gets the closest parent with class element. First parent is button, second is element div
+    card.remove();
+  });
 
+  //return new card so that it can be added to the grid when this function is called
+  return newCard;
+};
 
 //loop thru the initialCards array and send each one into the getCardElement function
-initialCards.forEach(
-    function (item){
-        const newCard = addCardElement(item);         //get the card element 
-        cardsGrid.append(newCard); //append it to the grid
-    }
-);
+initialCards.forEach(function (item) {
+  const newCard = addCardElement(item); //get the card element
+  cardsGrid.append(newCard); //append it to the grid
+});
 
 ////////////////////////////////////////////////////////////Set up image popup
-function setDataImagePopup(data) { //called in AddCardElement
+function setDataImagePopup(data) {
+  //called in AddCardElement
   //data = name and link
   //get the name and the link out of data (data is an object)
   //data.name data.link;
@@ -127,93 +126,95 @@ function setDataImagePopup(data) { //called in AddCardElement
 profileEditButton.addEventListener("click", () => {
   openModal(editProfileModal);
   //this makes sure data in the form field is correct if you close without saving
-//if you close without saving it should be set to the previous values from the page, NOT whatever u typed and didnt save
-nameInput.value = nameText.textContent;
-titleInput.value = titleText.textContent;
+  //if you close without saving it should be set to the previous values from the page, NOT whatever u typed and didnt save
+  nameInput.value = nameText.textContent;
+  titleInput.value = titleText.textContent;
 });
 
 //Pressing the submit button updates the name and title on the page to be the newly entered values
 function handleProfileFormSubmit(evt) {
-    evt.preventDefault();     // stops the browser from submitting the form in the default way.
+  evt.preventDefault(); // stops the browser from submitting the form in the default way.
 
-    // Insert new values using the textContent 
-    // property of the querySelector() method
-    nameText.textContent = nameInput.value;
-    titleText.textContent = titleInput.value;
-    closeModal(editProfileModal)//close the modal panel when submitted
+  // Insert new values using the textContent
+  // property of the querySelector() method
+  nameText.textContent = nameInput.value;
+  titleText.textContent = titleInput.value;
+  closeModal(editProfileModal); //close the modal panel when submitted
 }
 
 // Connect the handler to the form: it will watch the submit event
-editProfileForm.addEventListener('submit', handleProfileFormSubmit); 
+editProfileForm.addEventListener("submit", handleProfileFormSubmit);
 //we did not explicitly find the submit button...just listening to the event
 //pressing enter also submits
 ////////////////////////////////////////////////
 
 ////////////////////////////////////////////////Set up add card modal
-  addCardButton.addEventListener("click", () => { openModal(addCardModal)});
+addCardButton.addEventListener("click", () => {
+  openModal(addCardModal);
+});
 
-  //pressing submit button adds a new card with picture and title from user
-  function handleAddCardSubmit(evt) {
-    evt.preventDefault();     // stops the browser from submitting the form in the default way.
+//pressing submit button adds a new card with picture and title from user
+function handleAddCardSubmit(evt) {
+  evt.preventDefault(); // stops the browser from submitting the form in the default way.
 
-    //make a new object to store the image url and image label
-    const newCardInfo = {
-      name: imageNameInput.value,
-      link: imageLinkInput.value
-    }
-    const newCard = addCardElement(newCardInfo) //create a new card and add to screen
-    cardsGrid.prepend(newCard); //prepend it to the grid (add to beginning)
-    //clear out the input fields
-    imageNameInput.value = "";
-    imageLinkInput.value = "";
-    closeModal(addCardModal) //close the modal panel when submitted
+  //make a new object to store the image url and image label
+  const newCardInfo = {
+    name: imageNameInput.value,
+    link: imageLinkInput.value,
+  };
+  const newCard = addCardElement(newCardInfo); //create a new card and add to screen
+  cardsGrid.prepend(newCard); //prepend it to the grid (add to beginning)
+  //clear out the input fields
+  imageNameInput.value = "";
+  imageLinkInput.value = "";
+  closeModal(addCardModal); //close the modal panel when submitted
 }
-addCardForm.addEventListener('submit', handleAddCardSubmit);
+addCardForm.addEventListener("submit", handleAddCardSubmit);
 ////////////////////////////////////////////////
 
 ///////////////////////////////Universal Handler for ALL modal close buttons (X)
 // find all close buttons
-const closeButtons = Array.from(document.querySelectorAll('.modal__close-button')); //use Array.from to convert to array
+const closeButtons = Array.from(
+  document.querySelectorAll(".modal__close-button")
+); //use Array.from to convert to array
 
 closeButtons.forEach((button) => {
-  // find the closest modal 
-  const modal = button.closest('.modal');
+  // find the closest modal
+  const modal = button.closest(".modal");
   // set the listener
-  button.addEventListener('click', () => closeModal(modal));
+  button.addEventListener("click", () => closeModal(modal));
 });
 /////////////////////////////////////////////Add event listeners to Close all modals by clicking outside them
-const modals = Array.from(document.querySelectorAll('.modal'));
+const modals = Array.from(document.querySelectorAll(".modal"));
 modals.forEach((modal) => {
-  modal.addEventListener("mousedown", (evt) => { //use mousedown so that if user clicks on box and drags outside, this event does not trigger
+  modal.addEventListener("mousedown", (evt) => {
+    //use mousedown so that if user clicks on box and drags outside, this event does not trigger
     //only triggers if they click outside modal box
-    
-    if(evt.target.classList.contains("modal") || evt.target.classList.contains("modal__close-button"))
-    {
+
+    if (
+      evt.target.classList.contains("modal") ||
+      evt.target.classList.contains("modal__close-button")
+    ) {
       closeModal(modal);
     }
   });
   //add listener to document- close the modal on esc
-  document.addEventListener("keydown", (evt) =>{ //add it to document and not modal so it detects if you hit esc even if you are not focused on modal.
-    if(evt.key === "Escape")
-    {
+  document.addEventListener("keydown", (evt) => {
+    //add it to document and not modal so it detects if you hit esc even if you are not focused on modal.
+    if (evt.key === "Escape") {
       closeModal(modal);
     }
   });
-  
 }); //end forEach
 
 ///////////////////////////////////////////////////////////////////Universal Open/Close Modal Functions
-function openModal(modal)
-{
+function openModal(modal) {
   /* The visible class overrides the previous class because its farther down the page. see modal.css.*/
   modal.classList.add("modal_open"); /*activate a class that makes it visible*/
 }
 
-function closeModal(modal){
-  modal.classList.remove("modal_open"); /*deactivate a class that makes it visible*/
+function closeModal(modal) {
+  modal.classList.remove(
+    "modal_open"
+  ); /*deactivate a class that makes it visible*/
 }
-
-
-
-
-
