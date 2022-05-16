@@ -1,6 +1,6 @@
 ////////////////////////////////////////////////Set up edit profile text button and modal for it
 //use const so that the value does not change
-const profileEditButton = document.querySelector("#profile-info-edit-button"); ///find the edit button from profile-this opens the modal panel
+const editProfileButton = document.querySelector("#profile-info-edit-button"); ///find the edit button from profile-this opens the modal panel
 const editProfileModal = document.querySelector("#edit-profile-modal"); //using ID to find the modal (pop up). ID is unique, makes it a little better than a class. needed because there are multiple modals (pop ups) with same class
 const editProfileForm = editProfileModal.querySelector(".modal__form"); //find the form. form has 2 text boxes and a submit button. Search within editProfileModal instead of document so that we find the correct form
 //find the text on the page that shows name and title
@@ -63,7 +63,7 @@ const imagePopupText = imagePopup.querySelector(".popup__caption");
 
 //create a card and add it to the cardsGrid
 //this function must be created before it is called because its stored in a variable
-const addCardElement = (data) => {
+const createCardElement = (data) => {
   //data = name and link
   //get the name and the link out of data (data is an object)
   const cardName = data.name;
@@ -74,7 +74,10 @@ const addCardElement = (data) => {
 
   //look within the card template for the spots where the name and link go, set them up
   const cardImage = newCard.querySelector(".element__image"); //used later to set up click event for image modal
-  cardImage.style = "background-image:url('" + cardLink + "');";
+  cardImage.style = `background-image:url(${cardLink});`
+  //${cardLink}
+  //"background-image:url('https://code.s3.yandex.net/web-code/lago.jpg');"
+  //"background-image:url('`${cardLink}`')";
   //cardImage.aria-label = data.name;
   //use .src here if image tag, I am using style and background image because it is button
   newCard.querySelector(".element__text").textContent = cardName;
@@ -95,7 +98,6 @@ const addCardElement = (data) => {
     heart.classList.toggle("element__like_active");
   });
   deleteButton.addEventListener("click", function (evt) {
-    const trash = evt.target; //the event target is the trash button that the user clicked on
     const card = evt.target.closest(".element"); //gets the closest parent with class element. First parent is button, second is element div
     card.remove();
   });
@@ -106,7 +108,7 @@ const addCardElement = (data) => {
 
 //loop thru the initialCards array and send each one into the getCardElement function
 initialCards.forEach(function (item) {
-  const newCard = addCardElement(item); //get the card element
+  const newCard = createCardElement(item); //get the card element
   cardsGrid.append(newCard); //append it to the grid
 });
 
@@ -123,7 +125,7 @@ function setDataImagePopup(data) {
 /////////////////////////////////////////
 
 ////////////////////////////////////////////////Set up edit profile modal
-profileEditButton.addEventListener("click", () => {
+editProfileButton.addEventListener("click", () => {
   openModal(editProfileModal);
   //this makes sure data in the form field is correct if you close without saving
   //if you close without saving it should be set to the previous values from the page, NOT whatever u typed and didnt save
@@ -162,7 +164,7 @@ function handleAddCardSubmit(evt) {
     name: imageNameInput.value,
     link: imageLinkInput.value,
   };
-  const newCard = addCardElement(newCardInfo); //create a new card and add to screen
+  const newCard = createCardElement(newCardInfo); //create a new card and add to screen
   cardsGrid.prepend(newCard); //prepend it to the grid (add to beginning)
   //clear out the input fields
   imageNameInput.value = "";
