@@ -81,26 +81,11 @@ const createCardElement = (data) => {
   //use .src here if image tag, I am using style and background image because it is button
   newCard.querySelector(".element__text").textContent = cardName;
 
-  //query selector the like and delete button
-  const likeButton = newCard.querySelector(".element__like");
-  const deleteButton = newCard.querySelector(".element__trash");
-
   //add event listener for cardImage- so that image modal pops up when clicked
   cardImage.addEventListener("click", function (evt) {
     setDataImagePopup(data);
     openModal(imagePopup);
   });
-
-  //add event listeners for like and delete
-  likeButton.addEventListener("click", function (evt) {
-    const heart = evt.target; //the event target is the heart button that the user clicked on
-    heart.classList.toggle("element__like_active");
-  });
-  deleteButton.addEventListener("click", function (evt) {
-    const card = evt.target.closest(".element"); //gets the closest parent with class element. First parent is button, second is element div
-    card.remove();
-  });
-
   //return new card so that it can be added to the grid when this function is called
   return newCard;
 };
@@ -110,7 +95,23 @@ initialCards.forEach(function (item) {
   const newCard = createCardElement(item); //get the card element
   cardsGrid.append(newCard); //append it to the grid
 });
-
+//////////////////////////////////////////Set up event listeners for like and delete for cards (delegated via cardsGrid)
+  cardsGrid.addEventListener("click", function (evt) { //likeButton
+    if(evt.target.classList.contains("element__like_image"))
+    {
+      console.log("liked");
+    evt.target.classList.toggle("element__like_active");
+    }
+  });
+  cardsGrid.addEventListener("click", function (evt) { //deleteButton
+    console.log("deleted"+evt.target);
+    if(evt.target.classList.contains("element__trash_image"))
+    {
+      console.log("deleted");
+    const card = evt.target.closest(".element"); //gets the closest parent with class element. First parent is button, second is element div
+    card.remove();
+    }
+  });
 ////////////////////////////////////////////////////////////Set up image popup
 function setDataImagePopup(data) {
   //called in AddCardElement
