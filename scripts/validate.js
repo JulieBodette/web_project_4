@@ -75,9 +75,9 @@ const customSettings = {
   inactiveButtonClass: "modal__submit-button_disabled",
   inputErrorClass: "modal__error",
   errorClass: "modal__error_visible",
-}
+};
 
 enableValidation(customSettings);
 
 //export functions to index.js
-export {showInputError, hideInputError, checkInputValidity, customSettings};
+export { showInputError, hideInputError, checkInputValidity, customSettings };

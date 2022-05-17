@@ -1,4 +1,9 @@
-import {showInputError, hideInputError, checkInputValidity, customSettings} from "./validate.js";
+import {
+  showInputError,
+  hideInputError,
+  checkInputValidity,
+  customSettings,
+} from "./validate.js";
 
 ////////////////////////////////////////////////Set up edit profile text button and modal for it
 //use const so that the value does not change
@@ -74,18 +79,19 @@ const createCardElement = (data) => {
   //make a copy of the template using cloneNode
   const newCard = cardTemplate.cloneNode(true); //true clones everything inside
 
+  ///////////////////////////Use setattribute to store data in the object in the DOM
+  //now we can get to this data later, outside of the addCard function
+  newCard.setAttribute("data-name", cardName); //send setAtrribute parameters: name,value
+  //use setAtribute() because it is custom attribute. Also name must be in quotes
+  newCard.setAttribute("data-link", cardLink); //convention is that name is data-something
+
   //look within the card template for the spots where the name and link go, set them up
-  const cardImage = newCard.querySelector(".element__image"); //used later to set up click event for image modal
-  cardImage.style = `background-image:url(${cardLink});` //template literal has ` at the begginign and end instead of ""
+  const cardImage = newCard.querySelector(".element__image");
+  cardImage.style = `background-image:url(${cardLink});`; //template literal has ` at the begginign and end instead of ""
   //also template literal has ${cardLink} (no quotes) even though cardLInk is a string
   //use .src here if image tag, I am using style and background image because it is button
   newCard.querySelector(".element__text").textContent = cardName;
 
-  //add event listener for cardImage- so that image modal pops up when clicked
-  cardImage.addEventListener("click", function (evt) {
-    setDataImagePopup(data);
-    openModal(imagePopup);
-  });
   //return new card so that it can be added to the grid when this function is called
   return newCard;
 };
@@ -95,32 +101,38 @@ initialCards.forEach(function (item) {
   const newCard = createCardElement(item); //get the card element
   cardsGrid.append(newCard); //append it to the grid
 });
-//////////////////////////////////////////Set up event listeners for like and delete for cards (delegated via cardsGrid)
-  cardsGrid.addEventListener("click", function (evt) { //likeButton
-    if(evt.target.classList.contains("element__like_image"))
-    {
-      console.log("liked");
+//////////////////////////////////////////Set up event listeners for like, delete, and open image popup for cards (delegated via cardsGrid)
+cardsGrid.addEventListener("click", function (evt) {
+  //likeButton
+  if (evt.target.classList.contains("element__like_image")) {
     evt.target.classList.toggle("element__like_active");
-    }
-  });
-  cardsGrid.addEventListener("click", function (evt) { //deleteButton
-    console.log("deleted"+evt.target);
-    if(evt.target.classList.contains("element__trash_image"))
-    {
-      console.log("deleted");
+  }
+});
+cardsGrid.addEventListener("click", function (evt) {
+  //deleteButton
+  if (evt.target.classList.contains("element__trash_image")) {
     const card = evt.target.closest(".element"); //gets the closest parent with class element. First parent is button, second is element div
     card.remove();
-    }
-  });
+  }
+});
+//add event listener so that image modal pops up when clicked
+cardsGrid.addEventListener("click", function (evt) {
+  if (evt.target.classList.contains("element__image")) {
+    console.log("open image popup");
+    const card = evt.target.closest(".element"); //get the card parent- this is where we stored the attributes
+    //get the attributes from the card. we stored the image name and image link as strings in the attributes.
+    const name = card.getAttribute("data-name");
+    const link = card.getAttribute("data-link");
+    setDataImagePopup(name, link);
+    openModal(imagePopup);
+  }
+});
 ////////////////////////////////////////////////////////////Set up image popup
-function setDataImagePopup(data) {
-  //called in AddCardElement
-  //data = name and link
-  //get the name and the link out of data (data is an object)
-  //data.name data.link;
-  imagePopupPic.src = data.link;
-  imagePopupText.textContent = data.name;
-  imagePopupPic.alt = data.name;
+function setDataImagePopup(name, link) {
+  //name and link are strings
+  imagePopupPic.src = link;
+  imagePopupText.textContent = name;
+  imagePopupPic.alt = name;
 }
 /////////////////////////////////////////
 
@@ -140,7 +152,6 @@ editProfileButton.addEventListener("click", () => {
   inputList.forEach((inputElement) => {
     checkInputValidity(form, inputElement, customSettings);
   });
-  
 });
 
 //Pressing the submit button updates the name and title on the page to be the newly entered values
