@@ -102,29 +102,24 @@ initialCards.forEach(function (item) {
   cardsGrid.append(newCard); //append it to the grid
 });
 //////////////////////////////////////////Set up event listeners for like, delete, and open image popup for cards (delegated via cardsGrid)
-cardsGrid.addEventListener("click", function (evt) {
-  //likeButton
-  if (evt.target.classList.contains("element__like-image")) {
-    evt.target.classList.toggle("element__like_active");
-  }
-});
-cardsGrid.addEventListener("click", function (evt) {
-  //deleteButton
-  if (evt.target.classList.contains("element__trash-image")) {
-    const card = evt.target.closest(".element"); //gets the closest parent with class element. First parent is button, second is element div
-    card.remove();
-  }
-});
 //add event listener so that image modal pops up when clicked
 cardsGrid.addEventListener("click", function (evt) {
   if (evt.target.classList.contains("element__image")) {
-    console.log("open image popup");
     const card = evt.target.closest(".element"); //get the card parent- this is where we stored the attributes
     //get the attributes from the card. we stored the image name and image link as strings in the attributes.
     const name = card.getAttribute("data-name");
     const link = card.getAttribute("data-link");
     setDataImagePopup(name, link);
     openModal(imagePopup);
+  }
+  //deleteButton
+  if (evt.target.classList.contains("element__trash-image")) {
+    const card = evt.target.closest(".element"); //gets the closest parent with class element. First parent is button, second is element div
+    card.remove();
+  }
+  //likeButton
+  if (evt.target.classList.contains("element__like-image")) {
+    evt.target.classList.toggle("element__like_active");
   }
 });
 ////////////////////////////////////////////////////////////Set up image popup
