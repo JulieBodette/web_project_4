@@ -80,4 +80,4 @@ const customSettings = {
 enableValidation(customSettings);
 
 //export functions to index.js
-export { showInputError, hideInputError, checkInputValidity, customSettings };
+export { hideInputError, customSettings };
