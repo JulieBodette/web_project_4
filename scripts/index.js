@@ -104,13 +104,13 @@ initialCards.forEach(function (item) {
 //////////////////////////////////////////Set up event listeners for like, delete, and open image popup for cards (delegated via cardsGrid)
 cardsGrid.addEventListener("click", function (evt) {
   //likeButton
-  if (evt.target.classList.contains("element__like_image")) {
+  if (evt.target.classList.contains("element__like-image")) {
     evt.target.classList.toggle("element__like_active");
   }
 });
 cardsGrid.addEventListener("click", function (evt) {
   //deleteButton
-  if (evt.target.classList.contains("element__trash_image")) {
+  if (evt.target.classList.contains("element__trash-image")) {
     const card = evt.target.closest(".element"); //gets the closest parent with class element. First parent is button, second is element div
     card.remove();
   }

@@ -60,10 +60,10 @@
   cursor: pointer;
 }
 
-.element__like_image /*Fix issue of clicks being detected on the image which had no class*/ {
+.element__like-image /*Fix issue of clicks being detected on the image which had no class*/ {
   /*this class goes on the image, not the button*/
 }
-.element__trash_image /*Fix issue of clicks being detected on the image which had no class*/ {
+.element__trash-image /*Fix issue of clicks being detected on the image which had no class*/ {
 }
 
 .element__like_active {
