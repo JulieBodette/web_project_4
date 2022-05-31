@@ -1,7 +1,7 @@
 import {
   hideInputError,
   customSettings,
-} from "./validate.js";
+} from "./FormValidator.js";
 
 ////////////////////////////////////////////////Set up edit profile text button and modal for it
 //use const so that the value does not change
