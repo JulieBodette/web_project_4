@@ -55,6 +55,7 @@ const initialCards = [
   },
 ];
 //select the template, use .content to get the content inside the template, then query selector again to get the element class
+//we send this to the Card constructor
 const cardTemplate = document
   .querySelector("#card-template")
   .content.querySelector(".element");
@@ -66,37 +67,45 @@ const imagePopup = document.querySelector("#image-popup");
 const imagePopupPic = imagePopup.querySelector(".popup__image");
 const imagePopupText = imagePopup.querySelector(".popup__caption");
 
-//create a card and add it to the cardsGrid
-//this function must be created before it is called because its stored in a variable
-const createCardElement = (data) => {
-  //data = name and link
-  //get the name and the link out of data (data is an object)
-  const cardName = data.name;
-  const cardLink = data.link;
-
-  //make a copy of the template using cloneNode
-  const newCard = cardTemplate.cloneNode(true); //true clones everything inside
+///NEW Card Class!!! Will put in Card.js when it is done
+class Card {
+  constructor(data, templateSelector){
+    this.cardName = data.name;
+    this.cardLink = data.link;
+    this.cardTemplate = templateSelector;
+  }
+  createCardElement()
+  {
+    //make a copy of the template using cloneNode
+  const newCard = this.cardTemplate.cloneNode(true); //true clones everything inside
 
   ///////////////////////////Use setattribute to store data in the object in the DOM
   //now we can get to this data later, outside of the addCard function
-  newCard.setAttribute("data-name", cardName); //send setAtrribute parameters: name,value
+  newCard.setAttribute("data-name", this.cardName); //send setAtrribute parameters: name,value
   //use setAtribute() because it is custom attribute. Also name must be in quotes
-  newCard.setAttribute("data-link", cardLink); //convention is that name is data-something
+  newCard.setAttribute("data-link", this.cardLink); //convention is that name is data-something
 
   //look within the card template for the spots where the name and link go, set them up
   const cardImage = newCard.querySelector(".element__image");
-  cardImage.style = `background-image:url(${cardLink});`; //template literal has ` at the begginign and end instead of ""
+  cardImage.style = `background-image:url(${this.cardLink});`; //template literal has ` at the begginign and end instead of ""
   //also template literal has ${cardLink} (no quotes) even though cardLInk is a string
   //use .src here if image tag, I am using style and background image because it is button
-  newCard.querySelector(".element__text").textContent = cardName;
+  newCard.querySelector(".element__text").textContent = this.cardName;
 
   //return new card so that it can be added to the grid when this function is called
   return newCard;
-};
+
+  }
+  //Add private methods for working with markup and adding event listeners.
+//Add private methods for each event handler.
+}
+
+
 
 //loop thru the initialCards array and send each one into the getCardElement function
 initialCards.forEach(function (item) {
-  const newCard = createCardElement(item); //get the card element
+  const cardObj = new Card(item, cardTemplate);//create a card object
+  const newCard = cardObj.createCardElement(); //create a card element
   cardsGrid.append(newCard); //append it to the grid
 });
 //////////////////////////////////////////Set up event listeners for like, delete, and open image popup for cards (delegated via cardsGrid)
@@ -179,7 +188,9 @@ function handleAddCardSubmit(evt) {
     name: imageNameInput.value,
     link: imageLinkInput.value,
   };
-  const newCard = createCardElement(newCardInfo); //create a new card and add to screen
+  const cardObj = new Card(newCardInfo, cardTemplate);//create a card object
+  const newCard = cardObj.createCardElement(); //create a card element
+
   cardsGrid.prepend(newCard); //prepend it to the grid (add to beginning)
   //clear out the input fields
   imageNameInput.value = "";
