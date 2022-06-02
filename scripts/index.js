@@ -7,7 +7,7 @@ import {
   Card
 } from "./Card.js";
 
-import {closeModal} from "./utils.js";
+import {openModal, closeModal} from "./utils.js";
 
 ////////////////////////////////////////////////Set up edit profile text button and modal for it
 //use const so that the value does not change
