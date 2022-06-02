@@ -1,5 +1,5 @@
 import {
-  hideInputError,
+  FormValidator,
   customSettings,
 } from "./FormValidator.js";
 
@@ -89,10 +89,11 @@ editProfileButton.addEventListener("click", () => {
     form.querySelectorAll(customSettings.inputSelector)
   );
   //loop through all fields in the form and call checkInputValidity to determine if they are valid (and if error should be displayed)
+  /*
   inputList.forEach((inputElement) => {
     //because we reset the form fields to previous values, they should all be valid- so we clear the error for each one
     hideInputError(form, inputElement, customSettings);
-  });
+  });*/
 });
 
 //Pressing the submit button updates the name and title on the page to be the newly entered values

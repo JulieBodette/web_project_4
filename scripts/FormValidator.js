@@ -1,70 +1,70 @@
-const showInputError = (formElement, inputElement, errorMessage, settings) => {
-  const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
+
+class FormValidator{
+  constructor(settings, formElement){
+    this.settings = settings;
+    this.formElement = formElement;
+  }
+
+_showInputError(inputElement, errorMessage) {
+  const errorElement = this.formElement.querySelector(`.${inputElement.id}-error`);
   errorElement.textContent = errorMessage;
-  errorElement.classList.remove(settings.inputErrorClass); //the class that makes it invisible
-  errorElement.classList.add(settings.errorClass); //the class that makes it visible
-};
+  errorElement.classList.remove(this.settings.inputErrorClass); //the class that makes it invisible
+  errorElement.classList.add(this.settings.errorClass); //the class that makes it visible
+}
 
-const hideInputError = (formElement, inputElement, settings) => {
-  const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
-  errorElement.classList.add(settings.inputErrorClass); //the class that makes it invisible
-  errorElement.classList.remove(settings.errorClass); //the class that makes it visible
+//public because it is used in index.js for hiding error on form reset
+hideInputError(inputElement) {
+  const errorElement = this.formElement.querySelector(`.${inputElement.id}-error`);
+  errorElement.classList.add(this.settings.inputErrorClass); //the class that makes it invisible
+  errorElement.classList.remove(this.settings.errorClass); //the class that makes it visible
   errorElement.textContent = "";
-};
+}
 
-const checkInputValidity = (formElement, inputElement, settings) => {
+_checkInputValidity(inputElement) {
   //this function does not use settings but the function that it calls does
   //therefore we must send it settings so it can pass them on
   if (!inputElement.validity.valid) {
-    showInputError(
-      formElement,
+    this._showInputError(
       inputElement,
       inputElement.validationMessage,
-      settings
     );
   } else {
-    hideInputError(formElement, inputElement, settings);
+    this.hideInputError(inputElement);
   }
-};
+}
 
-const hasInvalidInput = (inputList) => {
+_hasInvalidInput(inputList) {
   return inputList.some((inputElement) => {
     return !inputElement.validity.valid;
   });
-};
+}
 
-const toggleButtonState = (inputList, buttonElement, settings) => {
-  if (hasInvalidInput(inputList)) {
-    buttonElement.classList.add(settings.inactiveButtonClass);
+_toggleButtonState(inputList, buttonElement) {
+  if (this._hasInvalidInput(inputList)) {
+    buttonElement.classList.add(this.settings.inactiveButtonClass);
   } else {
-    buttonElement.classList.remove(settings.inactiveButtonClass);
+    buttonElement.classList.remove(this.settings.inactiveButtonClass);
   }
-};
+}
 
-const setEventListeners = (formElement, settings) => {
+enableValidation(){
   const inputList = Array.from(
-    formElement.querySelectorAll(settings.inputSelector)
+    this.formElement.querySelectorAll(this.settings.inputSelector)
   );
-  const buttonElement = formElement.querySelector(
-    settings.submitButtonSelector
+  const buttonElement = this.formElement.querySelector(
+    this.settings.submitButtonSelector
   );
-  toggleButtonState(inputList, buttonElement, settings); //initial toggle of the button on page load
+  this._toggleButtonState(inputList, buttonElement); //initial toggle of the button on page load
   inputList.forEach((inputElement) => {
-    inputElement.addEventListener("input", function () {
+    inputElement.addEventListener("input", () => {
       //event listener triggers when text is input:
-      checkInputValidity(formElement, inputElement, settings); //check if the input is valid (see if error should be displayed)
-      toggleButtonState(inputList, buttonElement, settings); //check if input is valid (see if submit button should be active)
+      this._checkInputValidity(inputElement); //check if the input is valid (see if error should be displayed)
+      this._toggleButtonState(inputList, buttonElement); //check if input is valid (see if submit button should be active)
     });
   });
-};
+}
 
-const enableValidation = (settings) => {
-  const formList = Array.from(document.querySelectorAll(settings.formSelector));
-  //use Array.from to make it into an array, so that we can use forEach() to loop thru it
-  formList.forEach((form) => {
-    setEventListeners(form, settings);
-  });
-};
+}
 
 // enabling validation by calling enableValidation()
 // pass all the settings on call
@@ -77,7 +77,22 @@ const customSettings = {
   errorClass: "modal__error_visible",
 };
 
-enableValidation(customSettings);
+
+/////////////////////////put this code in index.js
+
+  const formList = Array.from(document.querySelectorAll(customSettings.formSelector));
+  //use Array.from to make it into an array, so that we can use forEach() to loop thru it
+  formList.forEach((form) => {
+
+    //we will need to create a form object and call the public method enableValidation
+    const formObj = new FormValidator(customSettings, form);
+    formObj.enableValidation();
+  });
+
+
+
+
+
 
 //export functions to index.js
-export { hideInputError, customSettings };
+export { FormValidator, customSettings };
