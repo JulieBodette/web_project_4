@@ -73,31 +73,64 @@ class Card {
     this.cardName = data.name;
     this.cardLink = data.link;
     this.cardTemplate = templateSelector;
+    this.newCard; //will be set to the card element
+    this.cardImage; //will be set to the image in the card
   }
   createCardElement()
   {
     //make a copy of the template using cloneNode
-  const newCard = this.cardTemplate.cloneNode(true); //true clones everything inside
+  this.newCard = this.cardTemplate.cloneNode(true); //true clones everything inside
 
   ///////////////////////////Use setattribute to store data in the object in the DOM
   //now we can get to this data later, outside of the addCard function
-  newCard.setAttribute("data-name", this.cardName); //send setAtrribute parameters: name,value
+  this.newCard.setAttribute("data-name", this.cardName); //send setAtrribute parameters: name,value
   //use setAtribute() because it is custom attribute. Also name must be in quotes
-  newCard.setAttribute("data-link", this.cardLink); //convention is that name is data-something
+  this.newCard.setAttribute("data-link", this.cardLink); //convention is that name is data-something
 
-  //look within the card template for the spots where the name and link go, set them up
-  const cardImage = newCard.querySelector(".element__image");
-  cardImage.style = `background-image:url(${this.cardLink});`; //template literal has ` at the begginign and end instead of ""
-  //also template literal has ${cardLink} (no quotes) even though cardLInk is a string
-  //use .src here if image tag, I am using style and background image because it is button
-  newCard.querySelector(".element__text").textContent = this.cardName;
+  this._setImageAndName();
+  this._setEventListener();
 
   //return new card so that it can be added to the grid when this function is called
-  return newCard;
+  return this.newCard;
+  }
+  _setEventListener()
+  {
+    //Delegated so there is only 1 listener per card which listens to clicks on image, like, and delete button
+    this.newCard.addEventListener("click", function(evt){
+      //class attributes and methods cannot be acessed from inside this function
+    if (evt.target.classList.contains("element__image")) {
+      const card = evt.target.closest(".element"); //get the card parent- this is where we stored the attributes
+      //get the attributes from the card. we stored the image name and image link as strings in the attributes.
+      const name = card.getAttribute("data-name");
+      const link = card.getAttribute("data-link");
+      setDataImagePopup(name, link);
+
+      openModal(imagePopup);
+    }
+    //deleteButton
+    if (evt.target.classList.contains("element__trash-image")) {
+      const card = evt.target.closest(".element"); //gets the closest parent with class element. First parent is button, second is element div
+      card.remove();
+    }
+    //likeButton
+    if (evt.target.classList.contains("element__like-image")) {
+      evt.target.classList.toggle("element__like_active");
+    }
+
+  });
 
   }
-  //Add private methods for working with markup and adding event listeners.
-//Add private methods for each event handler.
+
+  _setImageAndName()
+  {
+    this.cardImage = this.newCard.querySelector(".element__image");
+  this.cardImage.style = `background-image:url(${this.cardLink});`; //template literal has ` at the begginign and end instead of ""
+  //also template literal has ${cardLink} (no quotes) even though cardLInk is a string
+  //use .src here if image tag, I am using style and background image because it is button
+  this.newCard.querySelector(".element__text").textContent = this.cardName;
+
+  }
+
 }
 
 
@@ -108,27 +141,7 @@ initialCards.forEach(function (item) {
   const newCard = cardObj.createCardElement(); //create a card element
   cardsGrid.append(newCard); //append it to the grid
 });
-//////////////////////////////////////////Set up event listeners for like, delete, and open image popup for cards (delegated via cardsGrid)
-//add event listener so that image modal pops up when clicked
-cardsGrid.addEventListener("click", function (evt) {
-  if (evt.target.classList.contains("element__image")) {
-    const card = evt.target.closest(".element"); //get the card parent- this is where we stored the attributes
-    //get the attributes from the card. we stored the image name and image link as strings in the attributes.
-    const name = card.getAttribute("data-name");
-    const link = card.getAttribute("data-link");
-    setDataImagePopup(name, link);
-    openModal(imagePopup);
-  }
-  //deleteButton
-  if (evt.target.classList.contains("element__trash-image")) {
-    const card = evt.target.closest(".element"); //gets the closest parent with class element. First parent is button, second is element div
-    card.remove();
-  }
-  //likeButton
-  if (evt.target.classList.contains("element__like-image")) {
-    evt.target.classList.toggle("element__like_active");
-  }
-});
+
 ////////////////////////////////////////////////////////////Set up image popup
 function setDataImagePopup(name, link) {
   //name and link are strings
