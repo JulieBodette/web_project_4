@@ -84,16 +84,17 @@ editProfileButton.addEventListener("click", () => {
   nameInput.value = nameText.textContent;
   titleInput.value = titleText.textContent;
   //get the parameters to send to checkInputValidity
+  
   const form = editProfileModal.querySelector(customSettings.formSelector);
+  const formObj = new FormValidator(customSettings, form); //create a form Object so that we can use the hideInputError method
   const inputList = Array.from(
     form.querySelectorAll(customSettings.inputSelector)
   );
   //loop through all fields in the form and call checkInputValidity to determine if they are valid (and if error should be displayed)
-  /*
   inputList.forEach((inputElement) => {
     //because we reset the form fields to previous values, they should all be valid- so we clear the error for each one
-    hideInputError(form, inputElement, customSettings);
-  });*/
+    formObj.hideInputError(inputElement);
+  });
 });
 
 //Pressing the submit button updates the name and title on the page to be the newly entered values
@@ -174,4 +175,16 @@ modals.forEach((modal) => {
   });
 }); //end forEach
 
+
+
+/////////////////////////get all forms and create FormValidator objects out of them
+
+const formList = Array.from(document.querySelectorAll(customSettings.formSelector));
+//use Array.from to make it into an array, so that we can use forEach() to loop thru it
+formList.forEach((form) => {
+
+  //we will need to create a form object and call the public method enableValidation
+  const formObj = new FormValidator(customSettings, form);
+  formObj.enableValidation();
+});
 

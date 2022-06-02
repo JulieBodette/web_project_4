@@ -78,21 +78,6 @@ const customSettings = {
 };
 
 
-/////////////////////////put this code in index.js
-
-  const formList = Array.from(document.querySelectorAll(customSettings.formSelector));
-  //use Array.from to make it into an array, so that we can use forEach() to loop thru it
-  formList.forEach((form) => {
-
-    //we will need to create a form object and call the public method enableValidation
-    const formObj = new FormValidator(customSettings, form);
-    formObj.enableValidation();
-  });
-
-
-
-
-
 
 //export functions to index.js
 export { FormValidator, customSettings };
