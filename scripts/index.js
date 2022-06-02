@@ -3,6 +3,12 @@ import {
   customSettings,
 } from "./FormValidator.js";
 
+import {
+  Card
+} from "./Card.js";
+
+import {closeModal} from "./utils.js";
+
 ////////////////////////////////////////////////Set up edit profile text button and modal for it
 //use const so that the value does not change
 const editProfileButton = document.querySelector("#profile-info-edit-button"); ///find the edit button from profile-this opens the modal panel
@@ -62,79 +68,6 @@ const cardTemplate = document
 //get a reference to the grid/container that we will put the cards in
 const cardsGrid = document.querySelector(".grid");
 
-//select the image popup and its picture and text and X (close button)
-const imagePopup = document.querySelector("#image-popup");
-const imagePopupPic = imagePopup.querySelector(".popup__image");
-const imagePopupText = imagePopup.querySelector(".popup__caption");
-
-///NEW Card Class!!! Will put in Card.js when it is done
-class Card {
-  constructor(data, templateSelector){
-    this.cardName = data.name;
-    this.cardLink = data.link;
-    this.cardTemplate = templateSelector;
-    this.newCard; //will be set to the card element
-    this.cardImage; //will be set to the image in the card
-  }
-  createCardElement()
-  {
-    //make a copy of the template using cloneNode
-  this.newCard = this.cardTemplate.cloneNode(true); //true clones everything inside
-
-  ///////////////////////////Use setattribute to store data in the object in the DOM
-  //now we can get to this data later, outside of the addCard function
-  this.newCard.setAttribute("data-name", this.cardName); //send setAtrribute parameters: name,value
-  //use setAtribute() because it is custom attribute. Also name must be in quotes
-  this.newCard.setAttribute("data-link", this.cardLink); //convention is that name is data-something
-
-  this._setImageAndName();
-  this._setEventListener();
-
-  //return new card so that it can be added to the grid when this function is called
-  return this.newCard;
-  }
-  _setEventListener()
-  {
-    //Delegated so there is only 1 listener per card which listens to clicks on image, like, and delete button
-    this.newCard.addEventListener("click", function(evt){
-      //class attributes and methods cannot be acessed from inside this function
-    if (evt.target.classList.contains("element__image")) {
-      const card = evt.target.closest(".element"); //get the card parent- this is where we stored the attributes
-      //get the attributes from the card. we stored the image name and image link as strings in the attributes.
-      const name = card.getAttribute("data-name");
-      const link = card.getAttribute("data-link");
-      setDataImagePopup(name, link);
-
-      openModal(imagePopup);
-    }
-    //deleteButton
-    if (evt.target.classList.contains("element__trash-image")) {
-      const card = evt.target.closest(".element"); //gets the closest parent with class element. First parent is button, second is element div
-      card.remove();
-    }
-    //likeButton
-    if (evt.target.classList.contains("element__like-image")) {
-      evt.target.classList.toggle("element__like_active");
-    }
-
-  });
-
-  }
-
-  _setImageAndName()
-  {
-    this.cardImage = this.newCard.querySelector(".element__image");
-  this.cardImage.style = `background-image:url(${this.cardLink});`; //template literal has ` at the begginign and end instead of ""
-  //also template literal has ${cardLink} (no quotes) even though cardLInk is a string
-  //use .src here if image tag, I am using style and background image because it is button
-  this.newCard.querySelector(".element__text").textContent = this.cardName;
-
-  }
-
-}
-
-
-
 //loop thru the initialCards array and send each one into the getCardElement function
 initialCards.forEach(function (item) {
   const cardObj = new Card(item, cardTemplate);//create a card object
@@ -142,14 +75,6 @@ initialCards.forEach(function (item) {
   cardsGrid.append(newCard); //append it to the grid
 });
 
-////////////////////////////////////////////////////////////Set up image popup
-function setDataImagePopup(name, link) {
-  //name and link are strings
-  imagePopupPic.src = link;
-  imagePopupText.textContent = name;
-  imagePopupPic.alt = name;
-}
-/////////////////////////////////////////
 
 ////////////////////////////////////////////////Set up edit profile modal
 editProfileButton.addEventListener("click", () => {
@@ -248,14 +173,4 @@ modals.forEach((modal) => {
   });
 }); //end forEach
 
-///////////////////////////////////////////////////////////////////Universal Open/Close Modal Functions
-function openModal(modal) {
-  /* The visible class overrides the previous class because its farther down the page. see modal.css.*/
-  modal.classList.add("modal_open"); /*activate a class that makes it visible*/
-}
 
-function closeModal(modal) {
-  modal.classList.remove(
-    "modal_open"
-  ); /*deactivate a class that makes it visible*/
-}
