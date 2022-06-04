@@ -47,6 +47,13 @@ _toggleButtonState(inputList, buttonElement) {
   }
 }
 
+setButtonInactive()//public method called when new card ia added- button needs set to inactive before new values are typed
+{
+  const buttonElement = this.formElement.querySelector(
+    this.settings.submitButtonSelector
+  );
+  buttonElement.classList.add(this.settings.inactiveButtonClass);
+}
 enableValidation(){
   const inputList = Array.from(
     this.formElement.querySelectorAll(this.settings.inputSelector)

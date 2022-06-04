@@ -18,11 +18,10 @@ const editProfileForm = editProfileModal.querySelector(".modal__form"); //find t
 const nameText = document.querySelector(".profile__info-name");
 const titleText = document.querySelector(".profile__info-title");
 
+//////////////////////////////////////////////////////////
 // find the form fields in the DOM
 const nameInput = editProfileForm.querySelector('[name="name"]');
 const titleInput = editProfileForm.querySelector('[name="title"]');
-//////////////////////////////////////////////////////////
-
 /////////////////////////////////////////////////////Set up add card button and modal for it
 const addCardButton = document.querySelector("#profile-add-button"); ///find the + button (add card)-this opens the modal panel
 const addCardModal = document.querySelector("#add-card-modal"); //using ID to find the modal (pop up).
@@ -60,6 +59,26 @@ const initialCards = [
     link: "https://code.s3.yandex.net/web-code/lago.jpg",
   },
 ];
+
+/////////////////////////get all forms and create FormValidator objects out of them
+
+const formElementsList = Array.from(document.querySelectorAll(customSettings.formSelector));
+//get an array of form elements- these are the html elements in the DOM
+
+//map takes each form element in the array and creates the formValidator object for it, then stores the form
+//object in the array
+const formValidatorObjList = formElementsList.map((form) => {
+
+  //Create a form object and call the public method enableValidation
+  const formObj = new FormValidator(customSettings, form);
+  formObj.enableValidation();
+  return formObj;
+}); 
+
+//within the form object, get to the form element and then find the form with the correct name
+const editProfileFormObj = formValidatorObjList.find( obj => obj.formElement.getAttribute("name") == "nameandtitle");
+const addCardFormObj = formValidatorObjList.find( obj => obj.formElement.getAttribute("name") == "imagenameandlink");
+
 //select the template, use .content to get the content inside the template, then query selector again to get the element class
 //we send this to the Card constructor
 const cardTemplate = document
@@ -85,15 +104,13 @@ editProfileButton.addEventListener("click", () => {
   titleInput.value = titleText.textContent;
   //get the parameters to send to checkInputValidity
   
-  const form = editProfileModal.querySelector(customSettings.formSelector);
-  const formObj = new FormValidator(customSettings, form); //create a form Object so that we can use the hideInputError method
   const inputList = Array.from(
-    form.querySelectorAll(customSettings.inputSelector)
+    editProfileFormObj.formElement.querySelectorAll(customSettings.inputSelector)
   );
   //loop through all fields in the form and call checkInputValidity to determine if they are valid (and if error should be displayed)
   inputList.forEach((inputElement) => {
     //because we reset the form fields to previous values, they should all be valid- so we clear the error for each one
-    formObj.hideInputError(inputElement);
+    editProfileFormObj.hideInputError(inputElement);
   });
 });
 
@@ -133,7 +150,7 @@ function handleAddCardSubmit(evt) {
 
   cardsGrid.prepend(newCard); //prepend it to the grid (add to beginning)
   addCardForm.reset();   //clear out the input fields
-  //TODO: we need to reset the button- it needs to be hidden because the fields are empty
+  addCardFormObj.setButtonInactive();  //Set button to inactive-it needs to be hidden because the fields are empty
   closeModal(addCardModal); //close the modal panel when submitted
 }
 addCardForm.addEventListener("submit", handleAddCardSubmit);
@@ -176,16 +193,7 @@ modals.forEach((modal) => {
 
 
 
-/////////////////////////get all forms and create FormValidator objects out of them
 
-const formList = Array.from(document.querySelectorAll(customSettings.formSelector));
-//use Array.from to make it into an array, so that we can use forEach() to loop thru it
-formList.forEach((form) => {
-
-  //we will need to create a form object and call the public method enableValidation
-  const formObj = new FormValidator(customSettings, form);
-  formObj.enableValidation();
-});
 
 
 
