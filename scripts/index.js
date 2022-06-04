@@ -132,9 +132,8 @@ function handleAddCardSubmit(evt) {
   const newCard = cardObj.createCardElement(); //create a card element
 
   cardsGrid.prepend(newCard); //prepend it to the grid (add to beginning)
-  //clear out the input fields
-  imageNameInput.value = "";
-  imageLinkInput.value = "";
+  addCardForm.reset();   //clear out the input fields
+  //TODO: we need to reset the button- it needs to be hidden because the fields are empty
   closeModal(addCardModal); //close the modal panel when submitted
 }
 addCardForm.addEventListener("submit", handleAddCardSubmit);
@@ -187,4 +186,9 @@ formList.forEach((form) => {
   const formObj = new FormValidator(customSettings, form);
   formObj.enableValidation();
 });
+
+
+
+
+
 
