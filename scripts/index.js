@@ -9,6 +9,8 @@ import {
 
 import {openModal, closeModal} from "./utils.js";
 
+import {initialCards} from "./constants.js";
+
 ////////////////////////////////////////////////Set up edit profile text button and modal for it
 //use const so that the value does not change
 const editProfileButton = document.querySelector("#profile-info-edit-button"); ///find the edit button from profile-this opens the modal panel
@@ -31,34 +33,6 @@ const addCardForm = addCardModal.querySelector(".modal__form"); //find the form.
 const imageNameInput = addCardForm.querySelector('[name="imagename"]');
 const imageLinkInput = addCardForm.querySelector('[name="imagelink"]');
 /////////////////////////////////////////////
-
-//making the initial cards via Javascript
-const initialCards = [
-  {
-    name: "Yosemite Valley",
-    link: "https://code.s3.yandex.net/web-code/yosemite.jpg",
-  },
-  {
-    name: "Lake Louise",
-    link: "https://code.s3.yandex.net/web-code/lake-louise.jpg",
-  },
-  {
-    name: "Bald Mountains",
-    link: "https://code.s3.yandex.net/web-code/bald-mountains.jpg",
-  },
-  {
-    name: "Latemar",
-    link: "https://code.s3.yandex.net/web-code/latemar.jpg",
-  },
-  {
-    name: "Vanoise National Park",
-    link: "https://code.s3.yandex.net/web-code/vanoise.jpg",
-  },
-  {
-    name: "Lago di Braies",
-    link: "https://code.s3.yandex.net/web-code/lago.jpg",
-  },
-];
 
 /////////////////////////get all forms and create FormValidator objects out of them
 
