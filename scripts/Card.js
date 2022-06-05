@@ -6,12 +6,6 @@ class Card {
       this.cardLink = data.link;
       this.cardTemplate = document.querySelector(templateSelector).content.querySelector(".element");
       //select the template, use .content to get the content inside the template, then query selector again to get the element class
-      /*
-
-//we send this to the Card constructor
-const cardTemplate = document
-  .querySelector("#card-template")
-  .content.querySelector(".element");*/
       this.newCard; //will be set to the card element
       this.cardImage; //will be set to the image in the card
     }
@@ -46,6 +40,7 @@ const cardTemplate = document
   
         openModal(imagePopup);
       }
+      /*
       //deleteButton
       if (evt.target.classList.contains("element__trash-image")) {
         const card = evt.target.closest(".element"); //gets the closest parent with class element. First parent is button, second is element div
@@ -54,10 +49,36 @@ const cardTemplate = document
       //likeButton
       if (evt.target.classList.contains("element__like-image")) {
         evt.target.classList.toggle("element__like_active");
-      }
+      }*/
   
     });
   
+    //query selector the like and delete button
+    const likeButton = this.newCard.querySelector(".element__like");
+    const deleteButton = this.newCard.querySelector(".element__trash");
+    //add event listeners for like and delete
+    likeButton.addEventListener("click", this._like);
+    //deleteButton.addEventListener("click", this._delete());
+
+
+    } //end _setEventListener
+
+    _like(evt)
+    {
+      console.log("liked");
+      const heart = evt.target;//the event target is the heart button that the user clicked on
+      heart.classList.toggle("element__like_active");
+    }
+
+    _openImagePopup(evt)
+    {
+    }
+
+    _delete(evt)
+    {
+      const trash = evt.target;//the event target is the trash button that the user clicked on
+      const card = evt.target.closest('.element'); //gets the closest parent with class element. First parent is button, second is element div
+      card.remove();
     }
   
     _setImageAndName()
