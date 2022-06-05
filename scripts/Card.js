@@ -72,5 +72,13 @@ const cardTemplate = document
   
   }
 
+  function renderCard(data, templateSelector)
+  {
+    //return a card element
+    //templateSelector should be set to "#card-template" (may change if more card templates are added)
+    const cardObj = new Card(data, templateSelector);//create a card object
+    const newCard = cardObj.createCardElement(); //create a card element
+    return newCard;
+  }
 
-  export {Card};
+  export {renderCard};

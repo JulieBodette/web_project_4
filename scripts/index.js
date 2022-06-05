@@ -4,7 +4,7 @@ import {
 } from "./FormValidator.js";
 
 import {
-  Card
+  renderCard
 } from "./Card.js";
 
 import {openModal, closeModal} from "./utils.js";
@@ -84,8 +84,7 @@ const cardsGrid = document.querySelector(".grid");
 
 //loop thru the initialCards array and send each one into the getCardElement function
 initialCards.forEach(function (item) {
-  const cardObj = new Card(item, "#card-template");//create a card object
-  const newCard = cardObj.createCardElement(); //create a card element
+  const newCard = renderCard(item, "#card-template");
   cardsGrid.append(newCard); //append it to the grid
 });
 
@@ -140,9 +139,8 @@ function handleAddCardSubmit(evt) {
     name: imageNameInput.value,
     link: imageLinkInput.value,
   };
-  const cardObj = new Card(newCardInfo, "#card-template");//create a card object
-  const newCard = cardObj.createCardElement(); //create a card element
 
+  const newCard = renderCard(newCardInfo, "#card-template"); //create a card element for the DOM
   cardsGrid.prepend(newCard); //prepend it to the grid (add to beginning)
   addCardForm.reset();   //clear out the input fields
   addCardFormObj.setButtonInactive();  //Set button to inactive-it needs to be hidden because the fields are empty
