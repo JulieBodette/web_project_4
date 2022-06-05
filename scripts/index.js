@@ -79,17 +79,12 @@ const formValidatorObjList = formElementsList.map((form) => {
 const editProfileFormObj = formValidatorObjList.find( obj => obj.formElement.getAttribute("name") == "nameandtitle");
 const addCardFormObj = formValidatorObjList.find( obj => obj.formElement.getAttribute("name") == "imagenameandlink");
 
-//select the template, use .content to get the content inside the template, then query selector again to get the element class
-//we send this to the Card constructor
-const cardTemplate = document
-  .querySelector("#card-template")
-  .content.querySelector(".element");
 //get a reference to the grid/container that we will put the cards in
 const cardsGrid = document.querySelector(".grid");
 
 //loop thru the initialCards array and send each one into the getCardElement function
 initialCards.forEach(function (item) {
-  const cardObj = new Card(item, cardTemplate);//create a card object
+  const cardObj = new Card(item, "#card-template");//create a card object
   const newCard = cardObj.createCardElement(); //create a card element
   cardsGrid.append(newCard); //append it to the grid
 });
@@ -145,7 +140,7 @@ function handleAddCardSubmit(evt) {
     name: imageNameInput.value,
     link: imageLinkInput.value,
   };
-  const cardObj = new Card(newCardInfo, cardTemplate);//create a card object
+  const cardObj = new Card(newCardInfo, "#card-template");//create a card object
   const newCard = cardObj.createCardElement(); //create a card element
 
   cardsGrid.prepend(newCard); //prepend it to the grid (add to beginning)

@@ -4,7 +4,14 @@ class Card {
     constructor(data, templateSelector){
       this.cardName = data.name;
       this.cardLink = data.link;
-      this.cardTemplate = templateSelector;
+      this.cardTemplate = document.querySelector(templateSelector).content.querySelector(".element");
+      //select the template, use .content to get the content inside the template, then query selector again to get the element class
+      /*
+
+//we send this to the Card constructor
+const cardTemplate = document
+  .querySelector("#card-template")
+  .content.querySelector(".element");*/
       this.newCard; //will be set to the card element
       this.cardImage; //will be set to the image in the card
     }
