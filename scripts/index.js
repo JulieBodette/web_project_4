@@ -169,8 +169,7 @@ modals.forEach((modal) => {
     //only triggers if they click outside modal box
 
     if (
-      evt.target.classList.contains("modal") ||
-      evt.target.classList.contains("modal__close-button")
+      evt.target.classList.contains("modal") 
     ) {
       closeModal(modal);
     }
