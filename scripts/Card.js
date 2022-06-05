@@ -40,16 +40,6 @@ class Card {
   
         openModal(imagePopup);
       }
-      /*
-      //deleteButton
-      if (evt.target.classList.contains("element__trash-image")) {
-        const card = evt.target.closest(".element"); //gets the closest parent with class element. First parent is button, second is element div
-        card.remove();
-      }
-      //likeButton
-      if (evt.target.classList.contains("element__like-image")) {
-        evt.target.classList.toggle("element__like_active");
-      }*/
   
     });
   
@@ -57,8 +47,8 @@ class Card {
     const likeButton = this.newCard.querySelector(".element__like");
     const deleteButton = this.newCard.querySelector(".element__trash");
     //add event listeners for like and delete
-    likeButton.addEventListener("click", this._like);
-    //deleteButton.addEventListener("click", this._delete());
+    likeButton.addEventListener("click", this._like); //send it the function name ie this._like with NOPARENTHESES. this._like() BAD, WILL CALL FUNCTION ON PAGE LOAD
+    deleteButton.addEventListener("click", this._delete);
 
 
     } //end _setEventListener
