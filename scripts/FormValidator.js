@@ -41,10 +41,20 @@ _hasInvalidInput(inputList) {
 
 _toggleButtonState(inputList, buttonElement) {
   if (this._hasInvalidInput(inputList)) {
-    buttonElement.classList.add(this.settings.inactiveButtonClass);
+    this._disableButton(buttonElement);
   } else {
-    buttonElement.classList.remove(this.settings.inactiveButtonClass);
+    this._enableButton(buttonElement);
   }
+}
+
+_disableButton(buttonElement)
+{
+  buttonElement.classList.add(this.settings.inactiveButtonClass);
+}
+
+_enableButton(buttonElement)
+{
+  buttonElement.classList.remove(this.settings.inactiveButtonClass);
 }
 
 setButtonInactive()//public method called when new card ia added- button needs set to inactive before new values are typed
@@ -52,7 +62,7 @@ setButtonInactive()//public method called when new card ia added- button needs s
   const buttonElement = this.formElement.querySelector(
     this.settings.submitButtonSelector
   );
-  buttonElement.classList.add(this.settings.inactiveButtonClass);
+  this._disableButton(buttonElement);
 }
 enableValidation(){
   const inputList = Array.from(
