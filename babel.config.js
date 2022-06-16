@@ -1,13 +1,16 @@
 const presets = [
-    ['@babel/preset-env', { // preset you want to use
-      // browser versions in which we want our code supported
-      targets: "defaults, not IE 11, not dead",
+    [
+      "@babel/env",
+      {
+        // which preset to use
+        targets: "defaults, not IE 11, not dead",
   
-      // use polyfills for the browsers specified in the above targets option
-      // Babel uses polyfills from the core-js library
-      useBuiltIns: "entry",
-      corejs: '^3',
-    }]
+        // use browser polyfills from target property
+        // by default babel uses core-js library pollyfills
+        useBuiltIns: "entry",
+      },
+    ],
   ];
   
   module.exports = { presets };
+  
