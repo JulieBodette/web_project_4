@@ -11,14 +11,18 @@
       <header class="header">
         <img
           class="header__image"
-          src="./images/Header.svg"
+          src="<%=require('./images/Header.svg')%>"
           alt="Around the US"
         />
       </header>
       <main>
         <section class="profile">
           <!--profile is a grid-->
-          <img class="profile__avatar" src="./images/Avatar.jpg" alt="Avatar" />
+          <img
+            class="profile__avatar"
+            src="<%=require('./images/Avatar.jpg')%>"
+            alt="Avatar"
+          />
           <div class="profile__info">
             <!--cannot be span (w3c error from having <p> tag)-->
             <h1 class="profile__info-name">Jacques Cousteau</h1>
@@ -27,7 +31,7 @@
               class="profile__info-edit-button"
               id="profile-info-edit-button"
             >
-              <img src="./images/Edit.svg" alt="Edit" />
+              <img src="<%=require('./images/Edit.svg')%>" alt="Edit" />
             </button>
 
             <p class="profile__info-title">Explorer</p>
@@ -37,7 +41,7 @@
             class="profile__add-button"
             id="profile-add-button"
           >
-            <img src="./images/Plus.svg" alt="Add" />
+            <img src="<%=require('./images/Plus.svg')%>" alt="Add" />
           </button>
         </section>
         <section class="grid">
@@ -54,7 +58,7 @@
     <div class="modal" id="edit-profile-modal">
       <div class="modal__content">
         <button type="button" class="modal__close-button">
-          <img src="./images/CloseIcon.svg" alt="X" />
+          <img src="<%=require('./images/CloseIcon.svg')%>" alt="X" />
         </button>
         <h2 class="modal__title">Edit profile</h2>
         <form name="nameandtitle" class="modal__form">
@@ -89,7 +93,7 @@
     <div class="modal" id="add-card-modal">
       <div class="modal__content">
         <button type="button" class="modal__close-button">
-          <img src="./images/CloseIcon.svg" alt="X" />
+          <img src="<%=require('./images/CloseIcon.svg')%>" alt="X" />
         </button>
         <h2 class="modal__title">New Place</h2>
         <form name="imagenameandlink" class="modal__form">
@@ -126,7 +130,7 @@
       <div class="popup__content">
         <img class="popup__image" />
         <button type="button" class="modal__close-button">
-          <img src="./images/CloseIcon.svg" alt="X" />
+          <img src="<%=require('./images/CloseIcon.svg')%>" alt="X" />
         </button>
         <h2 class="popup__caption">insert caption here</h2>
       </div>
@@ -138,7 +142,7 @@
       <div class="element">
         <button type="button" class="element__trash">
           <img
-            src="./images/Trash.svg"
+            src="<%=require('./images/Trash.svg')%>"
             alt="trash"
             class="element__trash-image"
           />
@@ -148,7 +152,7 @@
           <h2 class="element__text"></h2>
           <button type="button" class="element__like">
             <img
-              src="./images/Heart_disabled.svg"
+              src="<%=require('./images/Heart_disabled.svg')%>"
               alt="like"
               class="element__like-image"
             />
