@@ -1,0 +1,32 @@
+{
+  "name": "web_project_4",
+  "version": "1.0.0",
+  "description": "Around the US Project",
+  "main": "index.js",
+  "scripts": {
+    "test": "test",
+    "build": "rm -rf dist && webpack --mode production",
+    "dev": "webpack serve"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JulieBodette/web_project_4.git"
+  },
+  "author": "Julie Bodette",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JulieBodette/web_project_4/issues"
+  },
+  "homepage": "https://github.com/JulieBodette/web_project_4#readme",
+  "devDependencies": {
+    "@babel/core": "^7.18.5",
+    "@babel/preset-env": "^7.18.2",
+    "babel-loader": "^8.2.5",
+    "webpack": "^5.73.0",
+    "webpack-cli": "^4.10.0",
+    "webpack-dev-server": "^3.11.2"
+  },
+  "dependencies": {
+    "core-js": "^3.23.1"
+  }
+}
