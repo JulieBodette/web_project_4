@@ -33,3 +33,5 @@ class Section {
 }
 
 
+export default Section;
+

@@ -4,13 +4,16 @@ import {
   customSettings,
 } from "./FormValidator.js";
 
-import {
-  renderCard
+import {renderCard
 } from "./Card.js";
+
+import Card from "./Card.js";
 
 import {openModal, closeModal} from "./utils.js";
 
 import {initialCards} from "./constants.js";
+
+import Section from "./section.js";
 
 ////////////////////////////////////////////////Set up edit profile text button and modal for it
 //use const so that the value does not change
@@ -54,15 +57,14 @@ const formValidatorObjList = formElementsList.map((form) => {
 const editProfileFormObj = formValidatorObjList.find( obj => obj.formElement.getAttribute("name") == "nameandtitle");
 const addCardFormObj = formValidatorObjList.find( obj => obj.formElement.getAttribute("name") == "imagenameandlink");
 
-//get a reference to the grid/container that we will put the cards in
-const cardsGrid = document.querySelector(".grid");
+const cardGridObject = new Section({items:initialCards, renderer: (data) => {
+//templateSelector should be set to "#card-template" (may change if more card templates are added)
+const cardObj = new Card(data, "#card-template");//create a card object
+const newCard = cardObj.createCardElement(); //create a card element
+cardGridObject.addItem(newCard);
+}}, ".grid");
 
-//loop thru the initialCards array and send each one into the getCardElement function
-initialCards.forEach(function (item) {
-  const newCard = renderCard(item, "#card-template");
-  cardsGrid.append(newCard); //append it to the grid
-});
-
+cardGridObject.renderItems();
 
 ////////////////////////////////////////////////Set up edit profile modal
 editProfileButton.addEventListener("click", () => {

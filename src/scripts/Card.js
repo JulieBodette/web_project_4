@@ -80,3 +80,5 @@ class Card {
   }
 
   export {renderCard};
+
+  export default Card;
