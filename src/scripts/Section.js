@@ -6,18 +6,29 @@ class Section {
     //which you need to add on a page when initializing the class. 
     //The renderer property is a function responsible for creating and 
     //rendering data on a page.
-    constructor({items, renderer}, selector)
+    constructor({items, renderer}, containerSelector)
     {
-        this._items = items;
+        this._itemsArray = items;
         this._renderer = renderer;
-        this.selector = selector;
+        this._container = document.querySelector(containerSelector);
     }
 
-    render()
+    clear() {
+        this._container.innerHTML = "";
+      }
+
+    renderItems()
     {
-        //for each item in items
-        this._renderer();
+        this.clear();
+        this._itemsArray.forEach((item) =>
+        {
+        this._renderer(item);
+        });
     }
+
+    addItem(element) {
+        this._container.prepend(element);
+      }
 
 }
 
