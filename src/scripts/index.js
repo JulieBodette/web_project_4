@@ -15,6 +15,8 @@ import {initialCards} from "./constants.js";
 
 import Section from "./section.js";
 
+import Popup from "./popup.js";
+
 ////////////////////////////////////////////////Set up edit profile text button and modal for it
 //use const so that the value does not change
 const editProfileButton = document.querySelector("#profile-info-edit-button"); ///find the edit button from profile-this opens the modal panel
