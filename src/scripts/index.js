@@ -63,7 +63,10 @@ const addCardFormObj = formValidatorObjList.find( obj => obj.formElement.getAttr
 
 const cardGridObject = new Section({items:initialCards, renderer: (data) => {
 //templateSelector should be set to "#card-template" (may change if more card templates are added)
-const cardObj = new Card(data, "#card-template");//create a card object
+const cardPopupObj = new PopupWithImage(data, "#image-popup"); //create popup image for card
+//we will send its open() method into cardObj
+const cardObj = new Card(data, "#card-template", () => {cardPopupObj.open()});//create a card object
+
 const newCard = cardObj.createCardElement(); //create a card element
 cardGridObject.addItem(newCard);
 }}, ".grid");

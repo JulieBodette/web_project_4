@@ -1,7 +1,8 @@
 
 import {imagePopup, openModal, setDataImagePopup} from "./utils.js";
 class Card {
-    constructor(data, templateSelector){
+    constructor(data, templateSelector, handleCardClick){
+      this._handleCardClick = handleCardClick;//the code to open the image popup
       this.cardName = data.name;
       this.cardLink = data.link;
       this.cardTemplate = document.querySelector(templateSelector).content.querySelector(".element");
@@ -34,7 +35,7 @@ class Card {
     //query selector the image. when this image is clicked on, a popup opens.
     const cardImage = this.newCard.querySelector(".element__image");
     //add event listener to image
-    cardImage.addEventListener("click", () => {this._openImagePopup()});
+    cardImage.addEventListener("click", () => {this._handleCardClick()});
     
 
     } //end _setEventListener
@@ -43,12 +44,6 @@ class Card {
     {
       const heart = evt.target;//the event target is the heart button that the user clicked on
       heart.classList.toggle("element__like_active");
-    }
-
-    _openImagePopup()
-    {
-      setDataImagePopup(this.cardName, this.cardLink); 
-      openModal(imagePopup);
     }
 
     _delete(evt)
