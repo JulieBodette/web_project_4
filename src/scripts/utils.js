@@ -17,18 +17,5 @@ function openModal(modal) {
   }
 
 
-  const imagePopup = document.querySelector("#image-popup");
 
-////////////////////////////////////////////////////////////Set up image popup
-function setDataImagePopup(name, link) {
-    //name and link are strings
-    //from the DOM, select the image popup and its picture and text and X (close button)
-    const imagePopupPic = imagePopup.querySelector(".popup__image");
-    const imagePopupText = imagePopup.querySelector(".popup__caption");
-    imagePopupPic.src = link;
-    imagePopupText.textContent = name;
-    imagePopupPic.alt = name;
-  }
-
-
-  export {imagePopup, openModal, closeModal, setDataImagePopup};
+  export {openModal, closeModal};
