@@ -15,7 +15,9 @@ import {initialCards} from "./constants.js";
 
 import Section from "./section.js";
 
-import Popup from "./popup.js";
+import PopupWithImage from "./PopupWithImage.js";
+
+import PopupWithForm from "./PopupWithForm.js";
 
 ////////////////////////////////////////////////Set up edit profile text button and modal for it
 //use const so that the value does not change
