@@ -26,7 +26,7 @@ class Popup{
         button.addEventListener("click", () => this.close());
 
         //close on esc
-        document.addEventListener("keydown", () => this._handleEscClose();
+        document.addEventListener("keydown", () => this._handleEscClose());
 
         this._modal.addEventListener("mousedown", (evt) => {
           //use mousedown so that if user clicks on box and drags outside, this event does not trigger
