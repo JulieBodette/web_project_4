@@ -76,21 +76,9 @@ cardGridObject.renderItems();
 
 
 
-//Pressing the submit button updates the name and title on the page to be the newly entered values
-function handleProfileFormSubmit(evt) {
-  evt.preventDefault(); // stops the browser from submitting the form in the default way.
 
-  // Insert new values using the textContent
-  // property of the querySelector() method
-  nameText.textContent = nameInput.value;
-  titleText.textContent = titleInput.value;
-  closeModal(editProfileModal); //close the modal panel when submitted
-}
 
-// Connect the handler to the form: it will watch the submit event
-editProfileForm.addEventListener("submit", handleProfileFormSubmit);
-//we did not explicitly find the submit button...just listening to the event
-//pressing enter also submits
+
 ////////////////////////////////////////////////
 
 
@@ -119,14 +107,18 @@ addCardForm.addEventListener("submit", handleAddCardSubmit);
 const editProfileFormPopupObj = new PopupWithForm(
   "#edit-profile-modal",
   () => {
-    console.log("submitted");
+    console.log("submitted edit profile");
+    
+    editProfileFormPopupObj.close();
+
   },
 );
 editProfileFormPopupObj.setEventListeners();
+
 const addCardFormPopupObj = new PopupWithForm(
   "#add-card-modal",
   () => {
-    console.log("submitted");
+    console.log("submitted add card");
   },
 );
 addCardFormPopupObj.setEventListeners();

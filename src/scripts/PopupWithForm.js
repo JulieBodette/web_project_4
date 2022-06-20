@@ -23,9 +23,11 @@ class PopupWithForm extends Popup{
 
 
         // Connect the handler to the form: it will watch the submit event
-//editProfileForm.addEventListener("submit", handleProfileFormSubmit);
-//we did not explicitly find the submit button...just listening to the event
-//pressing enter also submits
+        this._form.addEventListener("submit", (evt) => {
+            evt.preventDefault(); // stops the browser from submitting the form in the default way.
+            this.handleFormSubmit();});
+        //we did not explicitly find the submit button...just listening to the event
+        //pressing enter also submits
     }
 
     close()
