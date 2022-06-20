@@ -108,7 +108,8 @@ const editProfileFormPopupObj = new PopupWithForm(
   "#edit-profile-modal",
   () => {
     console.log("submitted edit profile");
-    
+    nameText.textContent = nameInput.value; //need to change this later so it does not rely on editProfileForm/ editProfileModal
+    titleText.textContent = titleInput.value;
     editProfileFormPopupObj.close();
 
   },
