@@ -1,9 +1,11 @@
 import Popup from "./popup"
 
 class PopupWithForm extends Popup{
-    constructor(popupSelector, submitFunction) //"#image-popup" is the popupSelector
+    constructor(popupSelector, handleFormSubmit) //"#image-popup" or "#edit-profile-modal" or "#add-card-modal" is the popupSelector
     {
-        super(popupSelector);
+        super(popupSelector); //set up this._modal
+        this.handleFormSubmit = handleFormSubmit;
+        this._form = this._modal.querySelector(".modal__form");
     }
 
     _getInputValues()
@@ -23,6 +25,8 @@ class PopupWithForm extends Popup{
     close()
     {
         //reset the form once the popup is closed.
+        super.close();
+        this._form.reset();
     }
 
 }
