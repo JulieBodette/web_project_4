@@ -13,6 +13,7 @@ import Section from "./section.js";
 import PopupWithImage from "./PopupWithImage.js";
 
 import PopupWithForm from "./PopupWithForm.js";
+import {UserInfo} from "./UserInfo.js";
 
 ////////////////////////////////////////////////Set up edit profile text button and modal for it
 //use const so that the value does not change
@@ -133,6 +134,9 @@ editProfileButton.addEventListener("click", () => {
   });
 });
 
+
+//////////////////create UserInfo object
+const newuser = new UserInfo({userName:"profile__info-name", userJob:".profile__info-title"});
 
 
 
