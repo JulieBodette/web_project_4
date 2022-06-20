@@ -10,8 +10,14 @@ class PopupWithForm extends Popup{
 
     _getInputValues()
     {
-        //collects data from all the input fields and returns that data as an object.
+        //collects data from all the input fields
         console.log("input values set");
+        const inputs = this._form.querySelectorAll("input");
+        console.log(inputs);
+        inputs.forEach(input =>
+        {console.log(input.value)}
+        );
+        //returns that data as an object.
     }
 
     setEventListeners()

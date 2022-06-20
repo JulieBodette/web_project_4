@@ -115,6 +115,7 @@ const editProfileFormPopupObj = new PopupWithForm(
   },
 );
 editProfileFormPopupObj.setEventListeners();
+//editProfileFormPopupObj._getInputValues(); //calling private method for testing purposes
 
 const addCardFormPopupObj = new PopupWithForm(
   "#add-card-modal",
