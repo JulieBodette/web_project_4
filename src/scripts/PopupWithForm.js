@@ -20,6 +20,12 @@ class PopupWithForm extends Popup{
         //add the click event listener to the close icon.
         super.setEventListeners();
         //add the submit event handler to the form 
+
+
+        // Connect the handler to the form: it will watch the submit event
+//editProfileForm.addEventListener("submit", handleProfileFormSubmit);
+//we did not explicitly find the submit button...just listening to the event
+//pressing enter also submits
     }
 
     close()

@@ -9,7 +9,7 @@ import {renderCard
 
 import Card from "./Card.js";
 
-import {openModal, closeModal} from "./utils.js";
+import {closeModal} from "./utils.js";
 
 import {initialCards} from "./constants.js";
 
@@ -74,24 +74,7 @@ cardGridObject.addItem(newCard);
 
 cardGridObject.renderItems();
 
-////////////////////////////////////////////////Set up edit profile modal
-editProfileButton.addEventListener("click", () => {
-  openModal(editProfileModal);
-  //this makes sure data in the form field is correct if you close without saving
-  //if you close without saving it should be set to the previous values from the page, NOT whatever u typed and didnt save
-  nameInput.value = nameText.textContent;
-  titleInput.value = titleText.textContent;
-  //get the parameters to send to checkInputValidity
-  
-  const inputList = Array.from(
-    editProfileFormObj.formElement.querySelectorAll(customSettings.inputSelector)
-  );
-  //loop through all fields in the form and call checkInputValidity to determine if they are valid (and if error should be displayed)
-  inputList.forEach((inputElement) => {
-    //because we reset the form fields to previous values, they should all be valid- so we clear the error for each one
-    editProfileFormObj.hideInputError(inputElement);
-  });
-});
+
 
 //Pressing the submit button updates the name and title on the page to be the newly entered values
 function handleProfileFormSubmit(evt) {
@@ -110,10 +93,7 @@ editProfileForm.addEventListener("submit", handleProfileFormSubmit);
 //pressing enter also submits
 ////////////////////////////////////////////////
 
-////////////////////////////////////////////////Set up add card modal
-addCardButton.addEventListener("click", () => {
-  openModal(addCardModal);
-});
+
 
 //pressing submit button adds a new card with picture and title from user
 function handleAddCardSubmit(evt) {
@@ -135,8 +115,46 @@ addCardForm.addEventListener("submit", handleAddCardSubmit);
 ////////////////////////////////////////////////
 
 
+/////////make the PopupWithFormObject for each form
+const editProfileFormPopupObj = new PopupWithForm(
+  "#edit-profile-modal",
+  () => {
+    console.log("submitted");
+  },
+);
+editProfileFormPopupObj.setEventListeners();
+const addCardFormPopupObj = new PopupWithForm(
+  "#add-card-modal",
+  () => {
+    console.log("submitted");
+  },
+);
+addCardFormPopupObj.setEventListeners();
+
+////////////////////////////////////////////////Set up add card modal
+addCardButton.addEventListener("click", () => {
+  addCardFormPopupObj.open();
+});
 
 
+////////////////////////////////////////////////Set up edit profile modal
+editProfileButton.addEventListener("click", () => {
+  editProfileFormPopupObj.open();
+  //this makes sure data in the form field is correct if you close without saving
+  //if you close without saving it should be set to the previous values from the page, NOT whatever u typed and didnt save
+  nameInput.value = nameText.textContent;
+  titleInput.value = titleText.textContent;
+  //get the parameters to send to checkInputValidity
+  
+  const inputList = Array.from(
+    editProfileFormObj.formElement.querySelectorAll(customSettings.inputSelector)
+  );
+  //loop through all fields in the form and call checkInputValidity to determine if they are valid (and if error should be displayed)
+  inputList.forEach((inputElement) => {
+    //because we reset the form fields to previous values, they should all be valid- so we clear the error for each one
+    editProfileFormObj.hideInputError(inputElement);
+  });
+});
 
 
 

@@ -5,10 +5,7 @@
 
 
 ///////////////////////////////////////////////////////////////////Universal Open/Close Modal Functions
-function openModal(modal) {
-    /* The visible class overrides the previous class because its farther down the page. see modal.css.*/
-    modal.classList.add("modal_open"); /*activate a class that makes it visible*/
-  }
+
   
   function closeModal(modal) {
     modal.classList.remove(
@@ -18,4 +15,4 @@ function openModal(modal) {
 
 
 
-  export {openModal, closeModal};
+  export {closeModal};
