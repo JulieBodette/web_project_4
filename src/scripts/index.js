@@ -76,38 +76,10 @@ cardGridObject.renderItems();
 
 
 
-
-
-
-////////////////////////////////////////////////
-
-
-
-//pressing submit button adds a new card with picture and title from user
-function handleAddCardSubmit(evt) {
-  evt.preventDefault(); // stops the browser from submitting the form in the default way.
-
-  //make a new object to store the image url and image label
-  const newCardInfo = {
-    name: imageNameInput.value,
-    link: imageLinkInput.value,
-  };
-
-  const newCard = renderCard(newCardInfo, "#card-template"); //create a card element for the DOM
-  cardsGrid.prepend(newCard); //prepend it to the grid (add to beginning)
-  addCardForm.reset();   //clear out the input fields
-  addCardFormObj.setButtonInactive();  //Set button to inactive-it needs to be hidden because the fields are empty
-  closeModal(addCardModal); //close the modal panel when submitted
-}
-addCardForm.addEventListener("submit", handleAddCardSubmit);
-////////////////////////////////////////////////
-
-
-/////////make the PopupWithFormObject for each form
+//////////////////////////////////////////////////////////////////////make the PopupWithFormObject for each form
 const editProfileFormPopupObj = new PopupWithForm(
   "#edit-profile-modal",
   () => {
-    console.log("submitted edit profile");
     nameText.textContent = nameInput.value; //need to change this later so it does not rely on editProfileForm/ editProfileModal
     titleText.textContent = titleInput.value;
     editProfileFormPopupObj.close();
@@ -120,18 +92,34 @@ editProfileFormPopupObj.setEventListeners();
 const addCardFormPopupObj = new PopupWithForm(
   "#add-card-modal",
   () => {
-    console.log("submitted add card");
+    //make a new object to store the image url and image label
+  const newCardInfo = {
+    name: imageNameInput.value,
+    link: imageLinkInput.value,
+  };
+
+  const cardPopupObj = new PopupWithImage(newCardInfo, "#image-popup"); //create popup image for card
+//we will send its open() method into cardObj
+cardPopupObj.setEventListeners();
+const cardObj = new Card(newCardInfo, "#card-template", () => {cardPopupObj.open()});//create a card object
+
+  const newCard = cardObj.createCardElement(); //create a card element
+  cardGridObject.addItem(newCard);
+
+  addCardForm.reset();   //clear out the input fields
+  addCardFormObj.setButtonInactive();  //Set button to inactive-it needs to be hidden because the fields are empty
+  addCardFormPopupObj.close(); //close the modal panel when submitted
   },
 );
 addCardFormPopupObj.setEventListeners();
 
-////////////////////////////////////////////////Set up add card modal
+/////////////////////////////////////////////////////////////////////add click events to buttons that open form modals
+//Set up button that opens add card modal
 addCardButton.addEventListener("click", () => {
   addCardFormPopupObj.open();
 });
 
-
-////////////////////////////////////////////////Set up edit profile modal
+//Set up button that opens edit profile modal
 editProfileButton.addEventListener("click", () => {
   editProfileFormPopupObj.open();
   //this makes sure data in the form field is correct if you close without saving
