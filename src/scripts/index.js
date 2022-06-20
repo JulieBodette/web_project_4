@@ -4,12 +4,7 @@ import {
   customSettings,
 } from "./FormValidator.js";
 
-import {renderCard
-} from "./Card.js";
-
 import Card from "./Card.js";
-
-import {closeModal} from "./utils.js";
 
 import {initialCards} from "./constants.js";
 
