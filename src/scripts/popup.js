@@ -11,6 +11,7 @@ class Popup{
       
       close() {
         this._modal.classList.remove("modal_open"); /*deactivate a class that makes it visible*/
+        document.removeEventListener("keydown", this._handleEscClose);
       }
 
       _handleEscClose(evt)
