@@ -1,35 +1,40 @@
 class Card {
   constructor(data, templateSelector, handleCardClick) {
     this._handleCardClick = handleCardClick; //the code to open the image popup
-    this.cardName = data.name;
-    this.cardLink = data.link;
-    this.cardTemplate = document
+    this._cardName = data.name;
+    this._cardLink = data.link;
+    this._cardTemplate = document
       .querySelector(templateSelector)
       .content.querySelector(".element");
     //select the template, use .content to get the content inside the template, then query selector again to get the element class
-    this.newCard; //will be set to the card element
-    this.cardImage; //will be set to the image in the card
+    this._element; //will be set to the card element
+    this._cardImage; //will be set to the image in the card
   }
   createCardElement() {
     //make a copy of the template using cloneNode
-    this.newCard = this.cardTemplate.cloneNode(true); //true clones everything inside
+    this._element = this._getElement();
 
     this._setImageAndName();
     this._setEventListener();
 
     //return new card so that it can be added to the grid when this function is called
-    return this.newCard;
+    return this._element;
+  }
+
+  _getElement()
+  {
+    return this._cardTemplate.cloneNode(true); //true clones everything inside
   }
   _setEventListener() {
     //query selector the like and delete button
-    const likeButton = this.newCard.querySelector(".element__like");
-    const deleteButton = this.newCard.querySelector(".element__trash");
+    const likeButton = this._element.querySelector(".element__like");
+    const deleteButton = this._element.querySelector(".element__trash");
     //add event listeners for like and delete
     likeButton.addEventListener("click", this._like); //send it the function name ie this._like with NOPARENTHESES. this._like() BAD, WILL CALL FUNCTION ON PAGE LOAD
     deleteButton.addEventListener("click", this._delete);
 
     //query selector the image. when this image is clicked on, a popup opens.
-    const cardImage = this.newCard.querySelector(".element__image");
+    const cardImage = this._element.querySelector(".element__image");
     //add event listener to image
     cardImage.addEventListener("click", () => {
       this._handleCardClick();
@@ -48,11 +53,11 @@ class Card {
   }
 
   _setImageAndName() {
-    this.cardImage = this.newCard.querySelector(".element__image");
-    this.cardImage.style = `background-image:url(${this.cardLink});`; //template literal has ` at the begginign and end instead of ""
+    this._cardImage = this._element.querySelector(".element__image");
+    this._cardImage.style = `background-image:url(${this._cardLink});`; //template literal has ` at the begginign and end instead of ""
     //also template literal has ${cardLink} (no quotes) even though cardLInk is a string
     //use .src here if image tag, I am using style and background image because it is button
-    this.newCard.querySelector(".element__text").textContent = this.cardName;
+    this._element.querySelector(".element__text").textContent = this._cardName;
   }
 }
 
