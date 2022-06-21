@@ -1,19 +1,19 @@
-import "../pages/index.css"
+import "./index.css"
 import {
   FormValidator,
   customSettings,
-} from "./FormValidator.js";
+} from "../components/FormValidator.js";
 
-import Card from "./Card.js";
+import Card from "../components/Card.js";
 
-import {initialCards} from "./constants.js";
+import {initialCards} from "../components/constants.js";
 
-import Section from "./section.js";
+import Section from "../components/section.js";
 
-import PopupWithImage from "./PopupWithImage.js";
+import PopupWithImage from "../components/PopupWithImage.js";
 
-import PopupWithForm from "./PopupWithForm.js";
-import {UserInfo} from "./UserInfo.js";
+import PopupWithForm from "../components/PopupWithForm.js";
+import {UserInfo} from "../components/UserInfo.js";
 
 ////////////////////////////////////////////////Set up edit profile text button and modal for it
 //use const so that the value does not change
