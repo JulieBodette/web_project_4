@@ -1,5 +1,4 @@
 
-import {imagePopup, openModal, setDataImagePopup} from "./utils.js";
 class Card {
     constructor(data, templateSelector, handleCardClick){
       this._handleCardClick = handleCardClick;//the code to open the image popup
