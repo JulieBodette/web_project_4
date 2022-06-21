@@ -76,8 +76,10 @@ cardGridObject.renderItems();
 const editProfileFormPopupObj = new PopupWithForm(
   "#edit-profile-modal",
   () => {
-    nameText.textContent = nameInput.value; //need to change this later so it does not rely on editProfileForm/ editProfileModal
-    titleText.textContent = titleInput.value;
+    //create UserInfo object
+    const newuser = new UserInfo({userName:".profile__info-name", userJob:".profile__info-title"});
+    newuser.setUserInfo({newName: nameInput.value, newJob: titleInput.value});
+    //nameInput and titleInput are set earlier, ie nameInput = editProfileForm.querySelector('[name="name"]');
     editProfileFormPopupObj.close();
 
   },
@@ -135,8 +137,7 @@ editProfileButton.addEventListener("click", () => {
 });
 
 
-//////////////////create UserInfo object
-const newuser = new UserInfo({userName:"profile__info-name", userJob:".profile__info-title"});
+
 
 
 
