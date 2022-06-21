@@ -1,19 +1,16 @@
-import "./index.css"
-import {
-  FormValidator,
-  customSettings,
-} from "../components/FormValidator.js";
+import "./index.css";
+import { FormValidator, customSettings } from "../components/FormValidator.js";
 
 import Card from "../components/Card.js";
 
-import {initialCards} from "../components/constants.js";
+import { initialCards } from "../components/constants.js";
 
 import Section from "../components/section.js";
 
 import PopupWithImage from "../components/PopupWithImage.js";
 
 import PopupWithForm from "../components/PopupWithForm.js";
-import {UserInfo} from "../components/UserInfo.js";
+import { UserInfo } from "../components/UserInfo.js";
 
 ////////////////////////////////////////////////Set up edit profile text button and modal for it
 //use const so that the value does not change
@@ -40,75 +37,84 @@ const imageLinkInput = addCardForm.querySelector('[name="imagelink"]');
 
 /////////////////////////get all forms and create FormValidator objects out of them
 
-const formElementsList = Array.from(document.querySelectorAll(customSettings.formSelector));
+const formElementsList = Array.from(
+  document.querySelectorAll(customSettings.formSelector)
+);
 //get an array of form elements- these are the html elements in the DOM
 
 //map takes each form element in the array and creates the formValidator object for it, then stores the form
 //object in the array
 const formValidatorObjList = formElementsList.map((form) => {
-
   //Create a form object and call the public method enableValidation
   const formObj = new FormValidator(customSettings, form);
   formObj.enableValidation();
   return formObj;
-}); 
+});
 
 //within the form object, get to the form element and then find the form with the correct name
-const editProfileFormObj = formValidatorObjList.find( obj => obj.formElement.getAttribute("name") == "nameandtitle");
-const addCardFormObj = formValidatorObjList.find( obj => obj.formElement.getAttribute("name") == "imagenameandlink");
+const editProfileFormObj = formValidatorObjList.find(
+  (obj) => obj.formElement.getAttribute("name") == "nameandtitle"
+);
+const addCardFormObj = formValidatorObjList.find(
+  (obj) => obj.formElement.getAttribute("name") == "imagenameandlink"
+);
 
-const cardGridObject = new Section({items:initialCards, renderer: (data) => {
-//templateSelector should be set to "#card-template" (may change if more card templates are added)
-const cardPopupObj = new PopupWithImage(data, "#image-popup"); //create popup image for card
-//we will send its open() method into cardObj
-cardPopupObj.setEventListeners();
-const cardObj = new Card(data, "#card-template", () => {cardPopupObj.open()});//create a card object
+const cardGridObject = new Section(
+  {
+    items: initialCards,
+    renderer: (data) => {
+      //templateSelector should be set to "#card-template" (may change if more card templates are added)
+      const cardPopupObj = new PopupWithImage(data, "#image-popup"); //create popup image for card
+      //we will send its open() method into cardObj
+      cardPopupObj.setEventListeners();
+      const cardObj = new Card(data, "#card-template", () => {
+        cardPopupObj.open();
+      }); //create a card object
 
-const newCard = cardObj.createCardElement(); //create a card element
-cardGridObject.addItem(newCard);
-}}, ".grid");
+      const newCard = cardObj.createCardElement(); //create a card element
+      cardGridObject.addItem(newCard);
+    },
+  },
+  ".grid"
+);
 
 cardGridObject.renderItems();
 
-
-
 //////////////////////////////////////////////////////////////////////make the PopupWithFormObject for each form
-const editProfileFormPopupObj = new PopupWithForm(
-  "#edit-profile-modal",
-  () => {
-    //create UserInfo object
-    const newuser = new UserInfo({userName:".profile__info-name", userJob:".profile__info-title"});
-    newuser.setUserInfo({newName: nameInput.value, newJob: titleInput.value});
-    //nameInput and titleInput are set earlier, ie nameInput = editProfileForm.querySelector('[name="name"]');
-    editProfileFormPopupObj.close();
-
-  },
-);
+const editProfileFormPopupObj = new PopupWithForm("#edit-profile-modal", () => {
+  //create UserInfo object
+  const newuser = new UserInfo({
+    userName: ".profile__info-name",
+    userJob: ".profile__info-title",
+  });
+  newuser.setUserInfo({ newName: nameInput.value, newJob: titleInput.value });
+  //nameInput and titleInput are set earlier, ie nameInput = editProfileForm.querySelector('[name="name"]');
+  editProfileFormPopupObj.close();
+});
 editProfileFormPopupObj.setEventListeners();
 //editProfileFormPopupObj._getInputValues(); //calling private method for testing purposes
 
-const addCardFormPopupObj = new PopupWithForm(
-  "#add-card-modal",
-  () => {
-    //make a new object to store the image url and image label
+const addCardFormPopupObj = new PopupWithForm("#add-card-modal", () => {
+  //make a new object to store the image url and image label
   const newCardInfo = {
     name: imageNameInput.value,
     link: imageLinkInput.value,
   };
 
   const cardPopupObj = new PopupWithImage(newCardInfo, "#image-popup"); //create popup image for card
-//we will send its open() method into cardObj
-cardPopupObj.setEventListeners();
-const cardObj = new Card(newCardInfo, "#card-template", () => {cardPopupObj.open()});//create a card object
+  //we will send its open() method into cardObj
+  cardPopupObj.setEventListeners();
+  const cardObj = new Card(newCardInfo, "#card-template", () => {
+    cardPopupObj.open();
+  }); //create a card object
 
   const newCard = cardObj.createCardElement(); //create a card element
   cardGridObject.addItem(newCard);
 
-  addCardForm.reset();   //clear out the input fields
-  addCardFormObj.setButtonInactive();  //Set button to inactive-it needs to be hidden because the fields are empty
+  addCardForm.reset(); //clear out the input fields
+  addCardFormObj.setButtonInactive(); //Set button to inactive-it needs to be hidden because the fields are empty
   addCardFormPopupObj.close(); //close the modal panel when submitted
-  },
-);
+});
 addCardFormPopupObj.setEventListeners();
 
 /////////////////////////////////////////////////////////////////////add click events to buttons that open form modals
@@ -125,9 +131,11 @@ editProfileButton.addEventListener("click", () => {
   nameInput.value = nameText.textContent;
   titleInput.value = titleText.textContent;
   //get the parameters to send to checkInputValidity
-  
+
   const inputList = Array.from(
-    editProfileFormObj.formElement.querySelectorAll(customSettings.inputSelector)
+    editProfileFormObj.formElement.querySelectorAll(
+      customSettings.inputSelector
+    )
   );
   //loop through all fields in the form and call checkInputValidity to determine if they are valid (and if error should be displayed)
   inputList.forEach((inputElement) => {
@@ -135,14 +143,3 @@ editProfileButton.addEventListener("click", () => {
     editProfileFormObj.hideInputError(inputElement);
   });
 });
-
-
-
-
-
-
-
-
-
-
-
