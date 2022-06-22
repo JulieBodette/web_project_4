@@ -31,7 +31,7 @@ class Card {
     const deleteButton = this._element.querySelector(".element__trash");
     //add event listeners for like and delete
     likeButton.addEventListener("click", this._like); //send it the function name ie this._like with NOPARENTHESES. this._like() BAD, WILL CALL FUNCTION ON PAGE LOAD
-    deleteButton.addEventListener("click", this._delete);
+    deleteButton.addEventListener("click", () => {this._delete()});
 
     //query selector the image. when this image is clicked on, a popup opens.
     const cardImage = this._element.querySelector(".element__image");
@@ -46,10 +46,8 @@ class Card {
     heart.classList.toggle("element__like_active");
   }
 
-  _delete(evt) {
-    const trash = evt.target; //the event target is the trash button that the user clicked on
-    const card = evt.target.closest(".element"); //gets the closest parent with class element. First parent is button, second is element div
-    card.remove();
+  _delete() {
+    this._element.remove();
   }
 
   _setImageAndName() {
