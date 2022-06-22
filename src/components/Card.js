@@ -48,6 +48,7 @@ class Card {
 
   _delete() {
     this._element.remove();
+    this._element = null; //help out the garbage collector
   }
 
   _setImageAndName() {
