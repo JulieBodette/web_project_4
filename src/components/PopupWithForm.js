@@ -6,7 +6,7 @@ class PopupWithForm extends Popup {
     handleFormSubmit //"#image-popup" or "#edit-profile-modal" or "#add-card-modal" is the popupSelector
   ) {
     super(popupSelector); //set up this._modal
-    this.handleFormSubmit = handleFormSubmit;
+    this._handleFormSubmit = handleFormSubmit;
     this._form = this._modal.querySelector(".modal__form");
   }
 
@@ -30,7 +30,7 @@ class PopupWithForm extends Popup {
     // Connect the handler to the form: it will watch the submit event
     this._form.addEventListener("submit", (evt) => {
       evt.preventDefault(); // stops the browser from submitting the form in the default way.
-      this.handleFormSubmit();
+      this._handleFormSubmit();
     });
     //we did not explicitly find the submit button...just listening to the event
     //pressing enter also submits
