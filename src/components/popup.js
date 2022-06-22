@@ -25,7 +25,6 @@ class Popup {
 
   setEventListeners() {
     //close when X is clicked
-    this._button = this._modal.querySelector(".modal__close-button");
     this._button.addEventListener("click", () => this.close());
 
     //close on esc
