@@ -1,7 +1,7 @@
 import "./index.css";
 import { FormValidator, customSettings } from "../components/FormValidator.js";
 
-import Card from "../components/Card.js";
+import { Card, renderCard } from "../components/Card.js";
 
 import { initialCards } from "../components/constants.js";
 
@@ -37,8 +37,8 @@ const imageLinkInput = addCardForm.querySelector('[name="imagelink"]');
 
 //create 1 global PopupWithImage object. Image is set to be different when differnt cards are clicked on (via open() method)
 //templateSelector should be set to "#card-template" (may change if more card templates are added)
-const cardPopupObj = new PopupWithImage("#image-popup"); //create popup image for card
-cardPopupObj.setEventListeners();
+const imagePopupObj = new PopupWithImage("#image-popup"); //create popup image for card
+imagePopupObj.setEventListeners();
 
 /////////////////////////get all forms and create FormValidator objects out of them
 
@@ -68,12 +68,7 @@ const cardGridObject = new Section(
   {
     items: initialCards,
     renderer: (data) => {
-      const cardObj = new Card(data, "#card-template", () => {
-        cardPopupObj.open(data);
-      }); //create a card object
-
-      const newCard = cardObj.createCardElement(); //create a card element
-      cardGridObject.addItem(newCard);
+      renderCard(cardGridObject, data, imagePopupObj);
     },
   },
   ".grid"
@@ -102,15 +97,7 @@ const addCardFormPopupObj = new PopupWithForm("#add-card-modal", () => {
     link: imageLinkInput.value,
   };
 
-  const cardPopupObj = new PopupWithImage(newCardInfo, "#image-popup"); //create popup image for card
-  //we will send its open() method into cardObj
-  cardPopupObj.setEventListeners();
-  const cardObj = new Card(newCardInfo, "#card-template", () => {
-    cardPopupObj.open();
-  }); //create a card object
-
-  const newCard = cardObj.createCardElement(); //create a card element
-  cardGridObject.addItem(newCard);
+  renderCard(cardGridObject, newCardInfo, imagePopupObj);
 
   addCardForm.reset(); //clear out the input fields
   addCardFormObj.setButtonInactive(); //Set button to inactive-it needs to be hidden because the fields are empty

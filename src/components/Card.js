@@ -60,4 +60,16 @@ class Card {
   }
 }
 
-export default Card;
+
+function renderCard(cardContainer, data, cardPopupObj)
+{
+  console.log("card rendered");
+  const cardObj = new Card(data, "#card-template", () => {
+    cardPopupObj.open(data);
+  }); //create a card object
+
+  const newCard = cardObj.createCardElement(); //create a card element
+  cardContainer.addItem(newCard);
+}
+
+export {Card, renderCard};
