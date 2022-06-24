@@ -35,6 +35,11 @@ const imageNameInput = addCardForm.querySelector('[name="imagename"]');
 const imageLinkInput = addCardForm.querySelector('[name="imagelink"]');
 /////////////////////////////////////////////
 
+//create 1 global PopupWithImage object. Image is set to be different when differnt cards are clicked on (via open() method)
+//templateSelector should be set to "#card-template" (may change if more card templates are added)
+const cardPopupObj = new PopupWithImage("#image-popup"); //create popup image for card
+cardPopupObj.setEventListeners();
+
 /////////////////////////get all forms and create FormValidator objects out of them
 
 const formElementsList = Array.from(
@@ -63,12 +68,8 @@ const cardGridObject = new Section(
   {
     items: initialCards,
     renderer: (data) => {
-      //templateSelector should be set to "#card-template" (may change if more card templates are added)
-      const cardPopupObj = new PopupWithImage(data, "#image-popup"); //create popup image for card
-      //we will send its open() method into cardObj
-      cardPopupObj.setEventListeners();
       const cardObj = new Card(data, "#card-template", () => {
-        cardPopupObj.open();
+        cardPopupObj.open(data);
       }); //create a card object
 
       const newCard = cardObj.createCardElement(); //create a card element

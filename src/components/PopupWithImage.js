@@ -1,11 +1,10 @@
 import Popup from "./Popup"
 
 class PopupWithImage extends Popup{
-    constructor(data, popupSelector) //"#image-popup" is the popupSelector
-    {//data contains name and link
+    constructor(popupSelector) //"#image-popup" is the popupSelector
+    {
         super(popupSelector);
-        this.name = data.name;
-        this.link = data.link;
+        
     }
     _setDataImagePopup() {
         //name and link are strings
@@ -16,8 +15,10 @@ class PopupWithImage extends Popup{
         imagePopupText.textContent = this.name;
         imagePopupPic.alt = this.name;
       }
-    open()
+    open(data)//data contains name and link. sent here and not in the constructor
     {
+        this.name = data.name;
+        this.link = data.link;
         this._setDataImagePopup();
         super.open();
     }
