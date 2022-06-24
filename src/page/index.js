@@ -83,9 +83,9 @@ const cardGridObject = new Section(
 cardGridObject.renderItems();
 
 //////////////////////////////////////////////////////////////////////make the PopupWithFormObject for each form
-const editProfileFormPopupObj = new PopupWithForm("#edit-profile-modal", () => {
-  user.setUserInfo({ newName: nameInput.value, newJob: titleInput.value });
-  //nameInput and titleInput are set earlier, ie nameInput = editProfileForm.querySelector('[name="name"]');
+const editProfileFormPopupObj = new PopupWithForm("#edit-profile-modal", (values) => {
+  //values is an object returned by _handleFormSubmit
+  user.setUserInfo({ newName: values.name, newJob: values.title });
   editProfileFormPopupObj.close();
 });
 editProfileFormPopupObj.setEventListeners();

@@ -30,7 +30,7 @@ class PopupWithForm extends Popup {
     // Connect the handler to the form: it will watch the submit event
     this._form.addEventListener("submit", (evt) => {
       evt.preventDefault(); // stops the browser from submitting the form in the default way.
-      this._handleFormSubmit();
+      this._handleFormSubmit(this._getInputValues());//send the inputs from the form (inputs are returned by getInputValues) to the HandleFormSubbmit function
     });
     //we did not explicitly find the submit button...just listening to the event
     //pressing enter also submits
