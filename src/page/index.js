@@ -40,6 +40,12 @@ const imageLinkInput = addCardForm.querySelector('[name="imagelink"]');
 const imagePopupObj = new PopupWithImage("#image-popup"); //create popup image for card
 imagePopupObj.setEventListeners();
 
+//create 1 global UserInfo object
+const user = new UserInfo({
+  userName: ".profile__info-name",
+  userJob: ".profile__info-title",
+});
+
 /////////////////////////get all forms and create FormValidator objects out of them
 
 const formElementsList = Array.from(
@@ -78,12 +84,7 @@ cardGridObject.renderItems();
 
 //////////////////////////////////////////////////////////////////////make the PopupWithFormObject for each form
 const editProfileFormPopupObj = new PopupWithForm("#edit-profile-modal", () => {
-  //create UserInfo object
-  const newuser = new UserInfo({
-    userName: ".profile__info-name",
-    userJob: ".profile__info-title",
-  });
-  newuser.setUserInfo({ newName: nameInput.value, newJob: titleInput.value });
+  user.setUserInfo({ newName: nameInput.value, newJob: titleInput.value });
   //nameInput and titleInput are set earlier, ie nameInput = editProfileForm.querySelector('[name="name"]');
   editProfileFormPopupObj.close();
 });

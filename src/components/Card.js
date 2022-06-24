@@ -62,8 +62,7 @@ class Card {
 
 
 function renderCard(cardContainer, data, cardPopupObj)
-{
-  console.log("card rendered");
+{;
   const cardObj = new Card(data, "#card-template", () => {
     cardPopupObj.open(data);
   }); //create a card object
