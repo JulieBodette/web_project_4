@@ -8,6 +8,8 @@ class Popup {
     this._modal.classList.add(
       "modal_open"
     ); /*activate a class that makes it visible*/
+    
+    document.addEventListener("keydown", this._handleEscClose); //close on esc
   }
 
   close() {
@@ -17,7 +19,10 @@ class Popup {
     document.removeEventListener("keydown", this._handleEscClose);
   }
 
-  _handleEscClose(evt) {
+  _handleEscClose = (evt) =>{
+    //this is an arrow function
+    //that way, we do not have to create an arrow function when setting the event listener
+    //also because we do not create a new arrow function when setting event listener, we can remove this event listener
     if (evt.key === "Escape") {
       this.close();
     }
@@ -26,9 +31,6 @@ class Popup {
   setEventListeners() {
     //close when X is clicked
     this._button.addEventListener("click", () => this.close());
-
-    //close on esc
-    document.addEventListener("keydown", (evt) => this._handleEscClose(evt));
 
     this._modal.addEventListener("mousedown", (evt) => {
       //use mousedown so that if user clicks on box and drags outside, this event does not trigger
