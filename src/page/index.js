@@ -119,16 +119,8 @@ editProfileButton.addEventListener("click", () => {
   //if you close without saving it should be set to the previous values from the page, NOT whatever u typed and didnt save
   nameInput.value = nameText.textContent;
   titleInput.value = titleText.textContent;
-  //get the parameters to send to checkInputValidity
+  
+  editProfileFormObj.clearAllErrors();//because we reset the form fields to previous values, they should all be valid- so we clear the error for each one
 
-  const inputList = Array.from(
-    editProfileFormObj.formElement.querySelectorAll(
-      customSettings.inputSelector
-    )
-  );
-  //loop through all fields in the form and call checkInputValidity to determine if they are valid (and if error should be displayed)
-  inputList.forEach((inputElement) => {
-    //because we reset the form fields to previous values, they should all be valid- so we clear the error for each one
-    editProfileFormObj.hideInputError(inputElement);
-  });
+
 });

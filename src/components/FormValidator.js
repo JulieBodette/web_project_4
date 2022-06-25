@@ -14,7 +14,9 @@ class FormValidator {
   }
 
   //public because it is used in index.js for hiding error on form reset
-  hideInputError(inputElement) {
+  //assumes all form fields are valid (does not check!!)
+
+  _hideInputError(inputElement) {
     const errorElement = this.formElement.querySelector(
       `.${inputElement.id}-error`
     );
@@ -22,14 +24,24 @@ class FormValidator {
     errorElement.classList.remove(this.settings.errorClass); //the class that makes it visible
     errorElement.textContent = "";
   }
-
+  clearAllErrors()
+  {
+    const inputList = Array.from(
+      this.formElement.querySelectorAll(
+        customSettings.inputSelector
+      )
+    );
+    inputList.forEach((inputElement) => {
+      this._hideInputError(inputElement);
+    });
+  }
   _checkInputValidity(inputElement) {
     //this function does not use settings but the function that it calls does
     //therefore we must send it settings so it can pass them on
     if (!inputElement.validity.valid) {
       this._showInputError(inputElement, inputElement.validationMessage);
     } else {
-      this.hideInputError(inputElement);
+      this._hideInputError(inputElement);
     }
   }
 
