@@ -21,7 +21,9 @@
   top: 0;
   bottom: 0;
   /*end cover entire screen commands */
-  display: none; /*hidden by default */
+  visibility: none; /*invisible*/
+  opacity: 0; /*opacity has numeric value, so we can animate it*/
+  pointer-events: none; /*can't interact with closed popup*/
   position: fixed; /*does not move when you scroll */
   z-index: 2; /*go on top of trashcan icons */
 }
@@ -30,6 +32,9 @@
   /*make it visible */
   display: flex; /*needed so that margin:auto works to center the box */
   /*you could also use justify-content + align-items center to align it */
+  visibility: visible; /*visible*/
+  opacity: 1; /*opacity has numeric value, so we can animate it*/
+  pointer-events: all; /*can interact with opened popup*/
   animation: fade_in_show 0.5s;
 }
 
