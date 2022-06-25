@@ -1,7 +1,7 @@
 import "./index.css";
 import { FormValidator, customSettings } from "../components/FormValidator.js";
 
-import { Card, renderCard } from "../components/Card.js";
+import {renderCard } from "../components/Card.js";
 
 import { initialCards } from "../components/constants.js";
 

@@ -71,4 +71,4 @@ function renderCard(cardContainer, data, cardPopupObj)
   cardContainer.addItem(newCard);
 }
 
-export {Card, renderCard};
+export {renderCard};
