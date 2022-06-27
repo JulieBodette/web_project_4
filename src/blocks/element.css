@@ -18,6 +18,7 @@
   background-repeat: no-repeat;
   /*reset button styles*/
   border: none;
+  cursor: pointer; /*change cursor to show user the element is interactive*/
 }
 
 .element__rectangle {
