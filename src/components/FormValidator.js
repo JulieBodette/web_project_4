@@ -1,3 +1,4 @@
+import {customSettings} from "./constants.js";
 class FormValidator {
   constructor(settings, formElement) {
     this.settings = settings;
@@ -92,15 +93,8 @@ class FormValidator {
 }
 
 // enabling validation by calling enableValidation()
-// pass all the settings on call
-const customSettings = {
-  formSelector: ".modal__form",
-  inputSelector: ".modal__input-text",
-  submitButtonSelector: ".modal__submit-button",
-  inactiveButtonClass: "modal__submit-button_disabled",
-  inputErrorClass: "modal__error",
-  errorClass: "modal__error_visible",
-};
+// pass all the settings (in customSettings, in constants.js) on call
+
 
 //export functions to index.js
-export { FormValidator, customSettings };
+export { FormValidator};

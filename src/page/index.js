@@ -1,9 +1,9 @@
 import "./index.css";
-import { FormValidator, customSettings } from "../components/FormValidator.js";
+import { FormValidator} from "../components/FormValidator.js";
 
 import {Card } from "../components/Card.js";
 
-import { initialCards } from "../components/constants.js";
+import { initialCards, customSettings  } from "../components/constants.js";
 
 import Section from "../components/section.js";
 
