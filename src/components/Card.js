@@ -31,7 +31,7 @@ class Card {
     const deleteButton = this._element.querySelector(".element__trash");
     //add event listeners for like and delete
     likeButton.addEventListener("click", this._like); //send it the function name ie this._like with NOPARENTHESES. this._like() BAD, WILL CALL FUNCTION ON PAGE LOAD
-    deleteButton.addEventListener("click", () => {this._delete()});
+    deleteButton.addEventListener("click", this._delete);
 
     //query selector the image. when this image is clicked on, a popup opens.
     const cardImage = this._element.querySelector(".element__image");
@@ -46,7 +46,7 @@ class Card {
     heart.classList.toggle("element__like_active");
   }
 
-  _delete() {
+  _delete = () => {//declared as an arrow function, so we don't have to create new arrow function when sending to EventListener
     this._element.remove();
     this._element = null; //help out the garbage collector
   }
@@ -61,14 +61,6 @@ class Card {
 }
 
 
-function renderCard(cardContainer, data, cardPopupObj)
-{;
-  const cardObj = new Card(data, "#card-template", () => {
-    cardPopupObj.open(data);
-  }); //create a card object
 
-  const newCard = cardObj.createCardElement(); //create a card element
-  cardContainer.addItem(newCard);
-}
 
-export {renderCard};
+export {Card};

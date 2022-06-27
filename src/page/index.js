@@ -1,7 +1,7 @@
 import "./index.css";
 import { FormValidator, customSettings } from "../components/FormValidator.js";
 
-import {renderCard } from "../components/Card.js";
+import {Card } from "../components/Card.js";
 
 import { initialCards } from "../components/constants.js";
 
@@ -34,6 +34,17 @@ const addCardForm = addCardModal.querySelector(".modal__form"); //find the form.
 const imageNameInput = addCardForm.querySelector('[name="imagename"]');
 const imageLinkInput = addCardForm.querySelector('[name="imagelink"]');
 /////////////////////////////////////////////
+
+//define a function to add cards to the grid
+function renderCard(cardContainer, data, cardPopupObj)
+{
+  const cardObj = new Card(data, "#card-template", () => {
+    cardPopupObj.open(data);
+  }); //create a card object
+
+  const newCard = cardObj.createCardElement(); //create a card element
+  cardContainer.addItem(newCard);
+}
 
 //create 1 global PopupWithImage object. Image is set to be different when differnt cards are clicked on (via open() method)
 //templateSelector should be set to "#card-template" (may change if more card templates are added)
