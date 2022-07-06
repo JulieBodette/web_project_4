@@ -12,6 +12,8 @@ import PopupWithImage from "../components/PopupWithImage.js";
 import PopupWithForm from "../components/PopupWithForm.js";
 import { UserInfo } from "../components/UserInfo.js";
 
+import {Api} from "../components/Api.js";
+
 ////////////////////////////////////////////////Set up edit profile text button and modal for it
 //use const so that the value does not change
 const editProfileButton = document.querySelector("#profile-info-edit-button"); ///find the edit button from profile-this opens the modal panel
@@ -162,3 +164,12 @@ fetch("https://around.nomoreparties.co/v1/group-12/cards", {
   .then((result) => {
     console.log(result);
   });
+
+
+  const api = new Api({
+    baseUrl: "https://around.nomoreparties.co/v1/group-12",
+    headers: {
+      authorization: "7201271b-2cce-46ab-9f28-d324b822f8cb",
+      "Content-Type": "application/json"
+    }
+  }); 
