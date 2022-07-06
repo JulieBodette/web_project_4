@@ -135,3 +135,30 @@ editProfileButton.addEventListener("click", () => {
 
 
 });
+
+/////testing out getting info from server
+//Token: 7201271b-2cce-46ab-9f28-d324b822f8cb
+//Group ID: group-12
+
+
+fetch("https://around.nomoreparties.co/v1/group-12/cards", {
+  headers: {
+    authorization: "7201271b-2cce-46ab-9f28-d324b822f8cb"
+  }
+})
+  .then(res => res.json())
+  .then((result) => {
+    console.log(result);
+  });
+
+
+
+  fetch("https://around.nomoreparties.co/v1/group-12/users/me", {
+  headers: {
+    authorization: "7201271b-2cce-46ab-9f28-d324b822f8cb"
+  }
+})
+  .then(res => res.json())
+  .then((result) => {
+    console.log(result);
+  });
