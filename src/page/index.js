@@ -37,6 +37,36 @@ const imageNameInput = addCardForm.querySelector('[name="imagename"]');
 const imageLinkInput = addCardForm.querySelector('[name="imagelink"]');
 /////////////////////////////////////////////
 
+/////Getting info from server
+//Token: 7201271b-2cce-46ab-9f28-d324b822f8cb
+//Group ID: group-12
+
+
+fetch("https://around.nomoreparties.co/v1/group-12/users/me", {
+  headers: {
+    authorization: "7201271b-2cce-46ab-9f28-d324b822f8cb"
+  }
+})
+  .then(res => res.json())
+  .then((result) => {
+    console.log(result);
+  });
+
+
+  const api = new Api({
+    baseUrl: "https://around.nomoreparties.co/v1/group-12",
+    headers: {
+      authorization: "7201271b-2cce-46ab-9f28-d324b822f8cb",
+      "Content-Type": "application/json"
+    }
+  }); 
+
+
+  api.getInitialCards();
+
+
+
+
 //define a function to add cards to the grid
 function renderCard(cardContainer, data, cardPopupObj)
 {
@@ -82,6 +112,10 @@ const editProfileFormObj = formValidatorObjList.find(
 const addCardFormObj = formValidatorObjList.find(
   (obj) => obj.formElement.getAttribute("name") == "imagenameandlink"
 );
+
+//use the Api objecgt to load the initial cards from the server
+//STOP using initialCards from constants.js
+
 
 const cardGridObject = new Section(
   {
@@ -138,38 +172,3 @@ editProfileButton.addEventListener("click", () => {
 
 });
 
-/////testing out getting info from server
-//Token: 7201271b-2cce-46ab-9f28-d324b822f8cb
-//Group ID: group-12
-
-
-fetch("https://around.nomoreparties.co/v1/group-12/cards", {
-  headers: {
-    authorization: "7201271b-2cce-46ab-9f28-d324b822f8cb"
-  }
-})
-  .then(res => res.json())
-  .then((result) => {
-    console.log(result);
-  });
-
-
-
-  fetch("https://around.nomoreparties.co/v1/group-12/users/me", {
-  headers: {
-    authorization: "7201271b-2cce-46ab-9f28-d324b822f8cb"
-  }
-})
-  .then(res => res.json())
-  .then((result) => {
-    console.log(result);
-  });
-
-
-  const api = new Api({
-    baseUrl: "https://around.nomoreparties.co/v1/group-12",
-    headers: {
-      authorization: "7201271b-2cce-46ab-9f28-d324b822f8cb",
-      "Content-Type": "application/json"
-    }
-  }); 
