@@ -1,9 +1,9 @@
 import "./index.css";
-import { FormValidator} from "../components/FormValidator.js";
+import { FormValidator } from "../components/FormValidator.js";
 
-import {Card } from "../components/Card.js";
+import { Card } from "../components/Card.js";
 
-import { initialCards, customSettings  } from "../components/constants.js";
+import { initialCards, customSettings } from "../components/constants.js";
 
 import Section from "../components/section.js";
 
@@ -12,7 +12,7 @@ import PopupWithImage from "../components/PopupWithImage.js";
 import PopupWithForm from "../components/PopupWithForm.js";
 import { UserInfo } from "../components/UserInfo.js";
 
-import {Api} from "../components/Api.js";
+import { Api } from "../components/Api.js";
 
 ////////////////////////////////////////////////Set up edit profile text button and modal for it
 //use const so that the value does not change
@@ -41,35 +41,37 @@ const imageLinkInput = addCardForm.querySelector('[name="imagelink"]');
 //Token: 7201271b-2cce-46ab-9f28-d324b822f8cb
 //Group ID: group-12
 
-
 fetch("https://around.nomoreparties.co/v1/group-12/users/me", {
   headers: {
-    authorization: "7201271b-2cce-46ab-9f28-d324b822f8cb"
-  }
+    authorization: "7201271b-2cce-46ab-9f28-d324b822f8cb",
+  },
 })
-  .then(res => res.json())
+  .then((res) => res.json())
   .then((result) => {
     console.log(result);
   });
 
+const api = new Api({
+  baseUrl: "https://around.nomoreparties.co/v1/group-12",
+  headers: {
+    authorization: "7201271b-2cce-46ab-9f28-d324b822f8cb",
+    "Content-Type": "application/json",
+  },
+});
 
-  const api = new Api({
-    baseUrl: "https://around.nomoreparties.co/v1/group-12",
-    headers: {
-      authorization: "7201271b-2cce-46ab-9f28-d324b822f8cb",
-      "Content-Type": "application/json"
-    }
-  }); 
+api
+  .getInitialCards()
+  .then((res) => res.json())
+  .then((result) => {
+    console.log("this is during the fetch promise");
+    console.log(result);
+    console.log("this is during the fetch promise after we log the result");
+  });
 
-
-  api.getInitialCards();
-
-
-
+console.log(initialCards);
 
 //define a function to add cards to the grid
-function renderCard(cardContainer, data, cardPopupObj)
-{
+function renderCard(cardContainer, data, cardPopupObj) {
   const cardObj = new Card(data, "#card-template", () => {
     cardPopupObj.open(data);
   }); //create a card object
@@ -116,7 +118,6 @@ const addCardFormObj = formValidatorObjList.find(
 //use the Api objecgt to load the initial cards from the server
 //STOP using initialCards from constants.js
 
-
 const cardGridObject = new Section(
   {
     items: initialCards,
@@ -130,11 +131,14 @@ const cardGridObject = new Section(
 cardGridObject.renderItems();
 
 //////////////////////////////////////////////////////////////////////make the PopupWithFormObject for each form
-const editProfileFormPopupObj = new PopupWithForm("#edit-profile-modal", (values) => {
-  //values is an object returned by _handleFormSubmit
-  user.setUserInfo({ newName: values.name, newJob: values.title });
-  editProfileFormPopupObj.close();
-});
+const editProfileFormPopupObj = new PopupWithForm(
+  "#edit-profile-modal",
+  (values) => {
+    //values is an object returned by _handleFormSubmit
+    user.setUserInfo({ newName: values.name, newJob: values.title });
+    editProfileFormPopupObj.close();
+  }
+);
 editProfileFormPopupObj.setEventListeners();
 //editProfileFormPopupObj._getInputValues(); //calling private method for testing purposes
 
@@ -166,9 +170,6 @@ editProfileButton.addEventListener("click", () => {
   //if you close without saving it should be set to the previous values from the page, NOT whatever u typed and didnt save
   nameInput.value = nameText.textContent;
   titleInput.value = titleText.textContent;
-  
-  editProfileFormObj.clearAllErrors();//because we reset the form fields to previous values, they should all be valid- so we clear the error for each one
 
-
+  editProfileFormObj.clearAllErrors(); //because we reset the form fields to previous values, they should all be valid- so we clear the error for each one
 });
-
