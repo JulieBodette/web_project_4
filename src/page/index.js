@@ -46,6 +46,7 @@ imagePopupObj.setEventListeners();
 const user = new UserInfo({
   userName: ".profile__info-name",
   userJob: ".profile__info-title",
+  userAvatar: ".profile__avatar",
 });
 
 /////Getting info from server
@@ -91,13 +92,11 @@ api
   });
 
 //use the Api object to load the user info
-//TO DO: load the user profile pic
 api
   .getUserInfo()
   .then((res) => res.json())
   .then((result) => {
     console.log("this is during the fetch promise for user info");
-    console.log(result);
     user.setUserInfo(result);
   });
 
@@ -140,7 +139,7 @@ const editProfileFormPopupObj = new PopupWithForm(
   "#edit-profile-modal",
   (values) => {
     //values is an object returned by _handleFormSubmit
-    user.setUserInfo({ name: values.name, about: values.title });
+    user.setUserInfoTextOnly({ name: values.name, about: values.title });
     editProfileFormPopupObj.close();
   }
 );
