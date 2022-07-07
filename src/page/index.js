@@ -3,7 +3,7 @@ import { FormValidator } from "../components/FormValidator.js";
 
 import { Card } from "../components/Card.js";
 
-import { initialCards, customSettings } from "../components/constants.js";
+import { customSettings } from "../components/constants.js";
 
 import Section from "../components/section.js";
 
@@ -78,9 +78,6 @@ api
     );
     cardGridObject.renderItems();
   });
-
-//STOP using initialCards from constants.js
-console.log(initialCards);
 
 //define a function to add cards to the grid
 function renderCard(cardContainer, data, cardPopupObj) {
