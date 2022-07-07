@@ -59,6 +59,7 @@ const api = new Api({
   },
 });
 
+//use the Api object to load the initial cards from the server
 api
   .getInitialCards()
   .then((res) => res.json())
@@ -66,8 +67,19 @@ api
     console.log("this is during the fetch promise");
     console.log(result);
     console.log("this is during the fetch promise after we log the result");
+    const cardGridObject = new Section(
+      {
+        items: result,
+        renderer: (data) => {
+          renderCard(cardGridObject, data, imagePopupObj);
+        },
+      },
+      ".grid"
+    );
+    cardGridObject.renderItems();
   });
 
+//STOP using initialCards from constants.js
 console.log(initialCards);
 
 //define a function to add cards to the grid
@@ -114,21 +126,6 @@ const editProfileFormObj = formValidatorObjList.find(
 const addCardFormObj = formValidatorObjList.find(
   (obj) => obj.formElement.getAttribute("name") == "imagenameandlink"
 );
-
-//use the Api objecgt to load the initial cards from the server
-//STOP using initialCards from constants.js
-
-const cardGridObject = new Section(
-  {
-    items: initialCards,
-    renderer: (data) => {
-      renderCard(cardGridObject, data, imagePopupObj);
-    },
-  },
-  ".grid"
-);
-
-cardGridObject.renderItems();
 
 //////////////////////////////////////////////////////////////////////make the PopupWithFormObject for each form
 const editProfileFormPopupObj = new PopupWithForm(
