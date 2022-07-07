@@ -11,6 +11,13 @@ class Api {
       headers: this._headers,
     });
   }
+
+  getUserInfo() {
+    const url = this._baseUrl + "/users/me";
+    return fetch(url, {
+      headers: this._headers,
+    });
+  }
 }
 
 export { Api };

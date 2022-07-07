@@ -37,6 +37,17 @@ const imageNameInput = addCardForm.querySelector('[name="imagename"]');
 const imageLinkInput = addCardForm.querySelector('[name="imagelink"]');
 /////////////////////////////////////////////
 
+//create 1 global PopupWithImage object. Image is set to be different when differnt cards are clicked on (via open() method)
+//templateSelector should be set to "#card-template" (may change if more card templates are added)
+const imagePopupObj = new PopupWithImage("#image-popup"); //create popup image for card
+imagePopupObj.setEventListeners();
+
+//create 1 global UserInfo object
+const user = new UserInfo({
+  userName: ".profile__info-name",
+  userJob: ".profile__info-title",
+});
+
 /////Getting info from server
 //Token: 7201271b-2cce-46ab-9f28-d324b822f8cb
 //Group ID: group-12
@@ -79,6 +90,17 @@ api
     cardGridObject.renderItems();
   });
 
+//use the Api object to load the user info
+//TO DO: load the user profile pic
+api
+  .getUserInfo()
+  .then((res) => res.json())
+  .then((result) => {
+    console.log("this is during the fetch promise for user info");
+    console.log(result);
+    user.setUserInfo(result);
+  });
+
 //define a function to add cards to the grid
 function renderCard(cardContainer, data, cardPopupObj) {
   const cardObj = new Card(data, "#card-template", () => {
@@ -88,17 +110,6 @@ function renderCard(cardContainer, data, cardPopupObj) {
   const newCard = cardObj.createCardElement(); //create a card element
   cardContainer.addItem(newCard);
 }
-
-//create 1 global PopupWithImage object. Image is set to be different when differnt cards are clicked on (via open() method)
-//templateSelector should be set to "#card-template" (may change if more card templates are added)
-const imagePopupObj = new PopupWithImage("#image-popup"); //create popup image for card
-imagePopupObj.setEventListeners();
-
-//create 1 global UserInfo object
-const user = new UserInfo({
-  userName: ".profile__info-name",
-  userJob: ".profile__info-title",
-});
 
 /////////////////////////get all forms and create FormValidator objects out of them
 
@@ -129,7 +140,7 @@ const editProfileFormPopupObj = new PopupWithForm(
   "#edit-profile-modal",
   (values) => {
     //values is an object returned by _handleFormSubmit
-    user.setUserInfo({ newName: values.name, newJob: values.title });
+    user.setUserInfo({ name: values.name, about: values.title });
     editProfileFormPopupObj.close();
   }
 );
