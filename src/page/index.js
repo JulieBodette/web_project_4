@@ -71,7 +71,7 @@ const api = new Api({
   },
 });
 
-//items is initially null- gets set up during the api call to the server
+//items is initially null- gets set up later, during the api call to the server
 const cardGridObject = new Section(
   {
     items: null,
