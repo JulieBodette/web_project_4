@@ -1,4 +1,5 @@
 import Popup from "./Popup";
+import Api from "./Api";
 
 class PopupWithForm extends Popup {
   constructor(
@@ -32,7 +33,6 @@ class PopupWithForm extends Popup {
       evt.preventDefault(); // stops the browser from submitting the form in the default way.
       this._handleFormSubmit(this._getInputValues()); //send the inputs from the form (inputs are returned by getInputValues) to the HandleFormSubbmit function
 
-      //patch the data to the server
       console.log("sent to server");
     });
     //we did not explicitly find the submit button...just listening to the event

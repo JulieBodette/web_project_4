@@ -22,8 +22,8 @@ class UserInfo {
     //might need to add profile pic??
     // handy for cases when it's necessary to display the user data in the open form
     const newObj = {
-      username: this.userNameElement.textContent,
-      userinfo: this.userJobElement.textContent,
+      name: this.userNameElement.textContent,
+      about: this.userJobElement.textContent,
     };
     return newObj;
   }

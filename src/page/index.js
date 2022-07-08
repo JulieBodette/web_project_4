@@ -141,8 +141,18 @@ const addCardFormObj = formValidatorObjList.find(
 const editProfileFormPopupObj = new PopupWithForm(
   "#edit-profile-modal",
   (values) => {
+    //i think we are defining _handleFormSubmit here???
     //values is an object returned by _handleFormSubmit
-    user.setUserInfoTextOnly({ name: values.name, about: values.title });
+    user.setUserInfoTextOnly({ name: values.name, about: values.title }); //possibly values.about instead of values.title????
+    //console.log(this._getInputValues());
+    fetch("https://around.nomoreparties.co/v1/group-12/users/me", {
+      method: "PATCH",
+      headers: {
+        authorization: "7201271b-2cce-46ab-9f28-d324b822f8cb",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(user.getUserInfo()),
+    });
     editProfileFormPopupObj.close();
   }
 );
