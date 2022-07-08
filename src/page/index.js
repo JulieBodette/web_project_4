@@ -71,6 +71,15 @@ const api = new Api({
   },
 });
 
+const cardGridObject = new Section(
+  {
+    items: null,
+    renderer: (data) => {
+      renderCard(cardGridObject, data, imagePopupObj);
+    },
+  },
+  ".grid"
+);
 //use the Api object to load the initial cards from the server
 api
   .getInitialCards()
