@@ -12,6 +12,11 @@ class Section {
     this._container = document.querySelector(containerSelector);
   }
 
+  setItems(items) {
+    //used to set the items after initialization
+    this._itemsArray = items;
+  }
+
   clear() {
     this._container.innerHTML = "";
   }

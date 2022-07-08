@@ -71,6 +71,7 @@ const api = new Api({
   },
 });
 
+//items is initially null- gets set up during the api call to the server
 const cardGridObject = new Section(
   {
     items: null,
@@ -80,6 +81,7 @@ const cardGridObject = new Section(
   },
   ".grid"
 );
+
 //use the Api object to load the initial cards from the server
 api
   .getInitialCards()
@@ -88,15 +90,7 @@ api
     console.log("this is during the fetch promise");
     console.log(result);
     console.log("this is during the fetch promise after we log the result");
-    const cardGridObject = new Section(
-      {
-        items: result,
-        renderer: (data) => {
-          renderCard(cardGridObject, data, imagePopupObj);
-        },
-      },
-      ".grid"
-    );
+    cardGridObject.setItems(result);
     cardGridObject.renderItems();
   });
 
