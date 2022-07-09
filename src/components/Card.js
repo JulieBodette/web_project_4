@@ -21,8 +21,7 @@ class Card {
     return this._element;
   }
 
-  _getElement()
-  {
+  _getElement() {
     return this._cardTemplate.cloneNode(true); //true clones everything inside
   }
   _setEventListener() {
@@ -30,8 +29,10 @@ class Card {
     const likeButton = this._element.querySelector(".element__like");
     const deleteButton = this._element.querySelector(".element__trash");
     //add event listeners for like and delete
-    likeButton.addEventListener("click", this._like); //send it the function name ie this._like with NOPARENTHESES. this._like() BAD, WILL CALL FUNCTION ON PAGE LOAD
-    deleteButton.addEventListener("click", this._delete);
+    likeButton.addEventListener("click", (evt) => this._like(evt));
+    deleteButton.addEventListener("click", this._delete); //send it the function name ie this._delete with NOPARENTHESES. this._delete() BAD, WILL CALL FUNCTION ON PAGE LOAD
+    //unless of course you are doing an arrow funtion similar to (evt) => this._like(evt)
+    //ps u can do either way (evt) => this._like(evt)  OR (evt) => {this._like(evt)}  -- brackets are optional
 
     //query selector the image. when this image is clicked on, a popup opens.
     const cardImage = this._element.querySelector(".element__image");
@@ -44,23 +45,24 @@ class Card {
   _like(evt) {
     const heart = evt.target; //the event target is the heart button that the user clicked on
     heart.classList.toggle("element__like_active");
+    //update the number of likes to the server
+    const numLikesText = this._element.querySelector(".element__like-text");
+    numLikesText.textContent = "6"; //change to add 1
   }
 
-  _delete = () => {//declared as an arrow function, so we don't have to create new arrow function when sending to EventListener
+  _delete = () => {
+    //declared as an arrow function, so we don't have to create new arrow function when sending to EventListener
     this._element.remove();
     this._element = null; //help out the garbage collector
-  }
+  };
 
   _setImageAndName() {
     this._cardImage = this._element.querySelector(".element__image");
-    this._cardImage.style = `background-image:url(${this._cardLink});`; //template literal has ` at the begginign and end instead of ""
+    this._cardImage.style = `background-image:url(${this._cardLink});`; //template literal has ` at the beginning and end instead of ""
     //also template literal has ${cardLink} (no quotes) even though cardLInk is a string
     //use .src here if image tag, I am using style and background image because it is button
     this._element.querySelector(".element__text").textContent = this._cardName;
   }
 }
 
-
-
-
-export {Card};
+export { Card };
