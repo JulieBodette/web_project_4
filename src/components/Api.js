@@ -20,11 +20,21 @@ class Api {
   }
 
   patchUserInfo(info) {
+    //user.getUserInfo() is passed in for info
     const url = this._baseUrl + "/users/me";
     return fetch(url, {
       method: "PATCH",
       headers: this._headers,
-      body: JSON.stringify(info), //user.getUserInfo()
+      body: JSON.stringify(info),
+    });
+  }
+
+  uploadCard(info) {
+    const url = this._baseUrl + "/cards";
+    return fetch(url, {
+      method: "POST",
+      headers: this._headers,
+      body: JSON.stringify(info),
     });
   }
 }

@@ -141,7 +141,7 @@ const addCardFormObj = formValidatorObjList.find(
 const editProfileFormPopupObj = new PopupWithForm(
   "#edit-profile-modal",
   (values) => {
-    //i think we are defining _handleFormSubmit here???
+    //we are defining _handleFormSubmit here
     //values is an object returned by _handleFormSubmit
     user.setUserInfoTextOnly({ name: values.name, about: values.title }); //possibly values.about instead of values.title????
     api
@@ -158,6 +158,9 @@ const addCardFormPopupObj = new PopupWithForm("#add-card-modal", () => {
     name: imageNameInput.value,
     link: imageLinkInput.value,
   };
+
+  //upload the card to the server
+  api.uploadCard(newCardInfo);
 
   renderCard(cardGridObject, newCardInfo, imagePopupObj);
 
