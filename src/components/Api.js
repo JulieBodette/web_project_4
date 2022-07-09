@@ -18,6 +18,15 @@ class Api {
       headers: this._headers,
     });
   }
+
+  patchUserInfo(info) {
+    const url = this._baseUrl + "/users/me";
+    return fetch(url, {
+      method: "PATCH",
+      headers: this._headers,
+      body: JSON.stringify(info), //user.getUserInfo()
+    });
+  }
 }
 
 export { Api };
