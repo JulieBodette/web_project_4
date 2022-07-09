@@ -3,6 +3,8 @@ class Card {
     this._handleCardClick = handleCardClick; //the code to open the image popup
     this._cardName = data.name;
     this._cardLink = data.link;
+
+    this._likes = data.likes;
     this._cardTemplate = document
       .querySelector(templateSelector)
       .content.querySelector(".element");
@@ -28,6 +30,7 @@ class Card {
     this._cardImage = this._element.querySelector(".element__image");
 
     this._setImageAndName();
+    this._setLikes();
     this._setEventListener();
 
     //return new card so that it can be added to the grid when this function is called
@@ -55,7 +58,7 @@ class Card {
     heart.classList.toggle("element__like_active");
     //update the number of likes to the server
 
-    this._numLikesText.textContent = "6"; //change to add 1
+    this._numLikesText.textContent = this._likes.length; //"6"; //change to add 1
   }
 
   _delete = () => {
@@ -64,8 +67,11 @@ class Card {
     this._element = null; //help out the garbage collector
   };
 
+  _setLikes() {
+    this._numLikesText.textContent = this._likes.length; //this._likes is an array full of users who liked the image.
+    //length gives the number of users/length of the array/number of likes
+  }
   _setImageAndName() {
-    this._cardImage = this._element.querySelector(".element__image");
     this._cardImage.style = `background-image:url(${this._cardLink});`; //template literal has ` at the beginning and end instead of ""
     //also template literal has ${cardLink} (no quotes) even though cardLInk is a string
     //use .src here if image tag, I am using style and background image because it is button
