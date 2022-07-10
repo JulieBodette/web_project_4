@@ -6,6 +6,7 @@ class Card {
     this._cardLink = data.link;
 
     this._likes = data.likes;
+    this._owner = data.owner;
     this._id = data._id;
     this._cardTemplate = document
       .querySelector(templateSelector)
@@ -22,7 +23,14 @@ class Card {
   getId() {
     return this._id;
   }
-  createCardElement() {
+  createCardElement(userData) {
+    console.log(userData.getUserInfo().name); //gets the current user- the one who is on the webpage
+    console.log(this._owner.name);
+    if (userData.getUserInfo().name === this._owner.name) {
+      console.log("user matches! you can delete this card if u want :)");
+    }
+    //add some code to save the user that created the card
+    //or maybe not save it, but at least enable/disable the trash icon based on it
     //make a copy of the template using cloneNode
     this._element = this._getElement();
 

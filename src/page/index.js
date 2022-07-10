@@ -120,7 +120,7 @@ function renderCard(cardContainer, data, cardPopupObj, deletePopupObj) {
     }
   ); //create a card object
 
-  const newCard = cardObj.createCardElement(); //create a card element
+  const newCard = cardObj.createCardElement(user); //create a card element
   cardContainer.addItem(newCard);
 }
 
@@ -191,8 +191,6 @@ const deleteCardFormPopupObj = new PopupWithConfirmation(
   "#delete-card-modal",
   (cardObjToDelete) => {
     //this is the handleFormSubmit Function
-    console.log(cardObjToDelete);
-    console.log(cardObjToDelete.getId());
     api.deleteCard(cardObjToDelete.getId()); //api call here to delete the card from server
     cardObjToDelete.deleteFromPage(); //code to remove the card from the page immediately
     deleteCardFormPopupObj.close(); //close the modal panel when submitted
