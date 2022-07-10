@@ -63,7 +63,7 @@ class Card {
   }
 
   _delete = () => {
-    this._handleDeleteClick();
+    this._handleDeleteClick(); //opens the delete popup
     //declared as an arrow function, so we don't have to create new arrow function when sending to EventListener
     this._element.remove();
     this._element = null; //help out the garbage collector

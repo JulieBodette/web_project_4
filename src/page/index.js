@@ -10,6 +10,8 @@ import Section from "../components/section.js";
 import PopupWithImage from "../components/PopupWithImage.js";
 
 import PopupWithForm from "../components/PopupWithForm.js";
+import PopupWithConfirmation from "../components/PopupWithConfirmation.js";
+
 import { UserInfo } from "../components/UserInfo.js";
 
 import { Api } from "../components/Api.js";
@@ -112,7 +114,7 @@ function renderCard(cardContainer, data, cardPopupObj, deletePopupObj) {
       cardPopupObj.open(data);
     },
     () => {
-      deletePopupObj.open();
+      deletePopupObj.open(); //send it a reference to the card to delete
     }
   ); //create a card object
 
@@ -183,11 +185,14 @@ const addCardFormPopupObj = new PopupWithForm("#add-card-modal", () => {
 addCardFormPopupObj.setEventListeners();
 
 //make an object for the "are you sure? delete button"
-const deleteCardFormPopupObj = new PopupWithForm("#delete-card-modal", () => {
-  //add an api call here to delete the card
-  console.log("wow u just deleted a card!!");
-  deleteCardFormPopupObj.close(); //close the modal panel when submitted
-});
+const deleteCardFormPopupObj = new PopupWithConfirmation(
+  "#delete-card-modal",
+  () => {
+    //add an api call here to delete the card
+    console.log("wow u just deleted a card!!");
+    deleteCardFormPopupObj.close(); //close the modal panel when submitted
+  }
+);
 deleteCardFormPopupObj.setEventListeners();
 
 /////////////////////////////////////////////////////////////////////add click events to buttons that open form modals

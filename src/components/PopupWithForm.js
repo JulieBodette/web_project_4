@@ -1,10 +1,9 @@
 import Popup from "./Popup";
-import Api from "./Api";
 
 class PopupWithForm extends Popup {
   constructor(
     popupSelector,
-    handleFormSubmit //"#image-popup" or "#edit-profile-modal" or "#add-card-modal" or "#delete-card-modal"is the popupSelector
+    handleFormSubmit //"#image-popup" or "#edit-profile-modal" or "#add-card-modal" is the popupSelector
   ) {
     super(popupSelector); //set up this._modal
     this._handleFormSubmit = handleFormSubmit;
