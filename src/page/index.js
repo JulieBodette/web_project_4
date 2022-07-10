@@ -105,7 +105,6 @@ api
 
 //define a function to add cards to the grid
 function renderCard(cardContainer, data, cardPopupObj, deletePopupObj) {
-  console.log(deletePopupObj); //ade code to actually do stuff with this obj
   const cardObj = new Card(
     data,
     "#card-template",
@@ -113,7 +112,7 @@ function renderCard(cardContainer, data, cardPopupObj, deletePopupObj) {
       cardPopupObj.open(data);
     },
     () => {
-      console.log("u deleted a card. this set in renderCard.");
+      deletePopupObj.open();
     }
   ); //create a card object
 
