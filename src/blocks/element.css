@@ -78,6 +78,9 @@
 
 .element__trash-image /*Fix issue of clicks being detected on the image which had no class*/ {
 }
+.element__trash-image_hidden {
+  visibility: hidden;
+}
 
 .element__like_active {
   content: url("../images/Heart_active.svg");
@@ -91,6 +94,10 @@
   /*reset button styles*/
   border: none;
   background: transparent;
+}
+
+.element__trash_hidden {
+  visibility: hidden;
 }
 
 .element__trash:hover {

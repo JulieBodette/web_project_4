@@ -6,6 +6,7 @@ class Card {
     this._cardLink = data.link;
 
     this._likes = data.likes;
+    console.log(data.owner);
     this._owner = data.owner;
     this._id = data._id;
     this._cardTemplate = document
@@ -17,6 +18,7 @@ class Card {
 
     this._likeButton;
     this._deleteButton;
+    this._deleteButtonImage;
     this._numLikesText;
   }
 
@@ -24,24 +26,31 @@ class Card {
     return this._id;
   }
   createCardElement(userData) {
-    console.log(userData.getUserInfo().name); //gets the current user- the one who is on the webpage
-    console.log(this._owner.name);
-    if (userData.getUserInfo().name === this._owner.name) {
-      console.log("user matches! you can delete this card if u want :)");
-    }
-    //add some code to save the user that created the card
-    //or maybe not save it, but at least enable/disable the trash icon based on it
     //make a copy of the template using cloneNode
     this._element = this._getElement();
-
     //query selector the like and delete button and number of likes
     this._likeButton = this._element.querySelector(".element__like");
     this._deleteButton = this._element.querySelector(".element__trash");
+    this._deleteButtonImage = this._element.querySelector(
+      ".element__trash-image"
+    );
 
     this._numLikesText = this._element.querySelector(".element__like-text");
 
     //query selector the image. when this image is clicked on, a popup opens.
     this._cardImage = this._element.querySelector(".element__image");
+
+    console.log(userData.getUserInfo().name); //gets the current user- the one who is on the webpage
+    console.log(this._owner);
+    console.log(this._owner.name);
+    //enable/disable the trash icon based on if current user is the one who made the card
+    if (userData.getUserInfo().name === this._owner.name) {
+      console.log("user matches! you can delete this card if u want :)");
+    } else {
+      console.log("u cannot delete");
+      this._deleteButtonImage.classList.add("element__trash-image_hidden");
+      this._deleteButtonImage.classList.remove("element__trash-image");
+    }
 
     this._setImageAndName();
     this._setLikes();

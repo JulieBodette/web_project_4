@@ -84,6 +84,17 @@ const cardGridObject = new Section(
   ".grid"
 );
 
+//MUST LOAD THE USER INFO BEFORE THE CARDS
+//that way we can check who the cards belong to correctly
+//use the Api object to load the user info
+api
+  .getUserInfo()
+  .then((res) => res.json())
+  .then((result) => {
+    console.log("this is during the fetch promise for user info");
+    user.setUserInfo(result);
+  });
+
 //use the Api object to load the initial cards from the server
 api
   .getInitialCards()
@@ -94,15 +105,6 @@ api
     console.log("this is during the fetch promise after we log the result");
     cardGridObject.setItems(result);
     cardGridObject.renderItems();
-  });
-
-//use the Api object to load the user info
-api
-  .getUserInfo()
-  .then((res) => res.json())
-  .then((result) => {
-    console.log("this is during the fetch promise for user info");
-    user.setUserInfo(result);
   });
 
 //define a function to add cards to the grid
@@ -168,6 +170,8 @@ const addCardFormPopupObj = new PopupWithForm("#add-card-modal", () => {
   const newCardInfo = {
     name: imageNameInput.value,
     link: imageLinkInput.value,
+    likes: [], //starts with no likes
+    owner: user.getUserInfo(), //returns name and about
   };
 
   //upload the card to the server
