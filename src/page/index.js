@@ -114,7 +114,9 @@ function renderCard(cardContainer, data, cardPopupObj, deletePopupObj) {
       cardPopupObj.open(data);
     },
     () => {
-      deletePopupObj.open(); //send it a reference to the card to delete
+      //code for when the delete button is pressed
+      deletePopupObj.setCardToDelete(cardObj);
+      deletePopupObj.open(); //open the popup
     }
   ); //create a card object
 
@@ -187,8 +189,13 @@ addCardFormPopupObj.setEventListeners();
 //make an object for the "are you sure? delete button"
 const deleteCardFormPopupObj = new PopupWithConfirmation(
   "#delete-card-modal",
-  () => {
-    //add an api call here to delete the card
+  (cardObjToDelete) => {
+    //this is the handleFormSubmit Function
+    console.log(cardObjToDelete);
+    console.log(cardObjToDelete.getId());
+    //api call here to delete the card
+    api.deleteCard(cardObjToDelete.getId());
+    //add code to remove the card from the page (card is removed on refresh, but we want it removed immediately)
     console.log("wow u just deleted a card!!");
     deleteCardFormPopupObj.close(); //close the modal panel when submitted
   }

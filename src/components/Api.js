@@ -29,6 +29,14 @@ class Api {
     });
   }
 
+  deleteCard(id) {
+    const url = this._baseUrl + "/cards/" + id;
+    return fetch(url, {
+      method: "DELETE",
+      headers: this._headers,
+    });
+  }
+
   uploadCard(info) {
     const url = this._baseUrl + "/cards";
     return fetch(url, {

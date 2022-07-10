@@ -6,16 +6,21 @@ class Card {
     this._cardLink = data.link;
 
     this._likes = data.likes;
+    this._id = data._id;
     this._cardTemplate = document
       .querySelector(templateSelector)
       .content.querySelector(".element");
     //select the template, use .content to get the content inside the template, then query selector again to get the element class
-    this._element; //will be set to the card element
+    this.element; //will be set to the card element
     this._cardImage; //will be set to the image in the card
 
     this._likeButton;
     this._deleteButton;
     this._numLikesText;
+  }
+
+  getId() {
+    return this._id;
   }
   createCardElement() {
     //make a copy of the template using cloneNode
@@ -65,8 +70,10 @@ class Card {
   _delete = () => {
     this._handleDeleteClick(); //opens the delete popup
     //declared as an arrow function, so we don't have to create new arrow function when sending to EventListener
-    this._element.remove();
-    this._element = null; //help out the garbage collector
+
+    //code that delets the card
+    //this._element.remove();
+    //this._element = null; //help out the garbage collector
   };
 
   _setLikes() {
