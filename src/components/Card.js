@@ -1,6 +1,7 @@
 class Card {
-  constructor(data, templateSelector, handleCardClick) {
+  constructor(data, templateSelector, handleCardClick, handleDeleteClick) {
     this._handleCardClick = handleCardClick; //the code to open the image popup
+    this._handleDeleteClick = handleDeleteClick; //the code to open the delete popup
     this._cardName = data.name;
     this._cardLink = data.link;
 
@@ -62,14 +63,19 @@ class Card {
   }
 
   _delete = () => {
+    this._handleDeleteClick();
     //declared as an arrow function, so we don't have to create new arrow function when sending to EventListener
     this._element.remove();
     this._element = null; //help out the garbage collector
   };
 
   _setLikes() {
-    this._numLikesText.textContent = this._likes.length; //this._likes is an array full of users who liked the image.
-    //length gives the number of users/length of the array/number of likes
+    if (this._likes != null) {
+      this._numLikesText.textContent = this._likes.length; //this._likes is an array full of users who liked the image.
+      //length gives the number of users/length of the array/number of likes
+    } else {
+      this._numLikesText.textContent = 0;
+    }
   }
   _setImageAndName() {
     this._cardImage.style = `background-image:url(${this._cardLink});`; //template literal has ` at the beginning and end instead of ""

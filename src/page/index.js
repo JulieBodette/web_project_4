@@ -76,7 +76,7 @@ const cardGridObject = new Section(
   {
     items: null,
     renderer: (data) => {
-      renderCard(cardGridObject, data, imagePopupObj);
+      renderCard(cardGridObject, data, imagePopupObj, deleteCardFormPopupObj);
     },
   },
   ".grid"
@@ -104,10 +104,18 @@ api
   });
 
 //define a function to add cards to the grid
-function renderCard(cardContainer, data, cardPopupObj) {
-  const cardObj = new Card(data, "#card-template", () => {
-    cardPopupObj.open(data);
-  }); //create a card object
+function renderCard(cardContainer, data, cardPopupObj, deletePopupObj) {
+  console.log(deletePopupObj); //ade code to actually do stuff with this obj
+  const cardObj = new Card(
+    data,
+    "#card-template",
+    () => {
+      cardPopupObj.open(data);
+    },
+    () => {
+      console.log("u deleted a card. this set in renderCard.");
+    }
+  ); //create a card object
 
   const newCard = cardObj.createCardElement(); //create a card element
   cardContainer.addItem(newCard);
@@ -162,13 +170,26 @@ const addCardFormPopupObj = new PopupWithForm("#add-card-modal", () => {
   //upload the card to the server
   api.uploadCard(newCardInfo);
 
-  renderCard(cardGridObject, newCardInfo, imagePopupObj);
+  renderCard(
+    cardGridObject,
+    newCardInfo,
+    imagePopupObj,
+    deleteCardFormPopupObj
+  );
 
   addCardForm.reset(); //clear out the input fields
   addCardFormObj.setButtonInactive(); //Set button to inactive-it needs to be hidden because the fields are empty
   addCardFormPopupObj.close(); //close the modal panel when submitted
 });
 addCardFormPopupObj.setEventListeners();
+
+//make an object for the "are you sure? delete button"
+const deleteCardFormPopupObj = new PopupWithForm("#delete-card-modal", () => {
+  //add an api call here to delete the card
+  console.log("wow u just deleted a card!!");
+  deleteCardFormPopupObj.close(); //close the modal panel when submitted
+});
+deleteCardFormPopupObj.setEventListeners();
 
 /////////////////////////////////////////////////////////////////////add click events to buttons that open form modals
 //Set up button that opens add card modal

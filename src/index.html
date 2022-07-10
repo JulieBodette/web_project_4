@@ -135,6 +135,20 @@
       </div>
     </div>
 
+    <!--modal for the delete button to ask if the user is sure-->
+    <div class="modal" id="delete-card-modal">
+      <div class="modal__content">
+        <button type="button" class="modal__close-button">
+          <img src="<%=require('./images/CloseIcon.svg')%>" alt="X" />
+        </button>
+        <h2 class="modal__title">Are you sure?</h2>
+        <form name="delete" class="modal__form">
+          <!--form is needed so that PopupWithForm class works with this html-->
+          <button type="submit" class="modal__submit-button">Yes</button>
+        </form>
+      </div>
+    </div>
+
     <!--template MUST be before the <script>, or the script cannot acess the template-->
     <template id="card-template">
       <!--javascript finds this template via the id using queryselector-->
