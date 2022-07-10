@@ -193,10 +193,8 @@ const deleteCardFormPopupObj = new PopupWithConfirmation(
     //this is the handleFormSubmit Function
     console.log(cardObjToDelete);
     console.log(cardObjToDelete.getId());
-    //api call here to delete the card
-    api.deleteCard(cardObjToDelete.getId());
-    //add code to remove the card from the page (card is removed on refresh, but we want it removed immediately)
-    console.log("wow u just deleted a card!!");
+    api.deleteCard(cardObjToDelete.getId()); //api call here to delete the card from server
+    cardObjToDelete.deleteFromPage(); //code to remove the card from the page immediately
     deleteCardFormPopupObj.close(); //close the modal panel when submitted
   }
 );

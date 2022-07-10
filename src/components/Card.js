@@ -49,7 +49,9 @@ class Card {
   _setEventListener() {
     //add event listeners for like and delete
     this._likeButton.addEventListener("click", (evt) => this._like(evt));
-    this._deleteButton.addEventListener("click", this._delete); //send it the function name ie this._delete with NOPARENTHESES. this._delete() BAD, WILL CALL FUNCTION ON PAGE LOAD
+    this._deleteButton.addEventListener("click", () =>
+      this._handleDeleteClick()
+    ); //send it the function name ie this._delete with NOPARENTHESES. this._delete() BAD, WILL CALL FUNCTION ON PAGE LOAD
     //unless of course you are doing an arrow funtion similar to (evt) => this._like(evt)
     //ps u can do either way (evt) => this._like(evt)  OR (evt) => {this._like(evt)}  -- brackets are optional
 
@@ -67,13 +69,10 @@ class Card {
     this._numLikesText.textContent = this._likes.length; //"6"; //change to add 1
   }
 
-  _delete = () => {
-    this._handleDeleteClick(); //opens the delete popup
-    //declared as an arrow function, so we don't have to create new arrow function when sending to EventListener
-
-    //code that delets the card
-    //this._element.remove();
-    //this._element = null; //help out the garbage collector
+  deleteFromPage = () => {
+    //code that deletes the card from the page. Does NOT  delete it from server
+    this._element.remove();
+    this._element = null; //help out the garbage collector
   };
 
   _setLikes() {
