@@ -119,6 +119,11 @@ function renderCard(cardContainer, data, cardPopupObj, deletePopupObj) {
       //code for when the delete button is pressed
       deletePopupObj.setCardToDelete(cardObj);
       deletePopupObj.open(); //open the popup
+    },
+    //code for when the like button is pressed-tell the server the card was liked
+    () => {
+      //put evt in parentheses??
+      console.log("you liked the card and we r telling server");
     }
   ); //create a card object
 

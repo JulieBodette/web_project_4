@@ -1,12 +1,18 @@
 class Card {
-  constructor(data, templateSelector, handleCardClick, handleDeleteClick) {
+  constructor(
+    data,
+    templateSelector,
+    handleCardClick,
+    handleDeleteClick,
+    handleLikeClick
+  ) {
     this._handleCardClick = handleCardClick; //the code to open the image popup
     this._handleDeleteClick = handleDeleteClick; //the code to open the delete popup
+    this._handleLikeClick = handleLikeClick; //the code to tel the server the card has been liked
     this._cardName = data.name;
     this._cardLink = data.link;
 
     this._likes = data.likes;
-    console.log(data.owner);
     this._owner = data.owner;
     this._id = data._id;
     this._cardTemplate = document
@@ -53,7 +59,7 @@ class Card {
     }
 
     this._setImageAndName();
-    this._setLikes();
+    this._loadLikes();
     this._setEventListener();
 
     //return new card so that it can be added to the grid when this function is called
@@ -82,6 +88,7 @@ class Card {
     const heart = evt.target; //the event target is the heart button that the user clicked on
     heart.classList.toggle("element__like_active");
     //update the number of likes to the server
+    this._handleLikeClick();
 
     this._numLikesText.textContent = this._likes.length; //"6"; //change to add 1
   }
@@ -92,7 +99,7 @@ class Card {
     this._element = null; //help out the garbage collector
   };
 
-  _setLikes() {
+  _loadLikes() {
     if (this._likes != null) {
       this._numLikesText.textContent = this._likes.length; //this._likes is an array full of users who liked the image.
       //length gives the number of users/length of the array/number of likes
