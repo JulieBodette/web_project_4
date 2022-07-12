@@ -122,7 +122,11 @@ function renderCard(cardContainer, data, cardPopupObj, deletePopupObj) {
     },
     //code for when the like button is pressed-tell the server the card was liked
     () => {
-      //put evt in parentheses??
+      //put evt in parentheses?
+      //api.getInitialCards(); //load cards/ get id. updatre likessss
+      console.log(cardObj.getId());
+      api.likeCard(cardObj.getId());
+
       console.log("you liked the card and we r telling server");
     }
   ); //create a card object
