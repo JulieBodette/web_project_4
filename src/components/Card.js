@@ -54,8 +54,7 @@ class Card {
       console.log("user matches! you can delete this card if u want :)");
     } else {
       console.log("u cannot delete");
-      this._deleteButtonImage.classList.add("element__trash-image_hidden");
-      this._deleteButtonImage.classList.remove("element__trash-image");
+      this._deleteButton.remove();
     }
 
     this._setImageAndName();
