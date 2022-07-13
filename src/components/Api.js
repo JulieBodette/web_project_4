@@ -43,8 +43,15 @@ class Api {
       method: "POST",
       headers: this._headers,
       body: JSON.stringify(info),
+    }).then((res) => res.json());
+  }
+
+  likeCard(id) {
+    const url = this._baseUrl + "/cards/likes/" + id;
+    return fetch(url, {
+      method: "PUT",
+      headers: this._headers,
     });
   }
 }
-
 export { Api };

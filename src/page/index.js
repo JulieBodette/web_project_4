@@ -188,14 +188,13 @@ const addCardFormPopupObj = new PopupWithForm("#add-card-modal", () => {
   //upload the card to the server
   isLoading = true;
   addCardFormPopupObj.setLoadingText();
-  api.uploadCard(newCardInfo).then((isLoading = false));
+  api.uploadCard(newCardInfo).then((data) => {
+    console.log({ data });
 
-  renderCard(
-    cardGridObject,
-    newCardInfo,
-    imagePopupObj,
-    deleteCardFormPopupObj
-  );
+    //send data so that it gets the id info
+    renderCard(cardGridObject, data, imagePopupObj, deleteCardFormPopupObj);
+  });
+  //.then((isLoading = false));
 
   addCardForm.reset(); //clear out the input fields
   addCardFormObj.setButtonInactive(); //Set button to inactive-it needs to be hidden because the fields are empty
