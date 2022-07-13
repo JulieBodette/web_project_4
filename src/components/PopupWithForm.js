@@ -9,6 +9,13 @@ class PopupWithForm extends Popup {
     this._handleFormSubmit = handleFormSubmit;
     this._form = this._modal.querySelector(".modal__form");
   }
+  setLoadingText() {
+    //buttonText = this._modal.querySelector(".modal__submit-button");
+    //this._buttonText.textContent = "Loading...";
+    console.log(this._modal);
+    //console.log(buttonText);
+    console.log("loading...");
+  }
 
   _getInputValues() {
     //collects data from all the input fields

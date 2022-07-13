@@ -16,6 +16,8 @@ import { UserInfo } from "../components/UserInfo.js";
 
 import { Api } from "../components/Api.js";
 
+let isLoading = false; //global variable to keep track of if page is loading data
+
 ////////////////////////////////////////////////Set up edit profile text button and modal for it
 //use const so that the value does not change
 const editProfileButton = document.querySelector("#profile-info-edit-button"); ///find the edit button from profile-this opens the modal panel
@@ -184,7 +186,9 @@ const addCardFormPopupObj = new PopupWithForm("#add-card-modal", () => {
   };
 
   //upload the card to the server
-  api.uploadCard(newCardInfo);
+  isLoading = true;
+  addCardFormPopupObj.setLoadingText();
+  api.uploadCard(newCardInfo).then((isLoading = false));
 
   renderCard(
     cardGridObject,
