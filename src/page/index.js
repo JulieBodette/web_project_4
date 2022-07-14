@@ -107,6 +107,7 @@ api
     console.log("this is during the fetch promise after we log the result");
     cardGridObject.setItems(result);
     cardGridObject.renderItems();
+    console.log("this is during the fetch promise after we render items");
   });
 
 //define a function to add cards to the grid
@@ -126,10 +127,13 @@ function renderCard(cardContainer, data, cardPopupObj, deletePopupObj) {
     () => {
       //put evt in parentheses?
       //api.getInitialCards(); //load cards/ get id. updatre likessss
-      console.log(cardObj.getId());
-      api.likeCard(cardObj.getId());
-
-      console.log("you liked the card and we r telling server");
+      if (cardObj.getIsLikedByCurrentUser() == false) {
+        api.likeCard(cardObj.getId());
+        console.log("you liked the card and we r telling server");
+      } else {
+        api.unLikeCard(cardObj.getId());
+        console.log("you UNliked the card and we r telling server");
+      }
     }
   ); //create a card object
 

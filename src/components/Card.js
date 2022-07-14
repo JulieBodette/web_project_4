@@ -8,7 +8,7 @@ class Card {
   ) {
     this._handleCardClick = handleCardClick; //the code to open the image popup
     this._handleDeleteClick = handleDeleteClick; //the code to open the delete popup
-    this._handleLikeClick = handleLikeClick; //the code to tel the server the card has been liked
+    this._handleLikeClick = handleLikeClick; //the code to tell the server the card has been liked
     this._cardName = data.name;
     this._cardLink = data.link;
 
@@ -26,6 +26,7 @@ class Card {
     this._deleteButton;
     this._deleteButtonImage;
     this._numLikesText;
+    this._isLikedByCurrentUser; //use to handle user liking and disliking cards
   }
 
   getId() {
@@ -56,7 +57,7 @@ class Card {
       console.log("u cannot delete");
       this._deleteButton.remove();
     }
-
+    this._isLikedByCurrentUser = false; //card is not liked when it is first created
     this._setImageAndName();
     this._loadLikes();
     this._setEventListener();
@@ -65,6 +66,9 @@ class Card {
     return this._element;
   }
 
+  getIsLikedByCurrentUser() {
+    return this._isLikedByCurrentUser;
+  }
   _getElement() {
     return this._cardTemplate.cloneNode(true); //true clones everything inside
   }
@@ -83,13 +87,27 @@ class Card {
     });
   } //end _setEventListener
 
+  _toggleIsLiked() {
+    console.log(this._isLikedByCurrentUser);
+    if (this._isLikedByCurrentUser == false) {
+      this._isLikedByCurrentUser = true;
+    } else {
+      this._isLikedByCurrentUser = false;
+    }
+    console.log(this._isLikedByCurrentUser);
+  }
   _like(evt) {
     const heart = evt.target; //the event target is the heart button that the user clicked on
     heart.classList.toggle("element__like_active");
     //update the number of likes to the server
     this._handleLikeClick();
+    this._toggleIsLiked();
 
-    this._numLikesText.textContent = this._likes.length; //"6"; //change to add 1
+    if ((this._isLikedByCurrentUser = true)) {
+      this._numLikesText.textContent = this._likes.length + 1; //add 1 so it shows up immediately
+    } else {
+      this._numLikesText.textContent = this._likes.length - 1; //subtract 1 so it shows up immediately
+    }
   }
 
   deleteFromPage = () => {

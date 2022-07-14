@@ -5,7 +5,6 @@ class Api {
   }
 
   getInitialCards() {
-    console.log("cards. this runs before fetch starts.");
     const url = this._baseUrl + "/cards";
     return fetch(url, {
       headers: this._headers,
@@ -50,6 +49,21 @@ class Api {
     const url = this._baseUrl + "/cards/likes/" + id;
     return fetch(url, {
       method: "PUT",
+      headers: this._headers,
+    });
+  }
+
+  getLikes(id) {
+    const url = this._baseUrl + "/cards/likes/" + id;
+    return fetch(url, {
+      headers: this._headers,
+    });
+  }
+
+  unLikeCard(id) {
+    const url = this._baseUrl + "/cards/likes/" + id;
+    return fetch(url, {
+      method: "DELETE",
       headers: this._headers,
     });
   }
