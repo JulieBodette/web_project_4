@@ -104,9 +104,9 @@ class Card {
     this._toggleIsLiked();
 
     if ((this._isLikedByCurrentUser = true)) {
-      this._numLikesText.textContent = this._likes.length + 1; //add 1 so it shows up immediately
+      this._numLikesText.textContent = this._likes.length; //add 1 so it shows up immediately
     } else {
-      this._numLikesText.textContent = this._likes.length - 1; //subtract 1 so it shows up immediately
+      this._numLikesText.textContent = this._likes.length; //subtract 1 so it shows up immediately
     }
   }
 
