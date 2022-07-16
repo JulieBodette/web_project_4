@@ -30,8 +30,7 @@ class Card {
     this._deleteButton;
     this._deleteButtonImage;
     this._numLikesText;
-    this._isLikedByCurrentUser =
-      this._likes.find((like) => like._id === this.currentUser._id) !== -1; //use to handle user liking and disliking cards
+    this._isLikedByCurrentUser;
 
     //find is kinda like map, takes a callback function, find returns an index. returns -1 if not found
   }
@@ -48,26 +47,35 @@ class Card {
     this._deleteButtonImage = this._element.querySelector(
       ".element__trash-image"
     );
+    this._heart = this._element.querySelector(".element__like-image");
 
     this._numLikesText = this._element.querySelector(".element__like-text");
 
     //query selector the image. when this image is clicked on, a popup opens.
     this._cardImage = this._element.querySelector(".element__image");
 
-    console.log(userData.getUserInfo().name); //gets the current user- the one who is on the webpage
-    console.log(this._owner);
-    console.log(this._owner.name);
     //enable/disable the trash icon based on if current user is the one who made the card
     if (userData.getUserInfo().name === this._owner.name) {
-      console.log("user matches! you can delete this card if u want :)");
     } else {
-      console.log("u cannot delete");
       this._deleteButton.remove();
     }
     this._setImageAndName();
     this._loadLikes();
-    this._setEventListener();
 
+    this._setEventListener();
+    ////////////////////////////////////////////////////////CODEEEEEEEEEEE
+
+    this._isLikedByCurrentUser = false;
+    this._likes.forEach((like) => {
+      if (like._id === userData.getUserInfo().id) {
+        this._isLikedByCurrentUser = true;
+      }
+    });
+
+    if (this._isLikedByCurrentUser) {
+      //if the image was previously liked by currentUser
+      this._toggleLikesImage(); //turn the heart image black
+    }
     //return new card so that it can be added to the grid when this function is called
     return this._element;
   }
@@ -102,9 +110,12 @@ class Card {
     }
     console.log(this._isLikedByCurrentUser);
   }
+
+  _toggleLikesImage() {
+    this._heart.classList.toggle("element__like_active");
+  }
   _like(evt) {
-    const heart = evt.target; //the event target is the heart button that the user clicked on
-    heart.classList.toggle("element__like_active");
+    this._toggleLikesImage();
     //update the number of likes to the server
     this._handleLikeClick();
     this._toggleIsLiked();
