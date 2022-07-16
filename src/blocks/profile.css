@@ -23,6 +23,26 @@
   margin: 0px 30px 0px 0px; /* top right bottom left */
 }
 
+.profile__image {
+  position: relative;
+}
+
+.profile__icon {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-image: url("../images/Edit.svg");
+  width: 120px;
+  height: 120px;
+  background-color: #c4c4c4;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0.8;
+  border-radius: 50%; /*circular crop */
+}
+
 .profile__info {
   grid-area: info; /*NO QUOTES */
   margin: 0px;
