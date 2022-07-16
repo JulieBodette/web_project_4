@@ -128,10 +128,14 @@ function renderCard(cardContainer, data, cardPopupObj, deletePopupObj) {
       //put evt in parentheses?
       //api.getInitialCards(); //load cards/ get id. updatre likessss
       if (cardObj.getIsLikedByCurrentUser() == false) {
-        api.likeCard(cardObj.getId()).then(api.getLikes(cardObj.getId()));
+        api
+          .likeCard(cardObj.getId())
+          .then((data) => cardObj.setLikes(data.likes));
         console.log("you liked the card and we r telling server");
       } else {
-        api.unLikeCard(cardObj.getId()).then(api.getLikes(cardObj.getId()));
+        api
+          .unLikeCard(cardObj.getId())
+          .then((data) => cardObj.setLikes(data.likes));
         console.log("you UNliked the card and we r telling server");
       }
     }

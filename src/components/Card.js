@@ -107,6 +107,13 @@ class Card {
     this._numLikesText.textContent = this._likes.length;
   }
 
+  //use to get likes from server
+  setLikes(likesArray) {
+    this._likes = likesArray;
+    //show to the user the number of likes
+    this._numLikesText.textContent = this._likes.length;
+  }
+
   deleteFromPage = () => {
     //code that deletes the card from the page. Does NOT  delete it from server
     this._element.remove();
