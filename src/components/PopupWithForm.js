@@ -8,13 +8,16 @@ class PopupWithForm extends Popup {
     super(popupSelector); //set up this._modal
     this._handleFormSubmit = handleFormSubmit;
     this._form = this._modal.querySelector(".modal__form");
+    this._buttonText = this._form.querySelector(".modal__submit-button");
+    this._originaTtext = this._buttonText.textContent; //get the text so we can rest ti back to normal after it is done loading
   }
-  setLoadingText() {
-    //buttonText = this._modal.querySelector(".modal__submit-button");
-    //this._buttonText.textContent = "Loading...";
-    console.log(this._modal);
-    //console.log(buttonText);
-    console.log("loading...");
+  setLoadingText(isLoading) {
+    console.log({ isLoading });
+    if (isLoading === true) {
+      this._buttonText.textContent = "Loading...";
+    } else {
+      this._buttonText.textContent = this._originaTtext;
+    }
   }
 
   _getInputValues() {

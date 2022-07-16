@@ -16,8 +16,6 @@ import { UserInfo } from "../components/UserInfo.js";
 
 import { Api } from "../components/Api.js";
 
-let isLoading = false; //global variable to keep track of if page is loading data
-
 ////////////////////////////////////////////////Set up edit profile text button and modal for it
 //use const so that the value does not change
 const editProfileButton = document.querySelector("#profile-info-edit-button"); ///find the edit button from profile-this opens the modal panel
@@ -189,7 +187,11 @@ const editAvatarFormPopupObj = new PopupWithForm(
     //values is and object with a property called avatar
     //avatar is the image link
     avatarPic.src = values.avatar;
-    api.patchUserAvatar(values).finally(editAvatarFormPopupObj.close());
+    editAvatarFormPopupObj.setLoadingText(true);
+    api
+      .patchUserAvatar(values)
+      .then(editAvatarFormPopupObj.close())
+      .then(editAvatarFormPopupObj.setLoadingText(false));
   }
 );
 editAvatarFormPopupObj.setEventListeners();
@@ -200,9 +202,11 @@ const editProfileFormPopupObj = new PopupWithForm(
     //we are defining _handleFormSubmit here
     //values is an object returned by _handleFormSubmit
     user.setUserInfoTextOnly({ name: values.name, about: values.title }); //possibly values.about instead of values.title????
+    editProfileFormPopupObj.setLoadingText(true);
     api
       .patchUserInfo(user.getUserInfo())
-      .finally(editProfileFormPopupObj.close());
+      .then(editProfileFormPopupObj.close())
+      .then(editProfileFormPopupObj.setLoadingText(false));
   }
 );
 editProfileFormPopupObj.setEventListeners();
@@ -217,19 +221,20 @@ const addCardFormPopupObj = new PopupWithForm("#add-card-modal", () => {
   };
 
   //upload the card to the server
-  isLoading = true;
-  addCardFormPopupObj.setLoadingText();
-  api.uploadCard(newCardInfo).then((data) => {
-    console.log({ data });
+  addCardFormPopupObj.setLoadingText(true);
+  api
+    .uploadCard(newCardInfo)
+    .then((data) => {
+      console.log({ data });
 
-    //send data so that it gets the id info
-    renderCard(cardGridObject, data, imagePopupObj, deleteCardFormPopupObj);
-  });
-  //.then((isLoading = false));
+      //send data so that it gets the id info
+      renderCard(cardGridObject, data, imagePopupObj, deleteCardFormPopupObj);
+    })
+    .then(addCardForm.reset()) //clear out the input fields
 
-  addCardForm.reset(); //clear out the input fields
-  addCardFormObj.setButtonInactive(); //Set button to inactive-it needs to be hidden because the fields are empty
-  addCardFormPopupObj.close(); //close the modal panel when submitted
+    .then(addCardFormObj.setButtonInactive()) //Set button to inactive-it needs to be hidden because the fields are empty
+    .then(addCardFormPopupObj.close()) //close the modal panel when submitted
+    .then(addCardFormPopupObj.setLoadingText(false));
 });
 addCardFormPopupObj.setEventListeners();
 
@@ -238,9 +243,10 @@ const deleteCardFormPopupObj = new PopupWithConfirmation(
   "#delete-card-modal",
   (cardObjToDelete) => {
     //this is the handleFormSubmit Function
-    api.deleteCard(cardObjToDelete.getId()); //api call here to delete the card from server
-    cardObjToDelete.deleteFromPage(); //code to remove the card from the page immediately
-    deleteCardFormPopupObj.close(); //close the modal panel when submitted
+    api
+      .deleteCard(cardObjToDelete.getId()) //api call here to delete the card from server
+      .then(cardObjToDelete.deleteFromPage()) //code to remove the card from the page immediately
+      .then(deleteCardFormPopupObj.close()); //close the modal panel when submitted
   }
 );
 deleteCardFormPopupObj.setEventListeners();
