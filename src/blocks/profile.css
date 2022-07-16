@@ -39,8 +39,12 @@
   background-color: #c4c4c4;
   background-position: center;
   background-repeat: no-repeat;
-  opacity: 0.8;
+  opacity: 0;
   border-radius: 50%; /*circular crop */
+}
+
+.profile__icon:hover {
+  opacity: 0.8;
 }
 
 .profile__info {
