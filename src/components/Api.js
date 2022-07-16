@@ -18,6 +18,14 @@ class Api {
     });
   }
 
+  patchUserAvatar(info) {
+    const url = this._baseUrl + "/users/me/avatar";
+    return fetch(url, {
+      method: "PATCH",
+      headers: this._headers,
+      body: JSON.stringify(info),
+    });
+  }
   patchUserInfo(info) {
     //user.getUserInfo() is passed in for info
     const url = this._baseUrl + "/users/me";

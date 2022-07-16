@@ -23,7 +23,7 @@
               src="<%=require('./images/Avatar.jpg')%>"
               alt="Avatar"
             />
-            <button class="profile__icon">
+            <button class="profile__icon" id="edit-avatar-button">
               <!--either set the background image of the button or do an <img> here-->
             </button>
           </div>
@@ -125,6 +125,31 @@
           <span class="modal__error imagelink-input-error">error here</span>
           <!--set input values to the same text as the default values on the page-->
           <button type="submit" class="modal__submit-button">Create</button>
+        </form>
+      </div>
+    </div>
+
+    <!--modal for the edit avatar pic-->
+    <div class="modal" id="edit-avatar-modal">
+      <div class="modal__content">
+        <button type="button" class="modal__close-button">
+          <img src="<%=require('./images/CloseIcon.svg')%>" alt="X" />
+        </button>
+        <h2 class="modal__title">Change profile picture</h2>
+        <form name="avatarimage" class="modal__form">
+          <!--This modal uses placeholder , but the other one uses value-->
+          <input
+            class="modal__input-text"
+            type="url"
+            name="avatar"
+            placeholder="Image link"
+            id="imagelink-input"
+            required
+          />
+          <!--type=url is needed for validation- it checks to make sure user entered a url-->
+          <span class="modal__error imagelink-input-error">error here</span>
+          <!--set input values to the same text as the default values on the page-->
+          <button type="submit" class="modal__submit-button">Save</button>
         </form>
       </div>
     </div>

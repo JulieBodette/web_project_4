@@ -36,6 +36,11 @@ const addCardButton = document.querySelector("#profile-add-button"); ///find the
 const addCardModal = document.querySelector("#add-card-modal"); //using ID to find the modal (pop up).
 const addCardForm = addCardModal.querySelector(".modal__form"); //find the form.
 
+//set up edit avatar button
+const editAvatarButton = document.querySelector("#edit-avatar-button"); ///find button-this opens the modal panel
+const editAvatarModal = document.querySelector("#edit-avatar-modal"); //using ID to find the modal (pop up).
+//const editAvatarForm = editAvatarModal.querySelector(".modal__form"); //find the form.
+
 // find the form fields in the DOM
 const imageNameInput = addCardForm.querySelector('[name="imagename"]');
 const imageLinkInput = addCardForm.querySelector('[name="imagelink"]');
@@ -170,8 +175,24 @@ const editProfileFormObj = formValidatorObjList.find(
 const addCardFormObj = formValidatorObjList.find(
   (obj) => obj.formElement.getAttribute("name") == "imagenameandlink"
 );
-
+const editAvatarFormObj = formValidatorObjList.find(
+  (obj) => obj.formElement.getAttribute("name") == "avatarimage"
+);
 //////////////////////////////////////////////////////////////////////make the PopupWithFormObject for each form
+
+const editAvatarFormPopupObj = new PopupWithForm(
+  "#edit-avatar-modal",
+  (values) => {
+    //we are defining _handleFormSubmit here
+    //values is an object returned by _handleFormSubmit
+    //user.setUserInfoTextOnly({ name: values.name, about: values.title });
+    console.log(values);
+    console.log(values.avatar);
+    api.patchUserAvatar(values).finally(editAvatarFormPopupObj.close());
+  }
+);
+editAvatarFormPopupObj.setEventListeners();
+
 const editProfileFormPopupObj = new PopupWithForm(
   "#edit-profile-modal",
   (values) => {
@@ -184,7 +205,6 @@ const editProfileFormPopupObj = new PopupWithForm(
   }
 );
 editProfileFormPopupObj.setEventListeners();
-//editProfileFormPopupObj._getInputValues(); //calling private method for testing purposes
 
 const addCardFormPopupObj = new PopupWithForm("#add-card-modal", () => {
   //make a new object to store the image url and image label
@@ -225,6 +245,11 @@ const deleteCardFormPopupObj = new PopupWithConfirmation(
 deleteCardFormPopupObj.setEventListeners();
 
 /////////////////////////////////////////////////////////////////////add click events to buttons that open form modals
+//Set up button that opens edit avatar modal
+editAvatarButton.addEventListener("click", () => {
+  editAvatarFormPopupObj.open();
+});
+
 //Set up button that opens add card modal
 addCardButton.addEventListener("click", () => {
   addCardFormPopupObj.open();
