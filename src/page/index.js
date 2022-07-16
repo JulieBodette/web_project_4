@@ -38,8 +38,9 @@ const addCardForm = addCardModal.querySelector(".modal__form"); //find the form.
 
 //set up edit avatar button
 const editAvatarButton = document.querySelector("#edit-avatar-button"); ///find button-this opens the modal panel
-const editAvatarModal = document.querySelector("#edit-avatar-modal"); //using ID to find the modal (pop up).
+//const editAvatarModal = document.querySelector("#edit-avatar-modal"); //using ID to find the modal (pop up).
 //const editAvatarForm = editAvatarModal.querySelector(".modal__form"); //find the form.
+const avatarPic = document.querySelector(".profile__avatar"); //select the avatar image. we will use this to change the image before the page reloads.
 
 // find the form fields in the DOM
 const imageNameInput = addCardForm.querySelector('[name="imagename"]');
@@ -185,9 +186,9 @@ const editAvatarFormPopupObj = new PopupWithForm(
   (values) => {
     //we are defining _handleFormSubmit here
     //values is an object returned by _handleFormSubmit
-    //user.setUserInfoTextOnly({ name: values.name, about: values.title });
-    console.log(values);
-    console.log(values.avatar);
+    //values is and object with a property called avatar
+    //avatar is the image link
+    avatarPic.src = values.avatar;
     api.patchUserAvatar(values).finally(editAvatarFormPopupObj.close());
   }
 );
