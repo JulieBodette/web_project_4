@@ -4,11 +4,15 @@ class Card {
     templateSelector,
     handleCardClick,
     handleDeleteClick,
-    handleLikeClick
+    handleLikeClick,
+    currentUser
   ) {
     this._handleCardClick = handleCardClick; //the code to open the image popup
     this._handleDeleteClick = handleDeleteClick; //the code to open the delete popup
     this._handleLikeClick = handleLikeClick; //the code to tell the server the card has been liked
+    //get data from api- does the user like the card
+
+    this.currentUser = currentUser;
     this._cardName = data.name;
     this._cardLink = data.link;
 
@@ -26,7 +30,10 @@ class Card {
     this._deleteButton;
     this._deleteButtonImage;
     this._numLikesText;
-    this._isLikedByCurrentUser; //use to handle user liking and disliking cards
+    this._isLikedByCurrentUser =
+      this._likes.find((like) => like._id === this.currentUser._id) !== -1; //use to handle user liking and disliking cards
+
+    //find is kinda like map, takes a callback function, find returns an index. returns -1 if not found
   }
 
   getId() {
@@ -57,7 +64,6 @@ class Card {
       console.log("u cannot delete");
       this._deleteButton.remove();
     }
-    this._isLikedByCurrentUser = false; //card is not liked when it is first created
     this._setImageAndName();
     this._loadLikes();
     this._setEventListener();

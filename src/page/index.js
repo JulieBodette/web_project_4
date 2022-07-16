@@ -95,19 +95,20 @@ api
   .then((result) => {
     console.log("this is during the fetch promise for user info");
     user.setUserInfo(result);
-  });
-
-//use the Api object to load the initial cards from the server
-api
-  .getInitialCards()
-  .then((res) => res.json())
-  .then((result) => {
-    console.log("this is during the fetch promise");
-    console.log(result);
-    console.log("this is during the fetch promise after we log the result");
-    cardGridObject.setItems(result);
-    cardGridObject.renderItems();
-    console.log("this is during the fetch promise after we render items");
+  })
+  .then(() => {
+    //use the Api object to load the initial cards from the server
+    api
+      .getInitialCards()
+      .then((res) => res.json())
+      .then((result) => {
+        console.log("this is during the fetch promise");
+        console.log(result);
+        console.log("this is during the fetch promise after we log the result");
+        cardGridObject.setItems(result);
+        cardGridObject.renderItems();
+        console.log("this is during the fetch promise after we render items");
+      });
   });
 
 //define a function to add cards to the grid
@@ -138,7 +139,8 @@ function renderCard(cardContainer, data, cardPopupObj, deletePopupObj) {
           .then((data) => cardObj.setLikes(data.likes));
         console.log("you UNliked the card and we r telling server");
       }
-    }
+    },
+    user
   ); //create a card object
 
   const newCard = cardObj.createCardElement(user); //create a card element

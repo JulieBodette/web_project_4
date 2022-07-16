@@ -7,10 +7,11 @@ class UserInfo {
     this.userJobElement = document.querySelector(userJob);
     this.userAvatarElement = document.querySelector(userAvatar);
   }
-  setUserInfo({ name, about, avatar }) {
+  setUserInfo({ name, about, avatar, _id }) {
     this.userNameElement.textContent = name;
     this.userJobElement.textContent = about;
     this.userAvatarElement.src = avatar;
+    this.id = _id; //being set here and not in the constructor
   }
 
   setUserInfoTextOnly({ name, about }) {
@@ -24,6 +25,7 @@ class UserInfo {
     const newObj = {
       name: this.userNameElement.textContent,
       about: this.userJobElement.textContent,
+      id: this.id,
     };
     return newObj;
   }
