@@ -8,6 +8,12 @@ class Api {
     const url = this._baseUrl + "/cards";
     return fetch(url, {
       headers: this._headers,
+    }).then((res) => {
+      if (res.ok) {
+        return res.json();
+      }
+      //if server returns error, reject the promise
+      return Promise.reject(`Error: ${res.status}`);
     });
   }
 
@@ -15,6 +21,12 @@ class Api {
     const url = this._baseUrl + "/users/me";
     return fetch(url, {
       headers: this._headers,
+    }).then((res) => {
+      if (res.ok) {
+        return res.json();
+      }
+      //if server returns error, reject the promise
+      return Promise.reject(`Error: ${res.status}`);
     });
   }
 
@@ -26,6 +38,7 @@ class Api {
       body: JSON.stringify(info),
     });
   }
+
   patchUserInfo(info) {
     //user.getUserInfo() is passed in for info
     const url = this._baseUrl + "/users/me";
@@ -50,7 +63,13 @@ class Api {
       method: "POST",
       headers: this._headers,
       body: JSON.stringify(info),
-    }).then((res) => res.json());
+    }).then((res) => {
+      if (res.ok) {
+        return res.json();
+      }
+      //if server returns error, reject the promise
+      return Promise.reject(`Error: ${res.status}`);
+    });
   }
 
   likeCard(id) {
@@ -58,18 +77,27 @@ class Api {
     return fetch(url, {
       method: "PUT",
       headers: this._headers,
-    }).then((res) => res.json());
+    }).then((res) => {
+      if (res.ok) {
+        return res.json();
+      }
+      //if server returns error, reject the promise
+      return Promise.reject(`Error: ${res.status}`);
+    });
   }
-
-  //handleapiresonse
-  //(res) => res.json()
 
   unLikeCard(id) {
     const url = this._baseUrl + "/cards/likes/" + id;
     return fetch(url, {
       method: "DELETE",
       headers: this._headers,
-    }).then((res) => res.json());
+    }).then((res) => {
+      if (res.ok) {
+        return res.json();
+      }
+      //if server returns error, reject the promise
+      return Promise.reject(`Error: ${res.status}`);
+    });
   }
 }
 export { Api };

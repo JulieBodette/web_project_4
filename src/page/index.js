@@ -95,7 +95,6 @@ const cardGridObject = new Section(
 //use the Api object to load the user info
 api
   .getUserInfo()
-  .then((res) => res.json())
   .then((result) => {
     console.log("this is during the fetch promise for user info");
     user.setUserInfo(result);
@@ -104,7 +103,6 @@ api
     //use the Api object to load the initial cards from the server
     api
       .getInitialCards()
-      .then((res) => res.json())
       .then((result) => {
         console.log("this is during the fetch promise");
         console.log(result);
@@ -112,6 +110,9 @@ api
         cardGridObject.setItems(result);
         cardGridObject.renderItems();
         console.log("this is during the fetch promise after we render items");
+      })
+      .catch((err) => {
+        console.log(err); // log the error to the console
       });
   });
 
@@ -130,17 +131,21 @@ function renderCard(cardContainer, data, cardPopupObj, deletePopupObj) {
     },
     //code for when the like button is pressed-tell the server the card was liked
     () => {
-      //put evt in parentheses?
-      //api.getInitialCards(); //load cards/ get id. updatre likessss
       if (cardObj.getIsLikedByCurrentUser() == false) {
         api
           .likeCard(cardObj.getId())
-          .then((data) => cardObj.setLikes(data.likes));
+          .then((data) => cardObj.setLikes(data.likes))
+          .catch((err) => {
+            console.log(err); // log the error to the console
+          });
         console.log("you liked the card and we r telling server");
       } else {
         api
           .unLikeCard(cardObj.getId())
-          .then((data) => cardObj.setLikes(data.likes));
+          .then((data) => cardObj.setLikes(data.likes))
+          .catch((err) => {
+            console.log(err); // log the error to the console
+          });
         console.log("you UNliked the card and we r telling server");
       }
     },
@@ -191,7 +196,10 @@ const editAvatarFormPopupObj = new PopupWithForm(
     api
       .patchUserAvatar(values)
       .then(editAvatarFormPopupObj.close())
-      .then(editAvatarFormPopupObj.setLoadingText(false));
+      .then(editAvatarFormPopupObj.setLoadingText(false))
+      .catch((err) => {
+        console.log(err); // log the error to the console
+      });
   }
 );
 editAvatarFormPopupObj.setEventListeners();
@@ -206,7 +214,10 @@ const editProfileFormPopupObj = new PopupWithForm(
     api
       .patchUserInfo(user.getUserInfo())
       .then(editProfileFormPopupObj.close())
-      .then(editProfileFormPopupObj.setLoadingText(false));
+      .then(editProfileFormPopupObj.setLoadingText(false))
+      .catch((err) => {
+        console.log(err); // log the error to the console
+      });
   }
 );
 editProfileFormPopupObj.setEventListeners();
@@ -234,7 +245,10 @@ const addCardFormPopupObj = new PopupWithForm("#add-card-modal", () => {
 
     .then(addCardFormObj.setButtonInactive()) //Set button to inactive-it needs to be hidden because the fields are empty
     .then(addCardFormPopupObj.close()) //close the modal panel when submitted
-    .then(addCardFormPopupObj.setLoadingText(false));
+    .then(addCardFormPopupObj.setLoadingText(false))
+    .catch((err) => {
+      console.log(err); // log the error to the console
+    });
 });
 addCardFormPopupObj.setEventListeners();
 
@@ -246,7 +260,10 @@ const deleteCardFormPopupObj = new PopupWithConfirmation(
     api
       .deleteCard(cardObjToDelete.getId()) //api call here to delete the card from server
       .then(cardObjToDelete.deleteFromPage()) //code to remove the card from the page immediately
-      .then(deleteCardFormPopupObj.close()); //close the modal panel when submitted
+      .then(deleteCardFormPopupObj.close()) //close the modal panel when submitted
+      .catch((err) => {
+        console.log(err); // log the error to the console
+      });
   }
 );
 deleteCardFormPopupObj.setEventListeners();
