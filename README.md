@@ -2,7 +2,7 @@
 
 ### Overview
 
-This is a basic social media site. In its current iteration, users can change their name and title. Users can also upload, like, and delete photos. It has responsive design (works on desktop and mobile).
+This is a basic social media site. In its current iteration, users can change their name, description, and profile picture. Users can also upload, like, and delete photos. Each picture displays the number of likes, and has a filled-in heart if it is liked by the current user. It has responsive design (works on desktop and mobile).
 
 ### Technologies and Techniques
 
