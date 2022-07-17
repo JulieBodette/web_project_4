@@ -14,7 +14,7 @@ import PopupWithConfirmation from "../components/PopupWithConfirmation.js";
 
 import { UserInfo } from "../components/UserInfo.js";
 
-import { Api } from "../components/Api.js";
+import { Api } from "../utils/Api.js";
 
 ////////////////////////////////////////////////Set up edit profile text button and modal for it
 //use const so that the value does not change
