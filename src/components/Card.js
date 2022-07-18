@@ -23,14 +23,14 @@ class Card {
       .querySelector(templateSelector)
       .content.querySelector(".element");
     //select the template, use .content to get the content inside the template, then query selector again to get the element class
-    this.element; //will be set to the card element
-    this._cardImage; //will be set to the image in the card
+    this.element = null; //will be set to the card element
+    this._cardImage = null; //will be set to the image in the card
 
-    this._likeButton;
-    this._deleteButton;
-    this._deleteButtonImage;
-    this._numLikesText;
-    this._isLikedByCurrentUser;
+    this._likeButton = null;
+    this._deleteButton = null;
+    this._deleteButtonImage = null;
+    this._numLikesText = null;
+    this._isLikedByCurrentUser = null;
 
     //find is kinda like map, takes a callback function, find returns an index. returns -1 if not found
   }
@@ -55,8 +55,7 @@ class Card {
     this._cardImage = this._element.querySelector(".element__image");
 
     //enable/disable the trash icon based on if current user is the one who made the card
-    if (userData.getUserInfo().name === this._owner.name) {
-    } else {
+    if (userData.getUserInfo().name !== this._owner.name) {
       this._deleteButton.remove();
     }
     this._setImageAndName();
@@ -65,12 +64,7 @@ class Card {
     this._setEventListener();
     ////////////////////////////////////////////////////////CODEEEEEEEEEEE
 
-    this._isLikedByCurrentUser = false;
-    this._likes.forEach((like) => {
-      if (like._id === userData.getUserInfo().id) {
-        this._isLikedByCurrentUser = true;
-      }
-    });
+    this._isLikedByCurrentUser = this._isLiked();
 
     if (this._isLikedByCurrentUser) {
       //if the image was previously liked by currentUser
@@ -78,6 +72,17 @@ class Card {
     }
     //return new card so that it can be added to the grid when this function is called
     return this._element;
+  }
+
+  _isLiked() {
+    // return true if user liked the card, otherwise false
+    let isLiked = false;
+    this._likes.forEach((like) => {
+      if (like._id === this.currentUser.getUserInfo().id) {
+        isLiked = true;
+      }
+    });
+    return isLiked;
   }
 
   getIsLikedByCurrentUser() {
