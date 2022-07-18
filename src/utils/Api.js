@@ -4,30 +4,25 @@ class Api {
     this._headers = headers;
   }
 
+  _processResponse = (res) => {
+    if (res.ok) {
+      return res.json();
+    }
+    return Promise.reject(`Error: ${res.status}`);
+  };
+
   getInitialCards() {
     const url = this._baseUrl + "/cards";
     return fetch(url, {
       headers: this._headers,
-    }).then((res) => {
-      if (res.ok) {
-        return res.json();
-      }
-      //if server returns error, reject the promise
-      return Promise.reject(`Error: ${res.status}`);
-    });
+    }).then(this._processResponse);
   }
 
   getUserInfo() {
     const url = this._baseUrl + "/users/me";
     return fetch(url, {
       headers: this._headers,
-    }).then((res) => {
-      if (res.ok) {
-        return res.json();
-      }
-      //if server returns error, reject the promise
-      return Promise.reject(`Error: ${res.status}`);
-    });
+    }).then(this._processResponse);
   }
 
   patchUserAvatar(info) {
@@ -36,7 +31,7 @@ class Api {
       method: "PATCH",
       headers: this._headers,
       body: JSON.stringify(info),
-    });
+    }).then(this._processResponse);
   }
 
   patchUserInfo(info) {
@@ -46,7 +41,7 @@ class Api {
       method: "PATCH",
       headers: this._headers,
       body: JSON.stringify(info),
-    });
+    }).then(this._processResponse);
   }
 
   deleteCard(id) {
@@ -54,7 +49,7 @@ class Api {
     return fetch(url, {
       method: "DELETE",
       headers: this._headers,
-    });
+    }).then(this._processResponse);
   }
 
   uploadCard(info) {
@@ -63,13 +58,7 @@ class Api {
       method: "POST",
       headers: this._headers,
       body: JSON.stringify(info),
-    }).then((res) => {
-      if (res.ok) {
-        return res.json();
-      }
-      //if server returns error, reject the promise
-      return Promise.reject(`Error: ${res.status}`);
-    });
+    }).then(this._processResponse);
   }
 
   likeCard(id) {
@@ -77,13 +66,7 @@ class Api {
     return fetch(url, {
       method: "PUT",
       headers: this._headers,
-    }).then((res) => {
-      if (res.ok) {
-        return res.json();
-      }
-      //if server returns error, reject the promise
-      return Promise.reject(`Error: ${res.status}`);
-    });
+    }).then(this._processResponse);
   }
 
   unLikeCard(id) {
@@ -91,13 +74,7 @@ class Api {
     return fetch(url, {
       method: "DELETE",
       headers: this._headers,
-    }).then((res) => {
-      if (res.ok) {
-        return res.json();
-      }
-      //if server returns error, reject the promise
-      return Promise.reject(`Error: ${res.status}`);
-    });
+    }).then(this._processResponse);
   }
 }
 export { Api };
