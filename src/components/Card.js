@@ -5,14 +5,14 @@ class Card {
     handleCardClick,
     handleDeleteClick,
     handleLikeClick,
-    currentUser
+    currentUserId
   ) {
     this._handleCardClick = handleCardClick; //the code to open the image popup
     this._handleDeleteClick = handleDeleteClick; //the code to open the delete popup
     this._handleLikeClick = handleLikeClick; //the code to tell the server the card has been liked
     //get data from api- does the user like the card
 
-    this.currentUser = currentUser;
+    this.currentUserId = currentUserId;
     this._cardName = data.name;
     this._cardLink = data.link;
 
@@ -36,6 +36,7 @@ class Card {
   }
 
   getId() {
+    console.log("card id" + this._id);
     return this._id;
   }
   createCardElement() {
@@ -55,8 +56,11 @@ class Card {
     this._cardImage = this._element.querySelector(".element__image");
 
     //enable/disable the trash icon based on if current user is the one who made the card
-    if (this.currentUser.getUserInfo().name !== this._owner.name) {
+
+    if (this.currentUserId !== this._id) {
       this._deleteButton.remove();
+    } else {
+      debugger;
     }
     this._setImageAndName();
     this._loadLikes();
@@ -78,7 +82,7 @@ class Card {
     // return true if user liked the card, otherwise false
     let isLiked = false;
     this._likes.forEach((like) => {
-      if (like._id === this.currentUser.getUserInfo().id) {
+      if (like._id === this.currentUserId) {
         isLiked = true;
       }
     });

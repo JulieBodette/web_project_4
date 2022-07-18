@@ -79,25 +79,77 @@ const api = new Api({
   },
 });
 
-//items is initially null- gets set up later, during the api call to the server
-const cardGridObject = new Section(
-  {
-    items: null,
-    renderer: (data) => {
-      renderCard(cardGridObject, data, imagePopupObj, deleteCardFormPopupObj);
-    },
-  },
-  ".grid"
-);
-
 //MUST LOAD THE USER INFO BEFORE THE CARDS
 //that way we can check who the cards belong to correctly
 //use the Api object to load the user info
+
+//Promise.all() takes multiple promises, and returns a single promise (an array of the results of the input promises)
+//it rejects if ANY of the promises throw an error
+//we use this to load the user info and get the initial cards
+Promise.all([api.getUserInfo(), api.getInitialCards()])
+  .then(([userInfoResponse, cardsResponse]) => {
+    console.log("all promises resolved");
+    //user info set up
+    user.setAvatar(userInfoResponse.avatar);
+    user.setId(userInfoResponse._id);
+    user.setUserInfoTextOnly(userInfoResponse);
+    console.log({ userInfoResponse });
+    console.log({ cardsResponse });
+    //cards set up
+    const cardGridObject = new Section(
+      {
+        items: cardsResponse,
+        renderer: (data) => {
+          renderCard(
+            cardGridObject,
+            data,
+            imagePopupObj,
+            deleteCardFormPopupObj
+          );
+        },
+      },
+      ".grid"
+    );
+
+    cardGridObject.renderItems();
+
+    //return cardsResponse;
+  })
+  /*
+  .then((res) => {
+    //cardGridObject.setItems(cardsResponse);
+    console.log("res" + res);
+    const cardGridObject = new Section(
+      {
+        items: res,
+        renderer: (data) => {
+          renderCard(
+            cardGridObject,
+            data,
+            imagePopupObj,
+            deleteCardFormPopupObj
+          );
+        },
+      },
+      ".grid"
+    );
+
+    cardGridObject.renderItems();
+  })
+  */
+  .catch((err) => {
+    console.log(err); // log the error to the console
+  });
+
+//console.log("all promises resolved")
+/*
 api
   .getUserInfo()
   .then((result) => {
     console.log("this is during the fetch promise for user info");
-    user.setUserInfo(result);
+    user.setAvatar(result.avatar);
+    user.setId(result._id);
+    user.setUserInfoTextOnly(result);
   })
   .then(() => {
     //use the Api object to load the initial cards from the server
@@ -116,6 +168,7 @@ api
       });
   });
 
+  */
 //define a function to add cards to the grid
 function renderCard(cardContainer, data, cardPopupObj, deletePopupObj) {
   const cardObj = new Card(
@@ -149,7 +202,7 @@ function renderCard(cardContainer, data, cardPopupObj, deletePopupObj) {
         console.log("you UNliked the card and we r telling server");
       }
     },
-    user
+    user.getId()
   ); //create a card object
 
   const newCard = cardObj.createCardElement(); //create a card element

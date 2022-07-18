@@ -7,11 +7,18 @@ class UserInfo {
     this.userJobElement = document.querySelector(userJob);
     this.userAvatarElement = document.querySelector(userAvatar);
   }
-  setUserInfo({ name, about, avatar, _id }) {
-    this.userNameElement.textContent = name;
-    this.userJobElement.textContent = about;
+
+  setAvatar(avatar) {
     this.userAvatarElement.src = avatar;
-    this.id = _id; //being set here and not in the constructor
+  }
+
+  setId(id) {
+    this.id = id; //being set here and not in the constructor
+  }
+
+  getId() {
+    console.log("userinfo id" + this.id);
+    return this.id;
   }
 
   setUserInfoTextOnly({ name, about }) {
