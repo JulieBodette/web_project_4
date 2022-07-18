@@ -152,7 +152,7 @@ function renderCard(cardContainer, data, cardPopupObj, deletePopupObj) {
     user
   ); //create a card object
 
-  const newCard = cardObj.createCardElement(user); //create a card element
+  const newCard = cardObj.createCardElement(); //create a card element
   cardContainer.addItem(newCard);
 }
 

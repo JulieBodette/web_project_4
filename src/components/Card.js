@@ -38,7 +38,7 @@ class Card {
   getId() {
     return this._id;
   }
-  createCardElement(userData) {
+  createCardElement() {
     //make a copy of the template using cloneNode
     this._element = this._getElement();
     //query selector the like and delete button and number of likes
@@ -55,7 +55,7 @@ class Card {
     this._cardImage = this._element.querySelector(".element__image");
 
     //enable/disable the trash icon based on if current user is the one who made the card
-    if (userData.getUserInfo().name !== this._owner.name) {
+    if (this.currentUser.getUserInfo().name !== this._owner.name) {
       this._deleteButton.remove();
     }
     this._setImageAndName();
