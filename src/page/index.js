@@ -5,7 +5,7 @@ import { Card } from "../components/Card.js";
 
 import { customSettings } from "../utils/constants.js";
 
-import Section from "../components/section.js";
+import Section from "../components/Section.js";
 
 import PopupWithImage from "../components/PopupWithImage.js";
 
