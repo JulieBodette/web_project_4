@@ -179,12 +179,14 @@ const editAvatarFormPopupObj = new PopupWithForm(
     //values is an object returned by _handleFormSubmit
     //values is and object with a property called avatar
     //avatar is the image link
-    avatarPic.src = values.avatar;
     editAvatarFormPopupObj.setLoadingText(true);
     api
       .patchUserAvatar(values)
-      .then(editAvatarFormPopupObj.close())
-      .then(editAvatarFormPopupObj.setLoadingText(false))
+      .then(() => {
+        editAvatarFormPopupObj.close();
+        editAvatarFormPopupObj.setLoadingText(false);
+        user.setAvatar(values.avatar);
+      })
       .catch((err) => {
         console.log(err); // log the error to the console
       });
