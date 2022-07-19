@@ -234,7 +234,6 @@ const addCardFormPopupObj = new PopupWithForm("#add-card-modal", () => {
       renderCard(cardGridObject, data, imagePopupObj, deleteCardFormPopupObj);
     })
     .then(() => {
-      addCardForm.reset(); //clear out the input fields
       addCardFormObj.setButtonInactive(); //Set button to inactive-it needs to be hidden because the fields are empty
       addCardFormPopupObj.close();
     }) //close the modal panel when submitted
