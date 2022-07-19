@@ -97,7 +97,7 @@ class Card {
   }
   _setEventListener() {
     //add event listeners for like and delete
-    this._likeButton.addEventListener("click", (evt) => this._like(evt));
+    this._likeButton.addEventListener("click", () => this._handleLikeClick());
     this._deleteButton.addEventListener("click", () =>
       this._handleDeleteClick()
     ); //send it the function name ie this._delete with NOPARENTHESES. this._delete() BAD, WILL CALL FUNCTION ON PAGE LOAD
@@ -109,11 +109,6 @@ class Card {
       this._handleCardClick();
     });
   } //end _setEventListener
-
-  _like(evt) {
-    //update the number of likes to the server
-    this._handleLikeClick();
-  }
 
   //use to get likes from server
   setLikes(likesArray) {
