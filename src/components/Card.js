@@ -110,22 +110,16 @@ class Card {
     });
   } //end _setEventListener
 
-  _toggleLikesImage() {
-    this._heart.classList.toggle("element__like_active");
-  }
   _like(evt) {
-    this._toggleLikesImage();
     //update the number of likes to the server
     this._handleLikeClick();
-
-    this._numLikesText.textContent = this._likes.length;
   }
 
   //use to get likes from server
   setLikes(likesArray) {
     this._likes = likesArray;
     //show to the user the number of likes
-    this._numLikesText.textContent = this._likes.length;
+    this._renderLikes();
   }
 
   deleteFromPage = () => {
