@@ -61,16 +61,6 @@ const user = new UserInfo({
 //Token: 7201271b-2cce-46ab-9f28-d324b822f8cb
 //Group ID: group-12
 
-fetch("https://around.nomoreparties.co/v1/group-12/users/me", {
-  headers: {
-    authorization: "7201271b-2cce-46ab-9f28-d324b822f8cb",
-  },
-})
-  .then((res) => res.json())
-  .then((result) => {
-    console.log(result);
-  });
-
 const api = new Api({
   baseUrl: "https://around.nomoreparties.co/v1/group-12",
   headers: {
