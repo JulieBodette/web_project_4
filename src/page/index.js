@@ -184,12 +184,14 @@ const editAvatarFormPopupObj = new PopupWithForm(
       .patchUserAvatar(values)
       .then(() => {
         editAvatarFormPopupObj.close();
-        editAvatarFormPopupObj.setLoadingText(false);
+
         user.setAvatar(values.avatar);
       })
       .catch((err) => {
         console.log(err); // log the error to the console
-      });
+      })
+      .finally(editAvatarFormPopupObj.setLoadingText(false));
+    //MUST Change button state in finally block, otherwise the button text won’t change even if an error occurred
   }
 );
 editAvatarFormPopupObj.setEventListeners();
@@ -204,10 +206,11 @@ const editProfileFormPopupObj = new PopupWithForm(
     api
       .patchUserInfo(user.getUserInfo())
       .then(editProfileFormPopupObj.close())
-      .then(editProfileFormPopupObj.setLoadingText(false))
       .catch((err) => {
         console.log(err); // log the error to the console
-      });
+      })
+      .finally(editAvatarFormPopupObj.setLoadingText(false));
+    //MUST Change button state in finally block, otherwise the button text won’t change even if an error occurred
   }
 );
 editProfileFormPopupObj.setEventListeners();
@@ -235,10 +238,11 @@ const addCardFormPopupObj = new PopupWithForm("#add-card-modal", () => {
 
     .then(addCardFormObj.setButtonInactive()) //Set button to inactive-it needs to be hidden because the fields are empty
     .then(addCardFormPopupObj.close()) //close the modal panel when submitted
-    .then(addCardFormPopupObj.setLoadingText(false))
     .catch((err) => {
       console.log(err); // log the error to the console
-    });
+    })
+    .finally(editAvatarFormPopupObj.setLoadingText(false));
+  //MUST Change button state in finally block, otherwise the button text won’t change even if an error occurred
 });
 addCardFormPopupObj.setEventListeners();
 
