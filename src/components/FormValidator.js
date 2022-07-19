@@ -1,4 +1,4 @@
-import {customSettings} from "./constants.js";
+import { customSettings } from "./constants.js";
 class FormValidator {
   constructor(settings, formElement) {
     this.settings = settings;
@@ -25,12 +25,9 @@ class FormValidator {
     errorElement.classList.remove(this.settings.errorClass); //the class that makes it visible
     errorElement.textContent = "";
   }
-  clearAllErrors()
-  {
+  clearAllErrors() {
     const inputList = Array.from(
-      this.formElement.querySelectorAll(
-        customSettings.inputSelector
-      )
+      this.formElement.querySelectorAll(customSettings.inputSelector)
     );
     inputList.forEach((inputElement) => {
       this._hideInputError(inputElement);
@@ -62,13 +59,15 @@ class FormValidator {
 
   _disableButton(buttonElement) {
     buttonElement.classList.add(this.settings.inactiveButtonClass);
+    buttonElement.disabled = true; //disable the button so the user cannot submit the form, even by pressing Enter
   }
 
   _enableButton(buttonElement) {
     buttonElement.classList.remove(this.settings.inactiveButtonClass);
   }
 
-  setButtonInactive() { //public method called when new card ia added- button needs set to inactive before new values are typed
+  setButtonInactive() {
+    //public method called when new card ia added- button needs set to inactive before new values are typed
     const buttonElement = this.formElement.querySelector(
       this.settings.submitButtonSelector
     );
@@ -95,6 +94,5 @@ class FormValidator {
 // enabling validation by calling enableValidation()
 // pass all the settings (in customSettings, in constants.js) on call
 
-
 //export functions to index.js
-export { FormValidator};
+export { FormValidator };
