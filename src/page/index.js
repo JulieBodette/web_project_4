@@ -184,7 +184,6 @@ const editAvatarFormPopupObj = new PopupWithForm(
       .patchUserAvatar(values)
       .then(() => {
         editAvatarFormPopupObj.close();
-
         user.setAvatar(values.avatar);
       })
       .catch((err) => {
@@ -234,10 +233,11 @@ const addCardFormPopupObj = new PopupWithForm("#add-card-modal", () => {
       //send data so that it gets the id info
       renderCard(cardGridObject, data, imagePopupObj, deleteCardFormPopupObj);
     })
-    .then(addCardForm.reset()) //clear out the input fields
-
-    .then(addCardFormObj.setButtonInactive()) //Set button to inactive-it needs to be hidden because the fields are empty
-    .then(addCardFormPopupObj.close()) //close the modal panel when submitted
+    .then(() => {
+      addCardForm.reset(); //clear out the input fields
+      addCardFormObj.setButtonInactive(); //Set button to inactive-it needs to be hidden because the fields are empty
+      addCardFormPopupObj.close();
+    }) //close the modal panel when submitted
     .catch((err) => {
       console.log(err); // log the error to the console
     })
@@ -253,8 +253,10 @@ const deleteCardFormPopupObj = new PopupWithConfirmation(
     //this is the handleFormSubmit Function
     api
       .deleteCard(cardObjToDelete.getId()) //api call here to delete the card from server
-      .then(cardObjToDelete.deleteFromPage()) //code to remove the card from the page immediately
-      .then(deleteCardFormPopupObj.close()) //close the modal panel when submitted
+      .then(() => {
+        cardObjToDelete.deleteFromPage(); //code to remove the card from the page immediately
+        deleteCardFormPopupObj.close();
+      }) //close the modal panel when submitted
       .catch((err) => {
         console.log(err); // log the error to the console
       });
