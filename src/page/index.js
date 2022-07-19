@@ -122,7 +122,7 @@ function renderCard(cardContainer, data, cardPopupObj, deletePopupObj) {
     },
     //code for when the like button is pressed-tell the server the card was liked
     () => {
-      if (cardObj.getIsLikedByCurrentUser() == false) {
+      if (!cardObj.isLiked()) {
         api
           .likeCard(cardObj.getId())
           .then((data) => cardObj.setLikes(data.likes))

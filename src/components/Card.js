@@ -30,7 +30,6 @@ class Card {
     this._deleteButton = null;
     this._deleteButtonImage = null;
     this._numLikesText = null;
-    this._isLikedByCurrentUser = null;
 
     //find is kinda like map, takes a callback function, find returns an index. returns -1 if not found
   }
@@ -66,9 +65,7 @@ class Card {
     this._setEventListener();
     ////////////////////////////////////////////////////////CODEEEEEEEEEEE
 
-    this._isLikedByCurrentUser = this._isLiked();
-
-    if (this._isLikedByCurrentUser) {
+    if (this.isLiked()) {
       //if the image was previously liked by currentUser
       this._toggleLikesImage(); //turn the heart image black
     }
@@ -76,7 +73,7 @@ class Card {
     return this._element;
   }
 
-  _isLiked() {
+  isLiked() {
     // return true if user liked the card, otherwise false
     let isLiked = false;
     this._likes.forEach((like) => {
@@ -87,9 +84,6 @@ class Card {
     return isLiked;
   }
 
-  getIsLikedByCurrentUser() {
-    return this._isLikedByCurrentUser;
-  }
   _getElement() {
     return this._cardTemplate.cloneNode(true); //true clones everything inside
   }
@@ -108,16 +102,6 @@ class Card {
     });
   } //end _setEventListener
 
-  _toggleIsLiked() {
-    console.log(this._isLikedByCurrentUser);
-    if (this._isLikedByCurrentUser == false) {
-      this._isLikedByCurrentUser = true;
-    } else {
-      this._isLikedByCurrentUser = false;
-    }
-    console.log(this._isLikedByCurrentUser);
-  }
-
   _toggleLikesImage() {
     this._heart.classList.toggle("element__like_active");
   }
@@ -125,9 +109,7 @@ class Card {
     this._toggleLikesImage();
     //update the number of likes to the server
     this._handleLikeClick();
-    this._toggleIsLiked();
 
-    //if ((this._isLikedByCurrentUser = true)) {
     this._numLikesText.textContent = this._likes.length;
   }
 
