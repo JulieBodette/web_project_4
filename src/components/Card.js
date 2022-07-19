@@ -36,7 +36,6 @@ class Card {
   }
 
   getId() {
-    console.log("card id" + this._id);
     return this._id;
   }
   createCardElement() {
@@ -56,11 +55,10 @@ class Card {
     this._cardImage = this._element.querySelector(".element__image");
 
     //enable/disable the trash icon based on if current user is the one who made the card
-
-    if (this.currentUserId !== this._id) {
+    console.log("current user" + this.currentUserId);
+    console.log("card id" + this._owner._id);
+    if (this.currentUserId !== this._owner._id) {
       this._deleteButton.remove();
-    } else {
-      debugger;
     }
     this._setImageAndName();
     this._loadLikes();

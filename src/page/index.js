@@ -112,63 +112,11 @@ Promise.all([api.getUserInfo(), api.getInitialCards()])
     );
 
     cardGridObject.renderItems();
-
-    //return cardsResponse;
   })
-  /*
-  .then((res) => {
-    //cardGridObject.setItems(cardsResponse);
-    console.log("res" + res);
-    const cardGridObject = new Section(
-      {
-        items: res,
-        renderer: (data) => {
-          renderCard(
-            cardGridObject,
-            data,
-            imagePopupObj,
-            deleteCardFormPopupObj
-          );
-        },
-      },
-      ".grid"
-    );
-
-    cardGridObject.renderItems();
-  })
-  */
   .catch((err) => {
     console.log(err); // log the error to the console
   });
 
-//console.log("all promises resolved")
-/*
-api
-  .getUserInfo()
-  .then((result) => {
-    console.log("this is during the fetch promise for user info");
-    user.setAvatar(result.avatar);
-    user.setId(result._id);
-    user.setUserInfoTextOnly(result);
-  })
-  .then(() => {
-    //use the Api object to load the initial cards from the server
-    api
-      .getInitialCards()
-      .then((result) => {
-        console.log("this is during the fetch promise");
-        console.log(result);
-        console.log("this is during the fetch promise after we log the result");
-        cardGridObject.setItems(result);
-        cardGridObject.renderItems();
-        console.log("this is during the fetch promise after we render items");
-      })
-      .catch((err) => {
-        console.log(err); // log the error to the console
-      });
-  });
-
-  */
 //define a function to add cards to the grid
 function renderCard(cardContainer, data, cardPopupObj, deletePopupObj) {
   const cardObj = new Card(
