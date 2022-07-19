@@ -1,4 +1,4 @@
-import { customSettings } from "./constants.js";
+import { customSettings } from "../utils/constants.js";
 class FormValidator {
   constructor(settings, formElement) {
     this.settings = settings;
@@ -64,6 +64,7 @@ class FormValidator {
 
   _enableButton(buttonElement) {
     buttonElement.classList.remove(this.settings.inactiveButtonClass);
+    buttonElement.disabled = false;
   }
 
   setButtonInactive() {

@@ -23,6 +23,11 @@ class Section {
     });
   }
 
+  setItems(items) {
+    //used to set the items after initialization
+    this._itemsArray = items;
+  }
+
   addItem(element) {
     this._container.prepend(element);
   }

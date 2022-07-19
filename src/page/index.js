@@ -3,7 +3,7 @@ import { FormValidator } from "../components/FormValidator.js";
 
 import { Card } from "../components/Card.js";
 
-import { customSettings } from "../components/constants.js";
+import { customSettings } from "../utils/constants.js";
 
 import Section from "../components/section.js";
 
@@ -69,6 +69,16 @@ const api = new Api({
   },
 });
 
+const cardGridObject = new Section(
+  {
+    items: null,
+    renderer: (data) => {
+      renderCard(cardGridObject, data, imagePopupObj, deleteCardFormPopupObj);
+    },
+  },
+  ".grid"
+);
+
 //MUST LOAD THE USER INFO BEFORE THE CARDS
 //that way we can check who the cards belong to correctly
 //use the Api object to load the user info
@@ -86,20 +96,7 @@ Promise.all([api.getUserInfo(), api.getInitialCards()])
     console.log({ userInfoResponse });
     console.log({ cardsResponse });
     //cards set up
-    const cardGridObject = new Section(
-      {
-        items: cardsResponse,
-        renderer: (data) => {
-          renderCard(
-            cardGridObject,
-            data,
-            imagePopupObj,
-            deleteCardFormPopupObj
-          );
-        },
-      },
-      ".grid"
-    );
+    cardGridObject.setItems(cardsResponse);
 
     cardGridObject.renderItems();
   })
