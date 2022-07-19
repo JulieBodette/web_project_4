@@ -60,15 +60,11 @@ class Card {
       this._deleteButton.remove();
     }
     this._setImageAndName();
-    this._loadLikes();
+    this._renderLikes();
 
     this._setEventListener();
     ////////////////////////////////////////////////////////CODEEEEEEEEEEE
 
-    if (this.isLiked()) {
-      //if the image was previously liked by currentUser
-      this._toggleLikesImage(); //turn the heart image black
-    }
     //return new card so that it can be added to the grid when this function is called
     return this._element;
   }
@@ -82,6 +78,18 @@ class Card {
       }
     });
     return isLiked;
+  }
+
+  _renderLikes() {
+    //set  likes counter content using this._likes.length
+    this._numLikesText.textContent = this._likes.length;
+    if (this.isLiked()) {
+      // add active class to like button
+      this._heart.classList.add("element__like_active");
+    } else {
+      // remove active class from like button
+      this._heart.classList.remove("element__like_active");
+    }
   }
 
   _getElement() {
@@ -126,14 +134,6 @@ class Card {
     this._element = null; //help out the garbage collector
   };
 
-  _loadLikes() {
-    if (this._likes != null) {
-      this._numLikesText.textContent = this._likes.length; //this._likes is an array full of users who liked the image.
-      //length gives the number of users/length of the array/number of likes
-    } else {
-      this._numLikesText.textContent = 0;
-    }
-  }
   _setImageAndName() {
     this._cardImage.style = `background-image:url(${this._cardLink});`; //template literal has ` at the beginning and end instead of ""
     //also template literal has ${cardLink} (no quotes) even though cardLInk is a string
