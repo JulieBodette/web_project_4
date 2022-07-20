@@ -30,8 +30,6 @@ class Card {
     this._deleteButton = null;
     this._deleteButtonImage = null;
     this._numLikesText = null;
-
-    //find is kinda like map, takes a callback function, find returns an index. returns -1 if not found
   }
 
   getId() {
