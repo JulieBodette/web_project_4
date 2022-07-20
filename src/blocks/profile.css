@@ -20,11 +20,13 @@
   width: 120px;
   height: 120px;
   object-fit: cover; /*so that image is not stretched */
-  margin: 0px 30px 0px 0px; /* top right bottom left */
 }
 
 .profile__image {
   position: relative;
+  width: 120px;
+  height: 120px;
+  margin: 0px 30px 0px 0px; /* top right bottom left */
 }
 
 .profile__icon {
@@ -139,6 +141,9 @@
     grid-row-gap: 26.25px;
   }
 
+  .profile__image {
+    margin: 0px 0px 0px 70px; /* top right bottom left */
+  }
   .profile__avatar {
     margin: 0px auto 0px auto; /* top right bottom left */
   }
