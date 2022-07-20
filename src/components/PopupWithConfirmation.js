@@ -12,7 +12,6 @@ class PopupWithConfirmation extends Popup {
   }
 
   setLoadingText(isLoading) {
-    console.log({ isLoading });
     if (isLoading === true) {
       this._buttonText.textContent = "Loading...";
     } else {
@@ -32,8 +31,6 @@ class PopupWithConfirmation extends Popup {
     this._form.addEventListener("submit", (evt) => {
       evt.preventDefault(); // stops the browser from submitting the form in the default way.
       this._handleFormSubmit();
-
-      console.log("card deleted");
     });
     //we did not explicitly find the submit button...just listening to the event
     //pressing enter also submits

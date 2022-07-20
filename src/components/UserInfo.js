@@ -17,7 +17,6 @@ class UserInfo {
   }
 
   getId() {
-    console.log("userinfo id" + this.id);
     return this.id;
   }
 

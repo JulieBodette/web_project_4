@@ -88,13 +88,10 @@ const cardGridObject = new Section(
 //we use this to load the user info and get the initial cards
 Promise.all([api.getUserInfo(), api.getInitialCards()])
   .then(([userInfoResponse, cardsResponse]) => {
-    console.log("all promises resolved");
     //user info set up
     user.setAvatar(userInfoResponse.avatar);
     user.setId(userInfoResponse._id);
     user.setUserInfoTextOnly(userInfoResponse);
-    console.log({ userInfoResponse });
-    console.log({ cardsResponse });
     //cards set up
     cardGridObject.setItems(cardsResponse);
 
