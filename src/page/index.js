@@ -116,6 +116,7 @@ function renderCard(cardContainer, data, cardPopupObj, deletePopupObj) {
       //code for when the delete button is pressed
       deletePopupObj.setAction(() => {
         //this is the handleFormSubmit Function
+        deletePopupObj.setLoadingText(true);
         api
           .deleteCard(cardObj.getId()) //api call here to delete the card from server
           .then(() => {
@@ -124,7 +125,8 @@ function renderCard(cardContainer, data, cardPopupObj, deletePopupObj) {
           }) //close the modal panel when submitted
           .catch((err) => {
             console.log(err); // log the error to the console
-          });
+          })
+          .finally(deletePopupObj.setLoadingText(false));
       });
       deletePopupObj.open(); //open the popup
     },
@@ -245,7 +247,6 @@ const addCardFormPopupObj = new PopupWithForm("#add-card-modal", () => {
       renderCard(cardGridObject, data, imagePopupObj, deleteCardFormPopupObj);
     })
     .then(() => {
-      addCardFormObj.setButtonInactive(); //Set button to inactive-it needs to be hidden because the fields are empty
       addCardFormPopupObj.close();
     }) //close the modal panel when submitted
     .catch((err) => {
