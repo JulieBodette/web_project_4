@@ -114,7 +114,18 @@ function renderCard(cardContainer, data, cardPopupObj, deletePopupObj) {
     },
     () => {
       //code for when the delete button is pressed
-      deletePopupObj.setCardToDelete(cardObj);
+      deletePopupObj.setAction(() => {
+        //this is the handleFormSubmit Function
+        api
+          .deleteCard(cardObj.getId()) //api call here to delete the card from server
+          .then(() => {
+            cardObj.deleteFromPage(); //code to remove the card from the page immediately
+            deletePopupObj.close();
+          }) //close the modal panel when submitted
+          .catch((err) => {
+            console.log(err); // log the error to the console
+          });
+      });
       deletePopupObj.open(); //open the popup
     },
     //code for when the like button is pressed-tell the server the card was liked
@@ -246,21 +257,8 @@ const addCardFormPopupObj = new PopupWithForm("#add-card-modal", () => {
 addCardFormPopupObj.setEventListeners();
 
 //make an object for the "are you sure? delete button"
-const deleteCardFormPopupObj = new PopupWithConfirmation(
-  "#delete-card-modal",
-  (cardObjToDelete) => {
-    //this is the handleFormSubmit Function
-    api
-      .deleteCard(cardObjToDelete.getId()) //api call here to delete the card from server
-      .then(() => {
-        cardObjToDelete.deleteFromPage(); //code to remove the card from the page immediately
-        deleteCardFormPopupObj.close();
-      }) //close the modal panel when submitted
-      .catch((err) => {
-        console.log(err); // log the error to the console
-      });
-  }
-);
+const deleteCardFormPopupObj = new PopupWithConfirmation("#delete-card-modal");
+
 deleteCardFormPopupObj.setEventListeners();
 
 /////////////////////////////////////////////////////////////////////add click events to buttons that open form modals

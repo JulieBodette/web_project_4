@@ -2,18 +2,14 @@ import Popup from "./Popup";
 
 class PopupWithConfirmation extends Popup {
   constructor(
-    popupSelector,
-    handleFormSubmit // "#delete-card-modal"is the popupSelector
+    popupSelector // "#delete-card-modal"is the popupSelector
   ) {
     super(popupSelector); //set up this._modal
-    this._handleFormSubmit = handleFormSubmit;
+    this._handleFormSubmit = null;
     this._form = this._modal.querySelector(".modal__form");
-
-    this._cardToDelete;
   }
-
-  setCardToDelete(cardObj) {
-    this._cardToDelete = cardObj;
+  setAction(action) {
+    this._handleFormSubmit = action;
   }
 
   setEventListeners() {
@@ -23,9 +19,7 @@ class PopupWithConfirmation extends Popup {
     // Connect the handler to the form: it will watch the submit event
     this._form.addEventListener("submit", (evt) => {
       evt.preventDefault(); // stops the browser from submitting the form in the default way.
-      this._handleFormSubmit(this._cardToDelete); //send it the card object???
-
-      //CODE TO DELETE THE CARD in handkle form submit AND USE API CALL
+      this._handleFormSubmit();
 
       console.log("card deleted");
     });
