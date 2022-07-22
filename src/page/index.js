@@ -215,13 +215,14 @@ const editProfileFormPopupObj = new PopupWithForm(
     api
       .patchUserInfo(user.getUserInfo())
       .then(() => editProfileFormPopupObj.close())
-      .catch((err) => {
-        console.log(err); // log the error to the console
-      })
       .then(() => {
         user.setUserInfoTextOnly({ name: values.name, about: values.title });
       })
-      .finally(() => editAvatarFormPopupObj.setLoadingText(false));
+      .catch((err) => {
+        console.log(err); // log the error to the console
+      })
+
+      .finally(() => editProfileFormPopupObj.setLoadingText(false));
     //MUST Change button state in finally block, otherwise the button text won’t change even if an error occurred
   }
 );
@@ -245,10 +246,8 @@ const addCardFormPopupObj = new PopupWithForm("#add-card-modal", () => {
 
       //send data so that it gets the id info
       renderCard(cardGridObject, data, imagePopupObj, deleteCardFormPopupObj);
-    })
-    .then(() => {
       addCardFormPopupObj.close();
-    }) //close the modal panel when submitted
+    })
     .catch((err) => {
       console.log(err); // log the error to the console
     })
