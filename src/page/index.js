@@ -214,7 +214,7 @@ const editProfileFormPopupObj = new PopupWithForm(
     editProfileFormPopupObj.setLoadingText(true);
     api
       .patchUserInfo(user.getUserInfo())
-      .then(editProfileFormPopupObj.close())
+      .then(() => editProfileFormPopupObj.close())
       .catch((err) => {
         console.log(err); // log the error to the console
       })
