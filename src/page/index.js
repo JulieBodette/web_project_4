@@ -123,7 +123,7 @@ function renderCard(cardContainer, data, cardPopupObj, deletePopupObj) {
           .catch((err) => {
             console.log(err); // log the error to the console
           })
-          .finally(deletePopupObj.setLoadingText(false));
+          .finally(() => deletePopupObj.setLoadingText(false));
       });
       deletePopupObj.open(); //open the popup
     },
@@ -199,7 +199,7 @@ const editAvatarFormPopupObj = new PopupWithForm(
       .catch((err) => {
         console.log(err); // log the error to the console
       })
-      .finally(editAvatarFormPopupObj.setLoadingText(false));
+      .finally(() => editAvatarFormPopupObj.setLoadingText(false));
     //MUST Change button state in finally block, otherwise the button text won’t change even if an error occurred
   }
 );
@@ -218,7 +218,7 @@ const editProfileFormPopupObj = new PopupWithForm(
       .catch((err) => {
         console.log(err); // log the error to the console
       })
-      .finally(editAvatarFormPopupObj.setLoadingText(false));
+      .finally(() => editAvatarFormPopupObj.setLoadingText(false));
     //MUST Change button state in finally block, otherwise the button text won’t change even if an error occurred
   }
 );
@@ -249,7 +249,7 @@ const addCardFormPopupObj = new PopupWithForm("#add-card-modal", () => {
     .catch((err) => {
       console.log(err); // log the error to the console
     })
-    .finally(editAvatarFormPopupObj.setLoadingText(false));
+    .finally(() => editAvatarFormPopupObj.setLoadingText(false));
   //MUST Change button state in finally block, otherwise the button text won’t change even if an error occurred
 });
 addCardFormPopupObj.setEventListeners();
