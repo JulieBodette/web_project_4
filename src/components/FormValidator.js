@@ -1,4 +1,4 @@
-import { customSettings } from "../utils/constants.js";
+import { customSettings } from "../utils/Constants.js";
 class FormValidator {
   constructor(settings, formElement) {
     this.settings = settings;
