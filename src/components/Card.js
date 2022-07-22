@@ -69,13 +69,8 @@ class Card {
 
   isLiked() {
     // return true if user liked the card, otherwise false
-    let isLiked = false;
-    this._likes.forEach((like) => {
-      if (this._likes.some((like) => like._id === this.currentUserId)) {
-        isLiked = true;
-      }
-    });
-    return isLiked;
+
+    return this._likes.some((like) => like._id === this.currentUserId);
   }
 
   _renderLikes() {
