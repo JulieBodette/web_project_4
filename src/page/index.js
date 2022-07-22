@@ -210,13 +210,16 @@ const editProfileFormPopupObj = new PopupWithForm(
   (values) => {
     //we are defining _handleFormSubmit here
     //values is an object returned by _handleFormSubmit
-    user.setUserInfoTextOnly({ name: values.name, about: values.title }); //possibly values.about instead of values.title????
+
     editProfileFormPopupObj.setLoadingText(true);
     api
       .patchUserInfo(user.getUserInfo())
       .then(editProfileFormPopupObj.close())
       .catch((err) => {
         console.log(err); // log the error to the console
+      })
+      .then(() => {
+        user.setUserInfoTextOnly({ name: values.name, about: values.title });
       })
       .finally(() => editAvatarFormPopupObj.setLoadingText(false));
     //MUST Change button state in finally block, otherwise the button text won’t change even if an error occurred
