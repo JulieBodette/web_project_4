@@ -213,7 +213,7 @@ const editProfileFormPopupObj = new PopupWithForm(
 
     editProfileFormPopupObj.setLoadingText(true);
     api
-      .patchUserInfo(user.getUserInfo())
+      .patchUserInfo({ name: values.name, about: values.title }) //get it from the form, NOT the object
       .then(() => editProfileFormPopupObj.close())
       .then(() => {
         user.setUserInfoTextOnly({ name: values.name, about: values.title });
