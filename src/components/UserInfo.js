@@ -12,14 +12,6 @@ class UserInfo {
     this._userAvatarElement.src = avatar;
   }
 
-  setId(id) {
-    this._id = id; //being set here and not in the constructor
-  }
-
-  getId() {
-    return this._id;
-  }
-
   setUserInfoTextOnly({ name, about }) {
     this._userNameElement.textContent = name;
     this._userJobElement.textContent = about;
@@ -31,7 +23,6 @@ class UserInfo {
     const newObj = {
       name: this._userNameElement.textContent,
       about: this._userJobElement.textContent,
-      id: this.getId(),
     };
     return newObj;
   }
