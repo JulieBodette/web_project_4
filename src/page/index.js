@@ -251,7 +251,7 @@ const addCardFormPopupObj = new PopupWithForm("#add-card-modal", () => {
     .catch((err) => {
       console.log(err); // log the error to the console
     })
-    .finally(() => editAvatarFormPopupObj.setLoadingText(false));
+    .finally(() => addCardFormPopupObj.setLoadingText(false));
   //MUST Change button state in finally block, otherwise the button text won’t change even if an error occurred
 });
 addCardFormPopupObj.setEventListeners();
