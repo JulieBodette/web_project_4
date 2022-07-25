@@ -58,7 +58,7 @@ const user = new UserInfo({
 });
 
 //variable to keep track of id- set after call to api
-let UserId = null;
+let userId = null;
 
 /////Getting info from server
 //Token: 7201271b-2cce-46ab-9f28-d324b822f8cb
@@ -93,7 +93,7 @@ Promise.all([api.getUserInfo(), api.getInitialCards()])
   .then(([userInfoResponse, cardsResponse]) => {
     //user info set up
     user.setAvatar(userInfoResponse.avatar);
-    UserId = userInfoResponse._id;
+    userId = userInfoResponse._id;
     user.setUserInfoTextOnly(userInfoResponse);
     //cards set up
     cardGridObject.setItems(cardsResponse);
@@ -150,7 +150,7 @@ function renderCard(cardContainer, data, cardPopupObj, deletePopupObj) {
         console.log("you UNliked the card and we r telling server");
       }
     },
-    UserId
+    userId
   ); //create a card object
 
   const newCard = cardObj.createCardElement(); //create a card element
